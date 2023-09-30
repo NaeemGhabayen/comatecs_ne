@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utill/images.dart';
@@ -96,6 +97,18 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     return GestureDetector(
       onTap: () {
         setState(() {
+          if(indx==4){
+            SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+              statusBarColor: Theme.of(context).primaryColor,
+              statusBarIconBrightness: Brightness.light,
+
+            ));
+          }else{
+            SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
+            ));
+          }
           _index = indx;
           pageController.animateToPage(_index,
               duration: Duration(milliseconds: 50), curve: Curves.ease);

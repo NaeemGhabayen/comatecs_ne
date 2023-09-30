@@ -20,15 +20,15 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
   bool isView = false;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: Column(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 24,
+              height: 12,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -61,164 +61,166 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        setState(() {
-                          selected=-1;
-                          isView =false;
-                        });
-                      },
-                      child: Container(
-                        height: 74,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1, color: selected==-1?Color(0xFF197D47):Color(0xFFE1E1E1)),
-                            borderRadius: BorderRadius.circular(5),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          setState(() {
+                            selected=-1;
+                            isView =false;
+                          });
+                        },
+                        child: Container(
+                          height: 74,
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1, color: selected==-1?Color(0xFF197D47):Color(0xFFE1E1E1)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24.0, vertical: 12),
-                              child: Image.asset(Images.cash),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:const [
-                            Text(
-                              'الدفع عند استلام المنتج',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Color(0xFF212121),
-                                fontSize: 16,
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w500,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0, vertical: 12),
+                                child: Image.asset(Images.cash),
                               ),
-                            ),
-                            SizedBox(height: 12,),
-                            Text(
-                              'استلم منتجاتك أولاَ ثم ادفع (باليد) ',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Color(0xFF6F6F6F),
-                                fontSize: 12,
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w400,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:const [
+                              Text(
+                                'الدفع عند استلام المنتج',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  color: Color(0xFF212121),
+                                  fontSize: 16,
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                              ],
-                            )
-                          ],
+                              SizedBox(height: 12,),
+                              Text(
+                                'استلم منتجاتك أولاَ ثم ادفع (باليد) ',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  color: Color(0xFF6F6F6F),
+                                  fontSize: 12,
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
 SizedBox(height: 16,),
-                    SizedBox(
-                        height: 80,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 4,
-                          // list item builder
-                          itemBuilder: (BuildContext ctx, index) {
-                            return  InkWell(
-                              onTap: (){
-                                setState(() {
-                                  selected=index;
-                                  isView= true;
-                                });
-                              },
-                              child: Container(
-                                width: 80,
-                                height: 74,
-                                margin: EdgeInsets.only(left: 16),
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(width: 1, color: selected==index ?Theme.of(context).primaryColor:Color(0xFFE1E1E1)),
-                                    borderRadius: BorderRadius.circular(5),
+                      SizedBox(
+                          height: 80,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            // list item builder
+                            itemBuilder: (BuildContext ctx, index) {
+                              return  InkWell(
+                                onTap: (){
+                                  setState(() {
+                                    selected=index;
+                                    isView= true;
+                                  });
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 74,
+                                  margin: EdgeInsets.only(left: 16),
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1, color: selected==index ?Theme.of(context).primaryColor:Color(0xFFE1E1E1)),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Image.asset(Images.cash),
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Image.asset(Images.cash),
-                                ),
-                              ),
-                            );
-                          },
-                        )),
+                              );
+                            },
+                          )),
 SizedBox(height: 16,),
-                    isView?Column(
-                      children: [
-                        Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
-                          Image.asset(Images.information , width: 20,height: 20,),
-                          SizedBox(width: 12,),
-                          const Expanded(
-                            child: Text(
-                              'لإتمام عملية الدفع عبر المحفظة، يُرجى استخدام رقم هاتف: [09987412536]',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Color(0xFF6F6F6F),
-                                fontSize: 12,
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w400,
+                      isView?Column(
+                        children: [
+                          Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
+                            Image.asset(Images.information , width: 20,height: 20,),
+                            SizedBox(width: 12,),
+                            const Expanded(
+                              child: Text(
+                                'لإتمام عملية الدفع عبر المحفظة، يُرجى استخدام رقم هاتف: [09987412536]',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  color: Color(0xFF6F6F6F),
+                                  fontSize: 12,
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
+                          ],),
+                          SizedBox(height: 16,),
+                          Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
+                            Image.asset(Images.information , width: 20,height: 20,),
+                            SizedBox(width: 12,),
+                            const Expanded(
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'سوف يتم إرسال ',
+                                      style: TextStyle(
+                                        color: Color(0xCC212121),
+                                        fontSize: 12,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'رمز عملية (المرجع) ',
+                                      style: TextStyle(
+                                        color: Color(0xFF197D47),
+                                        fontSize: 12,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'الشراء الخاص بهذه العمليه , يرجى ادخاله',
+                                      style: TextStyle(
+                                        color: Color(0xCC212121),
+                                        fontSize: 12,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                ),
+                            ),
+                          ],),
+                          SizedBox(height: 42,),
+                          TextFromFieldWidget(
+                            title: 'رمز عمليه (المرجع)',
+                            type: TextInputType.number,
+                            onChange: (String value) {},
                           ),
-                        ],),
-                        SizedBox(height: 16,),
-                        Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
-                          Image.asset(Images.information , width: 20,height: 20,),
-                          SizedBox(width: 12,),
-                          const Expanded(
-                            child: Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'سوف يتم إرسال ',
-                                    style: TextStyle(
-                                      color: Color(0xCC212121),
-                                      fontSize: 12,
-                                      fontFamily: 'Tajawal',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'رمز عملية (المرجع) ',
-                                    style: TextStyle(
-                                      color: Color(0xFF197D47),
-                                      fontSize: 12,
-                                      fontFamily: 'Tajawal',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'الشراء الخاص بهذه العمليه , يرجى ادخاله',
-                                    style: TextStyle(
-                                      color: Color(0xCC212121),
-                                      fontSize: 12,
-                                      fontFamily: 'Tajawal',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              ),
-                          ),
-                        ],),
-                        SizedBox(height: 42,),
-                        TextFromFieldWidget(
-                          title: 'رمز عمليه (المرجع)',
-                          type: TextInputType.number,
-                          onChange: (String value) {},
-                        ),
 
-                      ],
-                    ):SizedBox(),
-                  ],
+                        ],
+                      ):SizedBox(),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -26,10 +26,10 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -37,7 +37,7 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,7 +116,7 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                   controller: _phoneController,
                   nextNode: _nameFocus,
                 ),
-                
+
                 SizedBox(height: 40,),
                 CustomButton(btnTxt: 'إرسال',onTap: (){
                   showDialog(

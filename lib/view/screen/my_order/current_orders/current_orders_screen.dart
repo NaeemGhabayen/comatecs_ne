@@ -14,10 +14,10 @@ class CurrentOrdersScreen extends StatefulWidget {
 class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body:  InkWell(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body:  SafeArea(
+        child: InkWell(
           onTap: (){
             AppNavigation.navigateTo(context, OrderDetailsScreen());
           },
@@ -140,9 +140,9 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
             ),
           ),
         ),
-
-
       ),
+
+
     );
   }
 }

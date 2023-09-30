@@ -18,15 +18,15 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: Column(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 24,
+              height: 12,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),

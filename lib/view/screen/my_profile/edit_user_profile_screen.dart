@@ -42,10 +42,10 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

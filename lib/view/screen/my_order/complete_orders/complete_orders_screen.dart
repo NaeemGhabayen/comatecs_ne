@@ -12,10 +12,10 @@ class CompleteOrdersScreen extends StatefulWidget {
 class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body:  Column(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body:  SafeArea(
+        child: Column(
           children: [
             Expanded(
               child: Container(
@@ -176,9 +176,9 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
             )
           ],
         ),
-
-
       ),
+
+
     );
   }
 }

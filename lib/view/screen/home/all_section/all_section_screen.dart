@@ -13,58 +13,59 @@ class AllSectionScreen extends StatefulWidget {
 class _AllSectionScreenState extends State<AllSectionScreen> {
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: ColorResources.BACKGROUND,
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 24,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-
-                            child: Icon(Icons.arrow_back_ios,size: 20,))),
-                const Text(
-                      'جميع الأقسام',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: Color(0xFF212121),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        height: 0,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 20,
+                          ))),
+                      const Text(
+                        'جميع الأقسام',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color(0xFF212121),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          height: 0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 24,),
-
-                ListView.builder(
-                  itemCount: 10,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext ctx, index) {
-                    return ItemSection();
-                  },
-                )
-              ],
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  ListView.builder(
+                    itemCount: 10,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext ctx, index) {
+                      return ItemSection();
+                    },
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

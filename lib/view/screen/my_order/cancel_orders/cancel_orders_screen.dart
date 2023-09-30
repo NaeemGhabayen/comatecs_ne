@@ -12,10 +12,10 @@ class CancelOrdersScreen extends StatefulWidget {
 class _CancelOrdersScreenState extends State<CancelOrdersScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body:  Container(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body:  SafeArea(
+        child: Container(
           child: ListView.builder(
             itemCount: 8,
             itemBuilder: (BuildContext ctx, index) {
@@ -133,9 +133,9 @@ class _CancelOrdersScreenState extends State<CancelOrdersScreen> {
             },
           ),
         ),
-
-
       ),
+
+
     );
   }
 }

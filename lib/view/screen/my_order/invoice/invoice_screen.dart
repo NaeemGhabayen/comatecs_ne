@@ -14,17 +14,17 @@ class InvoiceScreen extends StatefulWidget {
 class _InvoiceScreenState extends State<InvoiceScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: Padding(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,29 +66,31 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                         children: [
                           Row(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width*.5,
-                                height: 41, alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(left: 12,right: 12),
-                                decoration:const BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Color(0xB2E1E1E1)),
-                                    top: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    right: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    bottom: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
+                              Expanded(
+                                child: Container(
+
+                                  height: 41, alignment: Alignment.centerRight,
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  decoration:const BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Color(0xB2E1E1E1)),
+                                      top: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      right: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      bottom: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                    ),
                                   ),
-                                ),
-                                child:const Text(
-                                  'المنتج',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xFF1C1C1C),
-                                    fontSize: 13,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.w500,
+                                  child:const Text(
+                                    'المنتج',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF1C1C1C),
+                                      fontSize: 13,
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -147,29 +149,31 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                             itemBuilder: (BuildContext ctx, index) {
                               return  Row(
                                 children: [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width*.5,                                padding: EdgeInsets.only(left: 12,right: 12),
+                                  Expanded(
+                                    child: Container(
+                                                              padding: EdgeInsets.only(left: 12,right: 12),
 
-                                    height: 41,alignment: Alignment.centerRight,
-                                    decoration:const BoxDecoration(
-                                      border: Border(
-                                        left: BorderSide(color: Color(0xB2E1E1E1)),
-                                        top: BorderSide(
-                                            width: 0.50, color: Color(0xB2E1E1E1)),
-                                        right: BorderSide(
-                                            width: 0.50, color: Color(0xB2E1E1E1)),
-                                        bottom: BorderSide(
-                                            width: 0.50, color: Color(0xB2E1E1E1)),
+                                      height: 41,alignment: Alignment.centerRight,
+                                      decoration:const BoxDecoration(
+                                        border: Border(
+                                          left: BorderSide(color: Color(0xB2E1E1E1)),
+                                          top: BorderSide(
+                                              width: 0.50, color: Color(0xB2E1E1E1)),
+                                          right: BorderSide(
+                                              width: 0.50, color: Color(0xB2E1E1E1)),
+                                          bottom: BorderSide(
+                                              width: 0.50, color: Color(0xB2E1E1E1)),
+                                        ),
                                       ),
-                                    ),
-                                    child:const Text(
-                                      'اسم المنتج 1',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xB2212121),
-                                        fontSize: 12,
-                                        fontFamily: 'Tajawal',
-                                        fontWeight: FontWeight.w400,
+                                      child:const Text(
+                                        'اسم المنتج 1',
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          color: Color(0xB2212121),
+                                          fontSize: 12,
+                                          fontFamily: 'Tajawal',
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -231,29 +235,31 @@ SizedBox(height: 24,),
                         children: [
                           Row(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width*.6,
-                                height: 41, alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(left: 12,right: 12),
-                                decoration:const BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Color(0xB2E1E1E1)),
-                                    top: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    right: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    bottom: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
+                              Expanded(
+                                child: Container(
+
+                                  height: 41, alignment: Alignment.centerRight,
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  decoration:const BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Color(0xB2E1E1E1)),
+                                      top: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      right: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      bottom: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                    ),
                                   ),
-                                ),
-                                child:const Text(
-                                  'اجمالي التوصيل',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFF212121),
-                                    fontSize: 13,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.w500,
+                                  child:const Text(
+                                    'اجمالي التوصيل',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFF212121),
+                                      fontSize: 13,
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -282,29 +288,31 @@ SizedBox(height: 24,),
                           ),
                           Row(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width*.6,
-                                height: 41, alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(left: 12,right: 12),
-                                decoration:const BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Color(0xB2E1E1E1)),
-                                    top: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    right: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    bottom: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
+                              Expanded(
+                                child: Container(
+
+                                  height: 41, alignment: Alignment.centerRight,
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  decoration:const BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Color(0xB2E1E1E1)),
+                                      top: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      right: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      bottom: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                    ),
                                   ),
-                                ),
-                                child:const Text(
-                                  'السعر الإجمالي',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFF197D47),
-                                    fontSize: 14,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.w700,
+                                  child:const Text(
+                                    'السعر الإجمالي',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFF197D47),
+                                      fontSize: 14,
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -333,29 +341,30 @@ SizedBox(height: 24,),
                           ),
                           Row(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width*.6,
-                                height: 41, alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(left: 12,right: 12),
-                                decoration:const BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Color(0xB2E1E1E1)),
-                                    top: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    right: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
-                                    bottom: BorderSide(
-                                        width: 0.50, color: Color(0xB2E1E1E1)),
+                              Expanded(
+                                child: Container(
+                                  height: 41, alignment: Alignment.centerRight,
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  decoration:const BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Color(0xB2E1E1E1)),
+                                      top: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      right: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                      bottom: BorderSide(
+                                          width: 0.50, color: Color(0xB2E1E1E1)),
+                                    ),
                                   ),
-                                ),
-                                child:const Text(
-                                  'مجموع النقاط',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFF212121),
-                                    fontSize: 14,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.w500,
+                                  child:const Text(
+                                    'مجموع النقاط',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFF212121),
+                                      fontSize: 14,
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),

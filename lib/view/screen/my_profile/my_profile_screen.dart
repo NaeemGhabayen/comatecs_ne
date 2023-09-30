@@ -1,5 +1,6 @@
 import 'package:comatecs/utill/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../utill/images.dart';
 import '../../base/show_dialog.dart';
@@ -19,9 +20,8 @@ class MyProfileScreen extends StatefulWidget {
 class _MyProfileScreenState extends State<MyProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(child:SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -50,7 +50,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         color: Colors.white.withOpacity(0.7900000214576721),
                         shape: RoundedRectangleBorder(
                           side:
-                              BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
+                          BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
@@ -204,7 +204,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             )
           ],
         ),
-      ),
-    ));
+      ),),
+    );
   }
 }

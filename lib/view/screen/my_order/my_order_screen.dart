@@ -27,17 +27,17 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
 }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: Padding(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.only(top: 20.0,left: 20,right: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

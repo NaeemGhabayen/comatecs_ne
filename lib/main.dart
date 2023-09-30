@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -13,14 +11,13 @@ import 'view/screen/splash/splash_screen.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor:  Colors.white,
+      statusBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
     ),
   );
@@ -35,17 +32,13 @@ Future<void> main() async {
 }
 
 class MyApp extends StatefulWidget {
-
-   static  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp>{
-
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,7 +55,7 @@ class _MyAppState extends State<MyApp>{
       debugShowCheckedModeBanner: false,
       theme: light,
 
-      locale:Locale('ar'),
+      locale: Locale('ar'),
       supportedLocales: [
         Locale('ar'),
       ],

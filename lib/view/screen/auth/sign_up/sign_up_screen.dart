@@ -43,15 +43,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
   String maritalStatusValue;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * .05,
+                height: MediaQuery.of(context).size.height * .02,
               ),
               InkWell(onTap:(){Navigator.pop(context);},child: Container(padding:EdgeInsets.symmetric(horizontal: 12),alignment: Alignment.topRight,child: Icon(Icons.arrow_back_ios))),
               Image.asset(Images.logo),

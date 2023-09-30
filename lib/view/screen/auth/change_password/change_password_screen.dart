@@ -23,16 +23,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * .05,
+                height: MediaQuery.of(context).size.height * .02,
               ),
               InkWell(
                   onTap: () {

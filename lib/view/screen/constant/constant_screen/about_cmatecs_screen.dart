@@ -15,10 +15,10 @@ class _ConstantScreenState extends State<ConstantScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorResources.BACKGROUND,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ColorResources.BACKGROUND,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -26,7 +26,7 @@ class _ConstantScreenState extends State<ConstantScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
