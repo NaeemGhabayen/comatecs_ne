@@ -132,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
+                        print('ssssssssssssss');
                         AppNavigation.navigateTo(
                             context, ForgetPasswordScreen());
                       },

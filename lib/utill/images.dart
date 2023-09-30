@@ -24,5 +24,10 @@ class Images {
   static const String users = 'assets/images/users.png';
   static const String call = 'assets/images/call.png';
   static const String logout = 'assets/images/logout.png';
+  static const String smile = 'assets/images/smile.png';
+  static const String delete = 'assets/images/delete.png';
+  static const String cash = 'assets/images/cash.png';
+  static const String information = 'assets/images/information.png';
+  static const String promotion = 'assets/images/promotion.png';
 
 }

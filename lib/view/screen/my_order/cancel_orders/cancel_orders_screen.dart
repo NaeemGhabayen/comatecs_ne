@@ -16,7 +16,6 @@ class _CancelOrdersScreenState extends State<CancelOrdersScreen> {
       child: Scaffold(
         backgroundColor: ColorResources.BACKGROUND,
         body:  Container(
-          padding: EdgeInsets.all(12),
           child: ListView.builder(
             itemCount: 8,
             itemBuilder: (BuildContext ctx, index) {

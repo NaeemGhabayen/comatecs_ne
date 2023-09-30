@@ -126,13 +126,13 @@ contentPadding: EdgeInsets.symmetric(horizontal: 8),
                     color: Color(0xFFE1E1E1),
                     width: 1.0,
                   ),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 focusedBorder: OutlineInputBorder(
                   // width: 0.0 produces a thin "hairline" border
                   borderSide:
                       const BorderSide(color: Color(0x7F212121), width: 1),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),

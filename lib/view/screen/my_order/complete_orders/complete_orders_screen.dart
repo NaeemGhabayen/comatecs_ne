@@ -19,7 +19,6 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
           children: [
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(12),
                 child: ListView.builder(
                   itemCount: 20,
                   itemBuilder: (BuildContext ctx, index) {

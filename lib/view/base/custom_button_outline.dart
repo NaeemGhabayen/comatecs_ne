@@ -27,15 +27,16 @@ class CustomButtonOutline extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: ColorResources.WHITE,
-            borderRadius: BorderRadius.circular(radius),
+            borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Theme.of(context).primaryColor),
           ),
           child: Text(btnTxt ?? "",
-              style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 14,
-                fontWeight: FontWeight.w500
-                 ))),
+              style:  TextStyle(
+                color: Color(0xFF197D47),
+                fontSize: 16,
+                fontFamily: 'Tajawal',
+                fontWeight: FontWeight.w700,
+              ),)),
     );
   }
 }

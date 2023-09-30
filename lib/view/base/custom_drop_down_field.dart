@@ -52,7 +52,7 @@ class CustomDropDownField extends StatelessWidget {
               color: Color(0xFFE1E1E1),
               width: 1.0,
             ),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
             color: Colors.white,
             shape: BoxShape.rectangle,
           ),
@@ -76,7 +76,7 @@ class CustomDropDownField extends StatelessWidget {
               maxHeight: 200,
               padding: null,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(12),
                 color: Colors.white,
               ),
               elevation: 8,

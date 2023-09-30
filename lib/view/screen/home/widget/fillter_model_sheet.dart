@@ -26,7 +26,6 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * .2),
         color: Colors.transparent,
         child: Container(

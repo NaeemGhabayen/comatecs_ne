@@ -31,6 +31,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
     _emailController.dispose();
     _passwordController.dispose();
   }
+
   List<String> maritalStatusList = <String>[
     ' ',
     "single",
@@ -63,8 +64,10 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                           Navigator.pop(context);
                         },
                         child: Container(
-
-                            child: Icon(Icons.arrow_back_ios,size: 20,))),
+                            child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 20,
+                        ))),
                     const Text(
                       'تعديل كلمة المرور',
                       textAlign: TextAlign.right,
@@ -78,7 +81,9 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 36,),
+              SizedBox(
+                height: 36,
+              ),
               TextFromFieldWidget(
                 title: 'إيميل المستخدم/ اسم المستخدم',
                 type: TextInputType.emailAddress,
@@ -111,7 +116,6 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                 controller: _passwordController,
                 obscureText: true,
               ),
-
               CustomDropDownField(
                   title: 'طبيعية العمل',
                   onChange: (value) {
@@ -127,14 +131,16 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                   },
                   list: maritalStatusList,
                   value: maritalStatusValue,
-                  width: true),    CustomDropDownField(
+                  width: true),
+              CustomDropDownField(
                   title: 'عدد الموظفين',
                   onChange: (value) {
                     setState(() {});
                   },
                   list: maritalStatusList,
                   value: maritalStatusValue,
-                  width: true),   CustomDropDownField(
+                  width: true),
+              CustomDropDownField(
                   title: 'وظيفتتك داخل الشركة',
                   onChange: (value) {
                     setState(() {});
@@ -142,15 +148,10 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                   list: maritalStatusList,
                   value: maritalStatusValue,
                   width: true),
-
-
               Container(
                   alignment: Alignment.bottomCenter,
                   width: MediaQuery.of(context).size.width * .8,
-                  child: CustomButton(
-                      btnTxt: 'حفظ',
-                      onTap: () {
-                      })),
+                  child: CustomButton(btnTxt: 'حفظ', onTap: () {})),
               const SizedBox(
                 height: 20,
               ),

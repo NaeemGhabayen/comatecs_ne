@@ -34,8 +34,8 @@ class _ItemProfileState extends State<ItemProfile> {
           children: [
             Row(
               children: [
-                Image.asset(widget.icon ,width: 16,height: 16,),
-                SizedBox(width: 12,),
+                widget.icon==null?SizedBox():    Image.asset(widget.icon ,width: 16,height: 16,),
+                widget.icon==null?SizedBox():      SizedBox(width: 12,),
                 Text(
                 widget.title,
                   textAlign: TextAlign.right,

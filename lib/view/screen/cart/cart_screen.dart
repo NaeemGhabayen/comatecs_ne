@@ -1,3 +1,4 @@
+import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/base/custom_button.dart';
 import 'package:comatecs/view/screen/cart/widget/item_cart.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../../base/card_counter.dart';
+import '../purchase_details/purchase_details_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({key});
@@ -104,7 +106,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ],
                   ),
-                  Container(margin: EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'الشحن',onTap: (){},),)
+                  Container(margin: EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'الشحن',onTap: (){AppNavigation.navigateTo(context, PurchaseDetailsScreen());},),)
                 ],
               ),
             )

@@ -22,7 +22,6 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
             AppNavigation.navigateTo(context, OrderDetailsScreen());
           },
           child: Container(
-            padding: EdgeInsets.all(12),
             child: ListView.builder(
               itemCount: 4,
               itemBuilder: (BuildContext ctx, index) {
