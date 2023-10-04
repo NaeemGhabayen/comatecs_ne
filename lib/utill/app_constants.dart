@@ -2,9 +2,9 @@
 import '../helper/route_helper.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'Creative lerarning';
+  static const String APP_NAME = 'Comatecs';
   static const String APP_VERSION = '1.0';
-  static const String BASE_URL = 'https://malath.onrender.com';
+  static const String BASE_URL = 'http://comatecs-001-site1.htempurl.com';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -22,7 +22,11 @@ class AppConstants {
   static const String TEST =
       'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.ذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.';
 
-  static const String REGISTRATION_URI = '/api/v1/auth/signup';
+  static const String REGISTRATION_URI = '/api/Auth/register';
+  static const String LOGIN_URI = '/api/Auth/login';
+  static const String ResetPassword_URI = '/api/Auth/ResetPassword';
+  static const String AdvertisementURL = '/api/Advertisement';
+  static const String AboutUsURL = '/api/AboutUs';
 
 
 

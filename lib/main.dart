@@ -1,3 +1,4 @@
+import 'package:comatecs/provider/adverstiment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ConstantsProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<AdvertisementProvider>()),
     ],
     child: MyApp(),
   ));

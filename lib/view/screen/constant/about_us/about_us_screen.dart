@@ -1,7 +1,9 @@
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/constant/constant_screen/about_cmatecs_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../provider/constants_provider.dart';
 import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
 import '../../my_profile/edit_password_screen.dart';
@@ -16,6 +18,13 @@ class AboutUsScreen extends StatefulWidget {
 }
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ConstantsProvider>(context, listen: false)
+        .getAboutUsList(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

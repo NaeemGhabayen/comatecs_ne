@@ -36,11 +36,8 @@ class ApiErrorHandler {
 
                   break;
                 default:
-                  ErrorResponse errorResponse = ErrorResponse.fromJson(error.response.data);
-                  if (errorResponse.errors != null && errorResponse.errors.length > 0)
-                    errorDescription = errorResponse;
-                  else
-                    errorDescription = " ${error.response.data["message"]}";
+                  errorDescription =  error.response.data['title'];
+
               }
               break;
             case DioErrorType.sendTimeout:

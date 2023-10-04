@@ -7,6 +7,7 @@ import '../../utill/app_constants.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';
 
+import '../model/body/login_model.dart';
 import '../model/body/register_model.dart';
 import '../model/response/base/api_response.dart';
 
@@ -28,8 +29,39 @@ class AuthRepo {
     }
   }
 
+  Future<ApiResponse> restPassword({String email} ) async {
+    try {
+      Response response = await dioClient.post(
+        AppConstants.ResetPassword_URI,
+        data:'''{"email": "$email"}''' ,   options: Options(headers: {'accept': '*/*',
+        'Content-Type': 'application/json' }),
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 
 
+
+
+  Future<ApiResponse> login(LoginModel loginBody) async {
+    print(loginBody.toJson());
+    print("loginBody.toJson()");
+    try {
+      Response response = await dioClient.post(
+        AppConstants.LOGIN_URI,
+        data:FormData.fromMap(loginBody.toJson()) ,
+        options: Options(headers: {'accept': '*/*',
+          'Content-Type': 'multipart/form-data' }),
+      );
+      print("response.data.toString()");
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      print(ApiErrorHandler.getMessage(e));
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 
   // for  user token
   Future<void> saveUserToken(String token) async {
@@ -106,11 +138,8 @@ class AuthRepo {
   }
 
   Future<bool> clearSharedData() async {
-    //sharedPreferences.remove(AppConstants.CART_LIST);
     sharedPreferences.remove(AppConstants.TOKEN);
-    sharedPreferences.remove(AppConstants.USER);
-    sharedPreferences.remove(AppConstants.USER_EMAIL);
-    sharedPreferences.remove(AppConstants.USER_ROLE);
+    sharedPreferences.clear();
     return true;
   }
 

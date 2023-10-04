@@ -1,3 +1,4 @@
+import 'package:comatecs/data/repository/advertisement_repo.dart';
 import 'package:connectivity/connectivity.dart';
 
 import 'package:dio/dio.dart';
@@ -11,6 +12,7 @@ import 'data/repository/auth_repo.dart';
 import 'data/repository/constants_repo.dart';
 
 import 'helper/network_info.dart';
+import 'provider/adverstiment_provider.dart';
 import 'provider/auth_provider.dart';
 import 'provider/constants_provider.dart';
 import 'utill/app_constants.dart';
@@ -24,9 +26,11 @@ Future<void> init() async {
       () => DioClient(AppConstants.BASE_URL, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ConstantsRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => AdvertisementRepo(dioClient: sl()));
 
   sl.registerFactory(() => AuthProvider(authRepo: sl()));
   sl.registerFactory(() => ConstantsProvider(constantsRepo: sl()));
+  sl.registerFactory(() => AdvertisementProvider(advertisementRepo: sl()));
 
 
   // External

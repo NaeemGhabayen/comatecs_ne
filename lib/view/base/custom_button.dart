@@ -9,12 +9,13 @@ class CustomButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final double radius;
-
+  final bool isLoading;
   CustomButton(
       {this.onTap,
       @required this.btnTxt,
       this.backgroundColor,
       this.radius = 8,
+        this.isLoading=false,
       this.textColor});
 
   @override
@@ -34,7 +35,7 @@ class CustomButton extends StatelessWidget {
     return TextButton(
         onPressed: onTap,
         style: flatButtonStyle,
-        child: Text(btnTxt ?? "",
+        child: isLoading? Center(child: Container(width: 20,height: 20,child: CircularProgressIndicator(color: Colors.white,)),):Text(btnTxt ?? "",
             style: TextStyle(
                 color: textColor == null ? Colors.white : textColor,
                 fontSize: Dimensions.FONT_SIZE_LARGE,

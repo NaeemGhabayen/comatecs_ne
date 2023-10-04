@@ -1,8 +1,13 @@
 import 'dart:async';
+import 'package:comatecs/utill/navigation.dart';
+import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
+import '../../../provider/adverstiment_provider.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 
@@ -25,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _onConnectivityChanged = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
+      Provider.of<AuthProvider>(context, listen: false).isRememberMe();
       if (!_firstTime) {
         bool isNotConnected = result != ConnectivityResult.wifi &&
             result != ConnectivityResult.mobile;
@@ -60,9 +66,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _route() async {
 
-    Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Timer(Duration(seconds: 5), () {
+      if(Provider.of<AuthProvider>(context, listen: false).isRemember){
+        Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
+        AppNavigation.navigateAndFinish(context, MainHomeScreen());
+      }else{
+        AppNavigation.navigateAndFinish(context, LoginScreen());
+      }
+
     });
   }
 

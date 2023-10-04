@@ -39,10 +39,7 @@ class DioClient {
 
   void updateHeader(String token, String countryCode) {
     token = token == null ? this.token : token;
-    countryCode = countryCode == null ? this.countryCode == 'US' ? 'en': this.countryCode.toLowerCase(): countryCode == 'US' ? 'en' : countryCode.toLowerCase();
     this.token = token;
-    this.countryCode = countryCode;
-    print('===Country code====>$countryCode');
     dio.options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',

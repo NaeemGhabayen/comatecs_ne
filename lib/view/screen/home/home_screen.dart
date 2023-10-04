@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:comatecs/utill/app_constants.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/home/widget/card_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/adverstiment_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import 'all_section/all_section_screen.dart';
@@ -17,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _current = 1;
+  int _current = 0;
   int _currentReview = 1;
 
   List<T> map<T>(List list, Function handler) {
@@ -29,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return result;
   }
 
-  List _list = ['1', '2', '2', '2'];
   List<String> _lists = ['1', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2'];
   List<String> list = [
     'الأدوات والمعدات',
@@ -48,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
-            child: Column(
+            child: Provider.of<AdvertisementProvider>(context, listen: true).isLoading? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),):Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       width: 8,
                     ),
-                    Text(
+                    const Text(
                       'تسوق معنا',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -169,7 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           _current = index;
                         });
                       }),
-                  items: _list.map((index) {
+                  items: Provider.of<AdvertisementProvider>(context, listen: false).advertisementList.map((index) {
+
                     return Builder(
                       builder: (BuildContext context) {
                         return Container(
@@ -180,12 +183,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: MediaQuery.of(context).size.width,
                                 height:
                                     MediaQuery.of(context).size.height * .23,
-                                decoration: const BoxDecoration(
+                                decoration:  BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
                                     image: DecorationImage(
                                       image:
-                                          AssetImage("assets/images/img.png"),
+                                          NetworkImage('${AppConstants.BASE_URL}/images/${index.imageUrl}'),
                                       fit: BoxFit.fill,
                                     )),
                                 child: Stack(children: [
@@ -198,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: map<Widget>(
-                                          _list,
+                                          Provider.of<AdvertisementProvider>(context, listen: false).advertisementList,
                                           (index, url) {
                                             return Container(
                                               width: _current == index ? 20 : 8,

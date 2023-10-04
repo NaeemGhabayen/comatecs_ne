@@ -35,12 +35,12 @@ bool isFavorite=false;
             },
             child: Column(
               children: [
-                SizedBox(height: 20,),
+                Expanded(child: SizedBox(height: 20,)),
                 Image.asset('assets/images/img_1.png' , height: 100, fit: BoxFit.contain,),
                 SizedBox(height: 16,),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  child: Text(
+                  child: const Text(
                     'الاسم التجاري الشائع',
                     textAlign: TextAlign.start,
                     style: TextStyle(

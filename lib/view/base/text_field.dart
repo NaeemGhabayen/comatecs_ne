@@ -59,14 +59,12 @@ class _TextFromFieldWidgetState extends State<TextFromFieldWidget> {
               color: Color(0xFF212121),
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              height: 0.11,
             ),
           ),
           SizedBox(
             height: 12,
           ),
           Container(
-            height: widget.height ? 100 : 54,
             width: widget.width
                 ? MediaQuery.of(context).size.width * .38
                 : MediaQuery.of(context).size.width * .9,
@@ -92,10 +90,13 @@ class _TextFromFieldWidgetState extends State<TextFromFieldWidget> {
               controller: widget.controller,
               obscureText: widget.obscureText ? isTextObscured : false,
               focusNode: widget.focusNode,
+              enableInteractiveSelection: true,
+
               maxLines: widget.obscureText ? 1 : null,
               onFieldSubmitted: (v) {
                 FocusScope.of(context).requestFocus(widget.nextNode);
               },
+
               decoration: InputDecoration(
                 suffixIcon: widget.obscureText
                     ? IconButton(
@@ -114,7 +115,7 @@ class _TextFromFieldWidgetState extends State<TextFromFieldWidget> {
                         },
                       )
                     : SizedBox(),
-contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                contentPadding: EdgeInsets.symmetric(horizontal: 8),
                 hintText: widget.title,
                 hintStyle: const TextStyle(
                     color: Color.fromRGBO(33, 47, 62, .61),
@@ -128,6 +129,25 @@ contentPadding: EdgeInsets.symmetric(horizontal: 8),
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
+                border: OutlineInputBorder(
+                // width: 0.0 produces a thin "hairline" border
+                borderSide: const BorderSide(
+                  color: Color(0xFFE1E1E1),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: Colors.redAccent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                errorStyle: TextStyle(
+                  fontSize: 10,
+                  height: 1,
+                ),
                 focusedBorder: OutlineInputBorder(
                   // width: 0.0 produces a thin "hairline" border
                   borderSide:
@@ -137,7 +157,7 @@ contentPadding: EdgeInsets.symmetric(horizontal: 8),
               ),
             ),
           ),
-          const  SizedBox(
+          const SizedBox(
             height: 24,
           ),
         ],

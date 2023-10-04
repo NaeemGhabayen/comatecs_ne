@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/adverstiment_provider.dart';
 import '../../../utill/images.dart';
 import '../cart/cart_screen.dart';
 import '../favorite/favorite_screen.dart';
@@ -25,6 +27,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+     // Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
     pageController = PageController(
       initialPage: 0,
     );

@@ -1,6 +1,9 @@
+import 'package:comatecs/view/screen/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../provider/auth_provider.dart';
 import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
 import '../../../../utill/navigation.dart';
@@ -26,6 +29,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     super.dispose();
     _emailController.dispose();
   }
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +70,23 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               SizedBox(
                 height: 40,
               ),
-              TextFromFieldWidget(
-                title: 'إيميل المستخدم',
-                type: TextInputType.emailAddress,
-                onChange: (String value) {},
-                focusNode: _emailFocus,
-                controller: _emailController,
+              Form(
+                key: _formKey,
+                child: TextFromFieldWidget(
+                  title: 'إيميل المستخدم',
+                  type: TextInputType.emailAddress,
+                  onChange: (String value) {},
+                  focusNode: _emailFocus,
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'يجب ادخال البريد الالكتروني';
+                    }else if(!value.toString().contains('@')){
+                      return 'يجب ادخال بريد الكتروني صالح';
+                    }
+                    return null;
+                  },
+                ),
               ),
               Container(
                   height: MediaQuery.of(context).size.height * .45,
@@ -80,9 +95,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   width: MediaQuery.of(context).size.width * .9,
                   child: CustomButton(
                       btnTxt: 'إرسال',
-                      onTap: () {
-                        AppNavigation.navigateTo(context, ChangePasswordScreen());
-                        print('object');
+
+                      onTap: ()async {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          await Provider.of<AuthProvider>(context,
+                              listen: false)
+                              .restPassword(_emailController.text, route);
+                          print('Form submitted with value:');
+                        }else {
+                          print('object');
+                        }
                       })),
               const SizedBox(
                 height: 20,
@@ -92,5 +115,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  route(bool isRoute, String errorMessage) async {
+    if (isRoute) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage), backgroundColor: Colors.green));
+      AppNavigation.navigateAndFinish(context, LoginScreen());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
+    }
   }
 }
