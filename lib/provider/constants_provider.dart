@@ -26,7 +26,6 @@ class ConstantsProvider with ChangeNotifier {
     _isLoading = true;
     ApiResponse apiResponse = await constantsRepo.getAboutUsModel();
     _isLoading = false;
-    print(apiResponse.response.data);
     print('apiResponse.response.data');
     if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
       for (var item in apiResponse.response.data) {
