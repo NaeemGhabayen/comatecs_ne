@@ -1,4 +1,8 @@
 import 'package:comatecs/data/repository/advertisement_repo.dart';
+import 'package:comatecs/data/repository/categories_repo.dart';
+import 'package:comatecs/data/repository/product_repo.dart';
+import 'package:comatecs/provider/categories_provider.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:connectivity/connectivity.dart';
 
 import 'package:dio/dio.dart';
@@ -27,10 +31,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ConstantsRepo(dioClient: sl()));
   sl.registerLazySingleton(() => AdvertisementRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => CategoriesRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => ProductRepo(dioClient: sl()));
 
   sl.registerFactory(() => AuthProvider(authRepo: sl()));
   sl.registerFactory(() => ConstantsProvider(constantsRepo: sl()));
+  sl.registerFactory(() => CategoriesProvider(categoriesRepo: sl()));
   sl.registerFactory(() => AdvertisementProvider(advertisementRepo: sl()));
+  sl.registerFactory(() => ProductProvider(productRepo: sl()));
 
 
   // External

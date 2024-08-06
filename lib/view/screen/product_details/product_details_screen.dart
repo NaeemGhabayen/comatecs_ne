@@ -1,14 +1,19 @@
+import 'package:comatecs/data/model/response/product_model.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/view/base/card_counter.dart';
 import 'package:comatecs/view/base/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_network/image_network.dart';
 
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../home/widget/card_product.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({key});
+  final ProductModel productModel;
+
+  const ProductDetailsScreen({Key key, this.productModel}) : super(key: key);
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -31,33 +36,58 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: [
               Stack(
                 children: [
-
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.06),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(12),
                           bottomRight: Radius.circular(12)),
                     ),
                     padding: EdgeInsets.all(12),
-                    child: Column(
+                    child: Stack(
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * .65,
+                          height: MediaQuery.of(context).size.height * .3,
+                          width: MediaQuery.of(context).size.width,
                           child: AspectRatio(
                             aspectRatio: 1,
                             child: Hero(
                               tag: 1,
-                              child: Image.asset('assets/images/img_1.png'),
+                              child: ImageNetwork(
+                                image:
+                                    "https://paulamuldoon.com/wp-content/uploads/2021/06/test.jpeg?w=1024",
+                                duration: 200,
+                                curve: Curves.easeIn,
+                                fitAndroidIos: BoxFit.fill,
+                                fitWeb: BoxFitWeb.fill,
+                                borderRadius: BorderRadius.circular(8),
+                                onLoading: const CircularProgressIndicator(
+                                  color: Colors.indigoAccent,
+                                ),
+                                onError: Image.asset(
+                                  'assets/images/logo_with_name.png',
+                                  height: 100,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ...List.generate(
-                                3, (index) => buildSmallProductPreview(index)),
-                          ],
+                        Positioned(
+                          bottom: 10.0,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                              ...List.generate(
+                                  widget.productModel.productImages.length + 2,
+                                  (index) {
+                                return buildSmallProductPreview(index);
+                              }),
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -67,7 +97,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     child: Row(
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.pop(context);
                           },
                           child: Container(
@@ -76,20 +106,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             decoration: ShapeDecoration(
                               color: Color(0x66F1F1F1),
                               shape: RoundedRectangleBorder(
-                                side: BorderSide(
+                                side: const BorderSide(
                                     width: 0.25, color: Color(0x66F1F1F1)),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_back_ios_rounded,
                               size: 20,
                             ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             setState(() {
                               isFavorite = !isFavorite;
                             });
@@ -124,10 +154,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'الاسم التجاري الشائع',
+                    Text(
+                      widget.productModel.name ?? '',
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF212121),
                         fontSize: 16,
                         fontFamily: 'Tajawal',
@@ -135,18 +165,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         height: 0,
                       ),
                     ),
-                  const  SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             Text(
-                              '16.000 JOD',
+                              '${widget.productModel.price} JOD',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xFF197D47),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -156,9 +186,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               width: 12,
                             ),
                             Text(
-                              '16.000 JOD',
+                              '${widget.productModel.price} JOD',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0x7F212121),
                                 fontSize: 13,
                                 fontFamily: 'Efrea',
@@ -166,13 +196,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             Text(
-                              '-50%',
+                              '${widget.productModel.discountValue}%',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xFFE25440),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -183,20 +213,24 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         CardCounter(),
                       ],
                     ),
-                    const  SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
-                 const   Text(
-                      ' مفك براغي كهربائي 1/2 "وجع 1/4" من الليثيوم بدون فرش بديل لبطارية ماكيمن الليثيوم بدون فرش بديل لبطارية ماكي فرش بديل لبطارية ماكيت لبطارية ماكيت',
-                      style: TextStyle(
+                    Text(
+                      widget.productModel.details ?? '',
+                      style: const TextStyle(
                         color: Color(0x99212121),
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
+                      maxLines: 3,
                     ),
-
-                    Container(margin:EdgeInsets.symmetric(vertical: 12),child: Divider(color: Color(0xFFE1E1E1),)),
-                 const   Text(
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 12),
+                        child: Divider(
+                          color: Color(0xFFE1E1E1),
+                        )),
+                    const Text(
                       'مميزات :',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -207,7 +241,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         height: 0,
                       ),
                     ),
-                  const  SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     ListView.builder(
                       itemCount: 5,
                       shrinkWrap: true,
@@ -215,17 +251,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       itemBuilder: (BuildContext ctx, index) {
                         return Container(
                           padding: EdgeInsets.symmetric(vertical: 4),
-                          child: Text('لا يولد المحرك بدون فرش الشرر عندما يعمل ، ولا يرتدي المحرك.',style:TextStyle(
-                            color: Color(0x99212121),
-                            fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                                              ),),
+                          child: Text(
+                            'لا يولد المحرك بدون فرش الشرر عندما يعمل ، ولا يرتدي المحرك.',
+                            style: TextStyle(
+                              color: Color(0x99212121),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         );
                       },
                     ),
-
-                    Container(margin:EdgeInsets.symmetric(vertical: 12),child: Divider(color: Color(0xFFE1E1E1),)),
-                    const   Text(
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 12),
+                        child: Divider(
+                          color: Color(0xFFE1E1E1),
+                        )),
+                    const Text(
                       'مرفقات :',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -235,18 +277,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         height: 0,
                       ),
                     ),
-                    const  SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     ListView.builder(
                       itemCount: 2,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext ctx, index) {
-                        return     Container(
+                        return Container(
                           margin: const EdgeInsets.only(bottom: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const   Text(
+                              const Text(
                                 'كتيب نموذج العمل',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -257,15 +301,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   height: 0,
                                 ),
                               ),
-
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 4.0),
-                                    child: Image.asset(Images.download , width: 16, height: 16,),
+                                    child: Image.asset(
+                                      Images.download,
+                                      width: 16,
+                                      height: 16,
+                                    ),
                                   ),
-                                  SizedBox(width: 6,),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
                                   const Text(
                                     'تحميل',
                                     style: TextStyle(
@@ -281,10 +330,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         );
                       },
                     ),
-
-
-                    Container(margin:EdgeInsets.symmetric(vertical: 12),child: Divider(color: Color(0xFFE1E1E1),)),
-                    const   Text(
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 12),
+                        child: Divider(
+                          color: Color(0xFFE1E1E1),
+                        )),
+                    const Text(
                       'التسليم :',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -294,7 +345,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         height: 0,
                       ),
                     ),
-                    const  SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Row(
@@ -312,7 +365,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                           Text(
-                            '5 JOD',
+                            '${widget.productModel.deliveryPrice} JOD',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF212121),
@@ -322,7 +375,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               height: 0.08,
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -330,8 +382,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:const [
-                           Text(
+                        children: [
+                          const Text(
                             'التسليم :',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -343,9 +395,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                           Text(
-                            'خلال يوم',
+                            widget.productModel.deliveryDuration,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xFF212121),
                               fontSize: 16,
                               fontFamily: 'Tajawal',
@@ -353,13 +405,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               height: 0.08,
                             ),
                           ),
-
                         ],
                       ),
                     ),
-
-                    Container(margin:const EdgeInsets.symmetric(vertical: 12),child: Divider(color: Color(0xFFE1E1E1),)),
-                    const   Text(
+                    Container(
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        child: Divider(
+                          color: Color(0xFFE1E1E1),
+                        )),
+                    const Text(
                       'منتجات مشابهة',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -370,39 +424,58 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         height: 0,
                       ),
                     ),
-                  const  SizedBox(height: 16,),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height*.25,
+                        height: MediaQuery.of(context).size.height * .25,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: _lists.length,
                           // list item builder
                           itemBuilder: (BuildContext ctx, index) {
-                            return Container(margin: EdgeInsets.only(left: 16),width: MediaQuery.of(context).size.width*.43,child: CardProduct());
+                            return Container(
+                                margin: EdgeInsets.only(left: 16),
+                                width: MediaQuery.of(context).size.width * .43,
+                                child: CardProduct(
+                                  productModel: widget.productModel,
+                                ));
                           },
                         )),
-
-                    const  SizedBox(height: 40,),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: SizedBox(
-                            child: CustomButton(btnTxt: 'أضف إلى السلة', onTap: (){},),
+                            child: CustomButton(
+                              btnTxt: 'أضف إلى السلة',
+                              onTap: () {},
+                            ),
                           ),
                         ),
-                        SizedBox(width:16 ,),
+                        SizedBox(
+                          width: 16,
+                        ),
                         Container(
                           width: 53,
                           height: 48,
                           padding: EdgeInsets.all(8),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: Color(0xFFE1E1E1)),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFFE1E1E1)),
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
-                          child: SvgPicture.asset(Images.cart   , width: 24,height: 24,color: Colors.black,),
+                          child: SvgPicture.asset(
+                            Images.cart,
+                            width: 24,
+                            height: 24,
+                            color: Colors.black,
+                          ),
                         )
                       ],
                     )
@@ -418,11 +491,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   GestureDetector buildSmallProductPreview(int index) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedImage = index;
-        });
-      },
       child: AnimatedContainer(
         margin: EdgeInsets.only(right: 15),
         padding: EdgeInsets.all(8),
@@ -439,12 +507,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   .withOpacity(selectedImage == index ? 1 : 0)),
         ),
         duration: const Duration(milliseconds: 500),
-        child: Image.asset('assets/images/img_1.png'),
+        child: ImageNetwork(
+          image:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjj5dy27c9QgPgYlQA8rvce4xdYMxD86AaFA&s",
+          curve: Curves.easeIn,
+          fitAndroidIos: BoxFit.cover,
+          fitWeb: BoxFitWeb.cover,
+          onTap: () {
+            setState(() {
+              selectedImage = index;
+            });
+          },
+          borderRadius: BorderRadius.circular(8),
+          onError: Image.asset(
+            'assets/images/logo_with_name.png',
+            height: 100,
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
-
-
-
-
 }

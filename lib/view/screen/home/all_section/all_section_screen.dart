@@ -1,6 +1,8 @@
 import 'package:comatecs/view/screen/home/all_section/widget/item_section.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../provider/categories_provider.dart';
 import '../../../../utill/color_resources.dart';
 
 class AllSectionScreen extends StatefulWidget {
@@ -54,12 +56,12 @@ class _AllSectionScreenState extends State<AllSectionScreen> {
                   SizedBox(
                     height: 24,
                   ),
-                  ListView.builder(
-                    itemCount: 10,
+                  Provider.of<CategoriesProvider>(context, listen: true).isLoading? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),): ListView.builder(
+                    itemCount: Provider.of<CategoriesProvider>(context, listen: false).categoriesList.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext ctx, index) {
-                      return ItemSection();
+                      return ItemSection(categoriesModel: Provider.of<CategoriesProvider>(context, listen: false).categoriesList[index],);
                     },
                   )
                 ],

@@ -1,11 +1,15 @@
 
 import 'package:comatecs/utill/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../data/model/response/categories_model.dart';
+import '../../../../../provider/categories_provider.dart';
 import '../../../section_details/section_details_screen.dart';
 
 class ItemSection extends StatefulWidget {
-  const ItemSection({key});
+  CategoriesModel categoriesModel;
+   ItemSection({ this. categoriesModel,key});
 
   @override
   State<ItemSection> createState() => _ItemSectionState();
@@ -16,7 +20,9 @@ class _ItemSectionState extends State<ItemSection> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        AppNavigation.navigateTo(context, SectionDetailsScreen());
+        Provider.of<CategoriesProvider>(context, listen: false)
+            .getSunCategoriesList(context: context , id: widget.categoriesModel.id.toString());
+        AppNavigation.navigateTo(context, SectionDetailsScreen(title:widget.categoriesModel.name.toString() ,));
       },
       child: Container(
         height: 50,
@@ -33,7 +39,7 @@ class _ItemSectionState extends State<ItemSection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'الأدوات والمعدات',
+             widget.categoriesModel.name??'',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xCC212121),

@@ -19,8 +19,14 @@ class _ConstantScreenState extends State<ConstantScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<ConstantsProvider>(context, listen: false)
-        .getAboutUsList(context);
+    if(widget.title=="عن  Comatecs"){
+      Provider.of<ConstantsProvider>(context, listen: false)
+          .getAboutUsList(context: context,isAbout: true);
+    }else{
+      Provider.of<ConstantsProvider>(context, listen: false)
+          .getAboutUsList(context:context ,isAbout: true);
+    }
+
   }
 
   @override

@@ -1,4 +1,6 @@
 import 'package:comatecs/provider/adverstiment_provider.dart';
+import 'package:comatecs/provider/categories_provider.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +30,8 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ConstantsProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AdvertisementProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CategoriesProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
     ],
     child: MyApp(),
   ));

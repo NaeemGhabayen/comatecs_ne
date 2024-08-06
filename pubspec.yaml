@@ -47,6 +47,8 @@ dependencies:
   flutter_svg: ^0.22.0
   dropdown_button2: ^2.0.0
   carousel_slider: ^4.0.0
+  image_network:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,21 +1,23 @@
+import 'package:comatecs/data/model/response/product_model.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_network/image_network.dart';
 
 import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
 import '../../product_details/product_details_screen.dart';
 
 class CardProduct extends StatefulWidget {
-  const CardProduct({key});
+  final ProductModel productModel;
+  CardProduct({key, this.productModel});
 
   @override
   State<CardProduct> createState() => _CardProductState();
 }
 
 class _CardProductState extends State<CardProduct> {
-
-bool isFavorite=false;
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,20 +32,57 @@ bool isFavorite=false;
       child: Stack(
         children: [
           InkWell(
-            onTap: (){
-              AppNavigation.navigateTo(context,const ProductDetailsScreen());
+            onTap: () {
+              AppNavigation.navigateTo(context,  ProductDetailsScreen(productModel: widget.productModel,));
             },
             child: Column(
               children: [
-                Expanded(child: SizedBox(height: 20,)),
-                Image.asset('assets/images/img_1.png' , height: 100, fit: BoxFit.contain,),
-                SizedBox(height: 16,),
+                Expanded(
+                    child: SizedBox(
+                  height: 20,
+                )),
+                widget.productModel.productImages.isEmpty
+                    ? Image.asset(
+                        'assets/images/img_1.png',
+                        height: 100,
+                        fit: BoxFit.contain,
+                      )
+                    : ImageNetwork(
+                        image:
+                            "https://paulamuldoon.com/wp-content/uploads/2021/06/test.jpeg?w=1024",
+                        height: 120,
+                        duration: 1000,
+                        curve: Curves.easeIn,
+                        onPointer: true,
+                        debugPrint: false,
+                        fullScreen: false,
+                        fitAndroidIos: BoxFit.cover,
+                        fitWeb: BoxFitWeb.cover,
+                        borderRadius: BorderRadius.circular(12),
+                        onLoading: const CircularProgressIndicator(
+                          color: Colors.indigoAccent,
+                        ),
+                        onError: Image.asset(
+                          'assets/images/logo_with_name.png',
+                          height: 100,
+                          fit: BoxFit.contain,
+                        ),
+                        onTap: () {
+                          AppNavigation.navigateTo(context,  ProductDetailsScreen(productModel: widget.productModel,));
+
+                        },
+                      ),
+
+                //
+                SizedBox(
+                  height: 16,
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  child: const Text(
-                    'الاسم التجاري الشائع',
+                  child: Text(
+                    widget.productModel.name ?? '',
                     textAlign: TextAlign.start,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xFF212121),
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
@@ -51,14 +90,16 @@ bool isFavorite=false;
                     ),
                   ),
                 ),
-                SizedBox(height: 8,),
+                SizedBox(
+                  height: 8,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '16.000 JOD',
+                      widget.productModel.price.toString() ?? '',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF197D47),
                         fontSize: 13,
                         fontFamily: 'Tajawal',
@@ -73,13 +114,16 @@ bool isFavorite=false;
                       decoration: ShapeDecoration(
                         color: Color(0xFF197D47),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
+                          side:
+                              BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                       child: SvgPicture.asset(Images.add_cart),
-                    )
 
+
+
+                    )
                   ],
                 )
               ],
@@ -88,7 +132,7 @@ bool isFavorite=false;
           Align(
             alignment: Alignment.topLeft,
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 isFavorite = !isFavorite;
                 setState(() {});
               },
@@ -103,7 +147,10 @@ bool isFavorite=false;
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  child: SvgPicture.asset(isFavorite ? Images.Heart_use : Images.Heart ,width: 20,height: 20,
+                  child: SvgPicture.asset(
+                      isFavorite ? Images.Heart_use : Images.Heart,
+                      width: 20,
+                      height: 20,
                       color: isFavorite ? ColorResources.RED : Colors.black54)),
             ),
           ),

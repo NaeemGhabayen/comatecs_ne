@@ -22,8 +22,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<ConstantsProvider>(context, listen: false)
-        .getAboutUsList(context);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               ),
 
               ItemProfile(title: 'عن  Comatecs',onPress: (){AppNavigation.navigateTo(context, const ConstantScreen(title: 'عن  Comatecs',));},),
-              ItemProfile(title: 'شروط و سياسة الاستخدام',onPress: (){},),
+              ItemProfile(title: 'شروط و سياسة الاستخدام',onPress: (){AppNavigation.navigateTo(context, const ConstantScreen(title: 'شروط و سياسة الاستخدام',));},),
 
             ],
           ),

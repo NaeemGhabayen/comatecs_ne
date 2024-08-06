@@ -4,7 +4,7 @@ import '../helper/route_helper.dart';
 class AppConstants {
   static const String APP_NAME = 'Comatecs';
   static const String APP_VERSION = '1.0';
-  static const String BASE_URL = 'http://comatecs-001-site1.htempurl.com';
+  static const String BASE_URL = 'http://futurecanvas-001-site2.ftempurl.com';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -25,8 +25,15 @@ class AppConstants {
   static const String REGISTRATION_URI = '/api/Auth/register';
   static const String LOGIN_URI = '/api/Auth/login';
   static const String ResetPassword_URI = '/api/Auth/ResetPassword';
+  static const String ChangePassword_URI = '/api/Auth/change-password';
   static const String AdvertisementURL = '/api/Advertisement';
   static const String AboutUsURL = '/api/AboutUs';
+  static const String TermPolicyURL = '/api/TermPolicy';
+  static const String CategoriesListURL = '/api/Category';
+  static const String SubCategoriesListURL = '/api/SubCategory/';
+  static const String WorkNatureListURL = '/api/Name/WorkNature';
+  static const String GetMostPopularProductURL = '/api/Product/GetMostPopularProduct';
+  static const String TechnicalSupportURL = '/api/TechnicalSupport';
 
 
 

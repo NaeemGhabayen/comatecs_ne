@@ -16,6 +16,10 @@ class ApiErrorHandler {
               errorDescription = "Connection timeout with API server";
               break;
             case DioErrorType.other:
+              print(DioErrorType.other.toString());
+              print(errorDescription.toString());
+              print(error.message.toString());
+              print("teeeeeees");
               errorDescription = "Connection to API server failed due to internet connection";
               break;
             case DioErrorType.receiveTimeout:

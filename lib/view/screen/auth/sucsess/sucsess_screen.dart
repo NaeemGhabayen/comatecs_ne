@@ -1,4 +1,5 @@
 import 'package:comatecs/view/screen/auth/login/login_screen.dart';
+import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,9 +49,9 @@ class _SuccessScreenState extends State<SuccessScreen> {
                 alignment: Alignment.bottomCenter,
                 width: MediaQuery.of(context).size.width * .9,
                 child: CustomButton(
-                    btnTxt: 'تسجيل الدخول',
+                    btnTxt: 'الصفحة الرئيسية',
                     onTap: () {
-                      AppNavigation.navigateTo(context, LoginScreen());
+                      AppNavigation.navigateAndFinish(context, MainHomeScreen());
                       print('object');
                     })),
 

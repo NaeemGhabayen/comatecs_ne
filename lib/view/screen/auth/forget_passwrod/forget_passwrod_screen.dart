@@ -95,7 +95,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   width: MediaQuery.of(context).size.width * .9,
                   child: CustomButton(
                       btnTxt: 'إرسال',
-
                       onTap: ()async {
                         if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
@@ -119,7 +118,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
-
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.green));
       AppNavigation.navigateAndFinish(context, LoginScreen());

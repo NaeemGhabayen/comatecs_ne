@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'package:comatecs/provider/constants_provider.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 import '../../../provider/adverstiment_provider.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/categories_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 
@@ -41,13 +43,13 @@ class _SplashScreenState extends State<SplashScreen> {
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
           content: Text(
-            isNotConnected
-                ? 'no_connection'
-                : 'connected',
+            isNotConnected ? 'no_connection' : 'connected',
             textAlign: TextAlign.center,
           ),
         ));
         if (!isNotConnected) {
+          Provider.of<ConstantsProvider>(context, listen: false)
+              .getWorkNatureList(context);
           _route();
         }
       }
@@ -65,15 +67,23 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() async {
-
+    Provider.of<AdvertisementProvider>(context, listen: false)
+        .getAdvertisementList(context);
+    Provider.of<ProductProvider>(context, listen: false)
+        .getMostPopularProductList(context);
+    Provider.of<CategoriesProvider>(context, listen: false)
+        .getCategoriesList(context);
     Timer(Duration(seconds: 5), () {
-      if(Provider.of<AuthProvider>(context, listen: false).isRemember){
-        Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
+      if (Provider.of<AuthProvider>(context, listen: false).isRemember) {
         AppNavigation.navigateAndFinish(context, MainHomeScreen());
-      }else{
+      } else {
         AppNavigation.navigateAndFinish(context, LoginScreen());
-      }
 
+        // Provider.of<CategoriesProvider>(context, listen: false)
+        //     .getCategoriesList(context);
+        //
+        // AppNavigation.navigateAndFinish(context, MainHomeScreen());
+      }
     });
   }
 

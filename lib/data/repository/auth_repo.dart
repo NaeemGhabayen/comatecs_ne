@@ -41,13 +41,24 @@ class AuthRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> changePassword({String email , String currentPassword , String newPassword,} ) async {
+    try {
+      Response response = await dioClient.post(
+        AppConstants.ChangePassword_URI,
+        data:'{"username": "$email","currentPassword": "$currentPassword","newPassword": "$newPassword","confirmNewPassword": "$newPassword"}'
+        ,   options: Options(headers: {'accept': '*/*',
+        'Content-Type': 'application/json' }),
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 
 
 
 
   Future<ApiResponse> login(LoginModel loginBody) async {
-    print(loginBody.toJson());
-    print("loginBody.toJson()");
     try {
       Response response = await dioClient.post(
         AppConstants.LOGIN_URI,

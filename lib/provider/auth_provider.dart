@@ -91,7 +91,35 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+  Future changePassword({String email,String currentPassword , String newPassword  , Function callback}) async {
+    _isLoading = true;
+    notifyListeners();
+    ApiResponse apiResponse = await authRepo.changePassword(email:email , newPassword: newPassword,currentPassword: currentPassword);
+    _isLoading = false;
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200 ) {
+      // Map map = apiResponse.response.data;
+      String message = 'تم تغير كلمة المرور بنجاح';
+      try {
+        // message = map['message'];
+      } catch (e) {}
 
+      callback(true, message);
+      notifyListeners();
+    } else {
+      String errorMessage;
+      if (apiResponse.error is String) {
+        //print(apiResponse.error.toString());
+        errorMessage = apiResponse.error.toString();
+      } else {
+        ErrorResponse errorResponse = apiResponse.error;
+        print(errorResponse.errors[0].message);
+        errorMessage = errorResponse.errors[0].message;
+      }
+      callback(false, errorMessage);
+      notifyListeners();
+    }
+  }
   Future login(LoginModel loginBody, Function callback, context) async {
     _isLoading = true;
     notifyListeners();
