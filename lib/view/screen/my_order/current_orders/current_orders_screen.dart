@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../utill/color_resources.dart';
 
 class CurrentOrdersScreen extends StatefulWidget {
-  const CurrentOrdersScreen({key});
+  const CurrentOrdersScreen({Key? key, }) : super(key: key);
 
   @override
   State<CurrentOrdersScreen> createState() => _CurrentOrdersScreenState();
@@ -19,18 +19,18 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
       body:  SafeArea(
         child: InkWell(
           onTap: (){
-            AppNavigation.navigateTo(context, OrderDetailsScreen());
+            AppNavigation.navigateTo(context, const OrderDetailsScreen());
           },
           child: Container(
             child: ListView.builder(
               itemCount: 4,
               itemBuilder: (BuildContext ctx, index) {
                 return    Container(
-                  margin: EdgeInsets.only(bottom: 16),
-                  padding: EdgeInsets.all(16),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(16),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                      side: const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
@@ -63,12 +63,12 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 12,),
-                      Row(
+                      const SizedBox(height: 12,),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            children: const[
+                            children: [
                               Text(
                                 'حالة السداد - ',
                                 textAlign: TextAlign.right,
@@ -93,7 +93,7 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
                               ),
                             ],
                           ),
-                          const Text(
+                          Text(
                             '16.000',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -106,9 +106,9 @@ class _CurrentOrdersScreenState extends State<CurrentOrdersScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 12,),
-                      Row(
-                        children:const [
+                      const SizedBox(height: 12,),
+                      const Row(
+                        children:[
                           Text(
                             'حالة الطلب - ',
                             textAlign: TextAlign.right,

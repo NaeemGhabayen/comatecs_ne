@@ -5,7 +5,7 @@ import '../../../base/card_counter.dart';
 import '../../../base/show_dialog.dart';
 
 class ItemCart extends StatefulWidget {
-  const ItemCart({key});
+  const ItemCart({Key? key, }) : super(key: key);
 
   @override
   State<ItemCart> createState() => _ItemCartState();
@@ -30,16 +30,16 @@ class _ItemCartState extends State<ItemCart> {
           Row(
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 12),
+                  margin: const EdgeInsets.only(left: 12),
                   width: MediaQuery.of(context).size.width * .13,
                   child: Image.asset(
                     'assets/images/img_1.png',
                     fit: BoxFit.fill,
                   )),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'الاسم التجاري الشائع',
                     textAlign: TextAlign.right,

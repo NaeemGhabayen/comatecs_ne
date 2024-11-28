@@ -1,16 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/categories_provider.dart';
 import '../../../utill/color_resources.dart';
-import '../../../utill/images.dart';
 import '../home/widget/card_product.dart';
 
 class SectionDetailsScreen extends StatefulWidget {
-  String title;
-   SectionDetailsScreen({key ,this.title});
+  String? title;
+   SectionDetailsScreen({Key? key ,this.title}) : super(key: key);
 
   @override
   State<SectionDetailsScreen> createState() => _SectionDetailsScreenState();
@@ -18,7 +16,7 @@ class SectionDetailsScreen extends StatefulWidget {
 
 class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
   int _current = 1;
-  int _currentReview = 1;
+  final int _currentReview = 1;
 
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
@@ -29,8 +27,8 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
     return result;
   }
 
-  List _list = ['1', '2', '2', '2'];
-  List<String> _lists = ['1', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2'];
+  final List _list = ['1', '2', '2', '2'];
+  final List<String> _lists = ['1', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2'];
 
   // List<String> list = [
   //   'الكل',
@@ -69,14 +67,14 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                                   print("sssssssssss");
                                   Navigator.pop(context);
                                 },
-                                    child: Icon(
+                                    child: const Icon(
                                   Icons.arrow_back_ios,
                                   size: 20,
                                 )),
                             Text(
-                              widget.title,
+                              widget.title!,
                               textAlign: TextAlign.right,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xFF212121),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -85,13 +83,13 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Provider.of<CategoriesProvider>(context, listen: false)
                                 .subCategoriesList
                                 .isEmpty
-                            ? SizedBox()
+                            ? const SizedBox()
                             : SizedBox(
                                 height: 44,
                                 child: ListView.builder(
@@ -110,8 +108,8 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                                       },
                                       child: Center(
                                         child: Container(
-                                          margin: EdgeInsets.only(left: 10),
-                                          padding: EdgeInsets.symmetric(
+                                          margin: const EdgeInsets.only(left: 10),
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 20),
                                           alignment: Alignment.center,
                                           decoration: ShapeDecoration(
@@ -119,7 +117,7 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                                                 ? Theme.of(context).primaryColor
                                                 : Colors.white,
                                             shape: RoundedRectangleBorder(
-                                              side: BorderSide(
+                                              side: const BorderSide(
                                                   width: 1,
                                                   color: Color(0x7FE1E1E1)),
                                               borderRadius:
@@ -147,7 +145,7 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                                     );
                                   },
                                 )),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         CarouselSlider(
@@ -158,9 +156,9 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                               enableInfiniteScroll: false,
                               reverse: false,
                               enlargeCenterPage: true,
-                              autoPlayInterval: Duration(seconds: 3),
+                              autoPlayInterval: const Duration(seconds: 3),
                               autoPlayAnimationDuration:
-                                  Duration(milliseconds: 800),
+                                  const Duration(milliseconds: 800),
                               autoPlayCurve: Curves.easeInBack,
                               scrollDirection: Axis.horizontal,
                               onPageChanged: (index, reason) {
@@ -207,12 +205,12 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                                                       vertical: 10.0),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 10)),
                                                     color: _current == index
                                                         ? Colors.white
-                                                        : Color(0x661C1C1C),
+                                                        : const Color(0x661C1C1C),
                                                   ),
                                                 );
                                               },
@@ -255,7 +253,7 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children: _lists.map((String value) {
-                            return CardProduct();
+                            return  CardProduct();
                           }).toList(),
                         )
                       ],

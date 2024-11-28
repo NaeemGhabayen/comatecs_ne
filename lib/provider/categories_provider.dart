@@ -3,14 +3,13 @@ import 'package:comatecs/data/model/response/sub_categories_model.dart';
 import 'package:flutter/material.dart';
 
 
-import '../data/model/response/advertisement_model.dart';
 import '../data/model/response/base/api_response.dart';
 import '../data/model/response/categories_model.dart';
 import '../data/repository/categories_repo.dart';
 import '../helper/api_checker.dart';
 
 class CategoriesProvider with ChangeNotifier {
-  final CategoriesRepo categoriesRepo;
+  final CategoriesRepo? categoriesRepo;
 
   CategoriesProvider({this.categoriesRepo});
 
@@ -26,16 +25,12 @@ class CategoriesProvider with ChangeNotifier {
 
   Future<bool> getCategoriesList(context) async {
     _isLoading = true;
-    ApiResponse apiResponse = await categoriesRepo.getCategoriesList();
+    ApiResponse apiResponse = await categoriesRepo!.getCategoriesList();
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      for (var item in apiResponse.response.data) {
-        var isExiset = _categoriesList
-            .firstWhere((element) => element.id == CategoriesModel.fromJson(item).id, orElse: () => null);
-        if (isExiset == null) {
-          _categoriesList.add(CategoriesModel.fromJson(item));
-          notifyListeners();
-        }
+    if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      for (var item in apiResponse.response!.data) {
+        _categoriesList.add(CategoriesModel.fromJson(item));
+        notifyListeners();
       }
 
       notifyListeners();
@@ -48,20 +43,16 @@ class CategoriesProvider with ChangeNotifier {
   }
 
 
-  Future<bool> getSunCategoriesList({context , String id}) async {
+  Future<bool> getSunCategoriesList({context , String? id}) async {
     _isLoading = true;
     _subCategoriesList.clear();
-    ApiResponse apiResponse = await categoriesRepo.getSubCategoriesListById(id: id);
+    ApiResponse apiResponse = await categoriesRepo!.getSubCategoriesListById(id: id!);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      for (var item in apiResponse.response.data) {
-        var isExiset = _subCategoriesList
-            .firstWhere((element) => element.id == SubCategoriesModel.fromJson(item).id, orElse: () => null);
-        if (isExiset == null) {
-          _subCategoriesList.add(SubCategoriesModel.fromJson(item));
-          notifyListeners();
-        }
-      }
+    if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
+      for (var item in apiResponse.response!.data) {
+        _subCategoriesList.add(SubCategoriesModel.fromJson(item));
+        notifyListeners();
+       }
 
       notifyListeners();
       return true;

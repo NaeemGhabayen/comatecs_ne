@@ -5,14 +5,14 @@ import '../../../utill/images.dart';
 import '../home/widget/card_product.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({key});
+  const FavoriteScreen({Key? key, }) : super(key: key);
 
   @override
   State<FavoriteScreen> createState() => _FavoriteScreenState();
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  List<String> _lists = ['1', '2', '2', '2', '2'];
+  final List<String> _lists = ['1', '2', '2', '2', '2'];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       width: 24,
                       height: 24,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                   const  Text(
@@ -53,7 +53,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
 
@@ -62,11 +62,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   childAspectRatio: (100 / 120),
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
-                  controller: new ScrollController(keepScrollOffset: false),
+                  controller: ScrollController(keepScrollOffset: false),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: _lists.map((String value) {
-                    return CardProduct();
+                    return const CardProduct();
                   }).toList(),
                 )
               ],

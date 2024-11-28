@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,14 +11,14 @@ import '../model/body/register_model.dart';
 import '../model/response/base/api_response.dart';
 
 class AuthRepo {
-  final DioClient dioClient;
-  final SharedPreferences sharedPreferences;
+  final DioClient? dioClient;
+  final SharedPreferences? sharedPreferences;
   AuthRepo({ this.dioClient,  this.sharedPreferences});
 
 
   Future<ApiResponse> registration(RegisterModel register) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         AppConstants.REGISTRATION_URI,
         data: register.toJson(),
       );
@@ -29,9 +28,9 @@ class AuthRepo {
     }
   }
 
-  Future<ApiResponse> restPassword({String email} ) async {
+  Future<ApiResponse> restPassword({String? email} ) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         AppConstants.ResetPassword_URI,
         data:'''{"email": "$email"}''' ,   options: Options(headers: {'accept': '*/*',
         'Content-Type': 'application/json' }),
@@ -41,9 +40,10 @@ class AuthRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> changePassword({String email , String currentPassword , String newPassword,} ) async {
+  Future<ApiResponse> changePassword({String?
+  email , String? currentPassword , String? newPassword,} ) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         AppConstants.ChangePassword_URI,
         data:'{"username": "$email","currentPassword": "$currentPassword","newPassword": "$newPassword","confirmNewPassword": "$newPassword"}'
         ,   options: Options(headers: {'accept': '*/*',
@@ -60,7 +60,7 @@ class AuthRepo {
 
   Future<ApiResponse> login(LoginModel loginBody) async {
     try {
-      Response response = await dioClient.post(
+      Response response = await dioClient!.post(
         AppConstants.LOGIN_URI,
         data:FormData.fromMap(loginBody.toJson()) ,
         options: Options(headers: {'accept': '*/*',
@@ -76,72 +76,72 @@ class AuthRepo {
 
   // for  user token
   Future<void> saveUserToken(String token) async {
-    dioClient.updateHeader(token, null);
+    dioClient!.updateHeader(token);
     try {
-      await sharedPreferences.setString(AppConstants.TOKEN, token);
+      await sharedPreferences!.setString(AppConstants.TOKEN, token);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> saveUserId(id) async {
     try {
-      await sharedPreferences.setString(AppConstants.USER_ID, id.toString());
+      await sharedPreferences!.setString(AppConstants.USER_ID, id.toString());
       print('sssssssssssssssssssssssssssssssssss');
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> saveUserData(Map<dynamic, dynamic> map) async {
     try {
-      await sharedPreferences.setString(AppConstants.TOKEN, map['token']);
-      await sharedPreferences.setString(AppConstants.USER, map['user']['full_name'].toString());
-      await sharedPreferences.setString(AppConstants.USER_EMAIL, map['user']['email'].toString());
-      await sharedPreferences.setString(AppConstants.USER_ROLE, map['user']['role']);
-      await sharedPreferences.setString(AppConstants.USER_ROLE, map['user']['role']);
-      await sharedPreferences.setString(AppConstants.USER_ID, map['user']['id'].toString());
+      await sharedPreferences!.setString(AppConstants.TOKEN, map['token']);
+      await sharedPreferences!.setString(AppConstants.USER, map['user']['full_name'].toString());
+      await sharedPreferences!.setString(AppConstants.USER_EMAIL, map['user']['email'].toString());
+      await sharedPreferences!.setString(AppConstants.USER_ROLE, map['user']['role']);
+      await sharedPreferences!.setString(AppConstants.USER_ROLE, map['user']['role']);
+      await sharedPreferences!.setString(AppConstants.USER_ID, map['user']['id'].toString());
       print(map['user']['id']);
       print('ssssssssssssssssssssssssssssss');
       print(map);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
   String getUserToken() {
-    return sharedPreferences.getString(AppConstants.TOKEN) ?? "";
+    return sharedPreferences!.getString(AppConstants.TOKEN) ?? "";
   }
   String getUserId() {
-    return sharedPreferences.getString(AppConstants.USER_ID) ?? "";
+    return sharedPreferences!.getString(AppConstants.USER_ID) ?? "";
   }
 
 
   Future<void> saveAuthToken(String token) async {
-    dioClient.token = token;
-    dioClient.dio.options.headers = {
+    dioClient!.token = token;
+    dioClient!.dio!.options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
 
     try {
-      await sharedPreferences.setString(AppConstants.TOKEN, token);
+      await sharedPreferences!.setString(AppConstants.TOKEN, token);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
   String getAuthToken() {
-    return sharedPreferences.getString(AppConstants.TOKEN) ?? "";
+    return sharedPreferences!.getString(AppConstants.TOKEN) ?? "";
   }
 
 
   bool isLoggedIn() {
-    return sharedPreferences.containsKey(AppConstants.TOKEN);
+    return sharedPreferences!.containsKey(AppConstants.TOKEN);
   }
 
   bool isLoggedInConsultant() {
-    if(sharedPreferences.getString(AppConstants.USER_ROLE)=="ADVISER"){
+    if(sharedPreferences!.getString(AppConstants.USER_ROLE)=="ADVISER"){
       return true;
     }else{
       return false;
@@ -149,8 +149,8 @@ class AuthRepo {
   }
 
   Future<bool> clearSharedData() async {
-    sharedPreferences.remove(AppConstants.TOKEN);
-    sharedPreferences.clear();
+    sharedPreferences!.remove(AppConstants.TOKEN);
+    sharedPreferences!.clear();
     return true;
   }
 
@@ -162,7 +162,7 @@ class AuthRepo {
 
 
   String getUserEmail() {
-    return sharedPreferences.getString(AppConstants.USER_EMAIL) ?? "";
+    return sharedPreferences!.getString(AppConstants.USER_EMAIL) ?? "";
   }
 
 

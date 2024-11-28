@@ -1,6 +1,6 @@
 class LoginModel {
-  String email;
-  String password;
+  String? email;
+  String? password;
 
   LoginModel({this.email, this.password});
 
@@ -10,9 +10,9 @@ class LoginModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-   data['email'] = this.email;
-     data['password'] = this.password;
+    final Map<String, dynamic> data = <String, dynamic>{};
+   data['email'] = email;
+     data['password'] = password;
 
     return data;
   }

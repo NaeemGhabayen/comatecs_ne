@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
@@ -7,7 +6,7 @@ import '../../../base/custom_button.dart';
 import '../../../base/text_field.dart';
 
 class PromotionCodeModelSheet extends StatefulWidget {
-  const PromotionCodeModelSheet({key});
+  const PromotionCodeModelSheet({Key? key,}) : super(key: key);
 
   @override
   State<PromotionCodeModelSheet> createState() => _PromotionCodeModelSheetState();
@@ -21,7 +20,7 @@ class _PromotionCodeModelSheetState extends State<PromotionCodeModelSheet> {
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * .2),
         color: Colors.transparent,
         child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
                 color: ColorResources.BACKGROUND,
                 borderRadius: BorderRadius.only(
@@ -36,13 +35,13 @@ class _PromotionCodeModelSheetState extends State<PromotionCodeModelSheet> {
                       width: 67,
                       height: 5,
                       decoration: ShapeDecoration(
-                        color: Color(0xFF212121),
+                        color: const Color(0xFF212121),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100),
                         ),
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Row(
@@ -53,7 +52,7 @@ class _PromotionCodeModelSheetState extends State<PromotionCodeModelSheet> {
                   width: 20,
                       height: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                     const Text(
@@ -69,7 +68,7 @@ class _PromotionCodeModelSheetState extends State<PromotionCodeModelSheet> {
                   ],
                 ),
 
-                SizedBox(height: 24,),
+                const SizedBox(height: 24,),
 
 
                 TextFromFieldWidget(

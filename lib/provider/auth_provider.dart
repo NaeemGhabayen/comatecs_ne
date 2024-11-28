@@ -10,7 +10,7 @@ import '../data/model/response/base/error_response.dart';
 import '../data/repository/auth_repo.dart';
 
 class AuthProvider with ChangeNotifier {
-  final AuthRepo authRepo;
+  final AuthRepo? authRepo;
 
   AuthProvider({@required this.authRepo});
 
@@ -35,11 +35,10 @@ class AuthProvider with ChangeNotifier {
     print(register.toJson());
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.registration(register);
+    ApiResponse apiResponse = await authRepo!.registration(register);
     _isLoading = false;
-    if (apiResponse.response != null &&
-        apiResponse.response.statusCode == 200 ) {
-      Map map = apiResponse.response.data;
+    if (apiResponse.response!.statusCode == 200 ) {
+      Map map = apiResponse.response!.data;
       String message = '';
       try {
         message = 'تم تسجيل الاشتراك بنجاح';
@@ -54,8 +53,8 @@ class AuthProvider with ChangeNotifier {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message!;
       }
       callback(false, errorMessage);
       notifyListeners();
@@ -65,11 +64,10 @@ class AuthProvider with ChangeNotifier {
   Future restPassword(String email, Function callback) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.restPassword(email:email);
+    ApiResponse apiResponse = await authRepo!.restPassword(email:email);
     _isLoading = false;
-    if (apiResponse.response != null &&
-        apiResponse.response.statusCode == 200 ) {
-      Map map = apiResponse.response.data;
+    if (apiResponse.response!.statusCode == 200 ) {
+      Map map = apiResponse.response!.data;
       String message = '';
       try {
         message = map['message'];
@@ -84,27 +82,28 @@ class AuthProvider with ChangeNotifier {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message!;
       }
       callback(false, errorMessage);
       notifyListeners();
     }
   }
-  Future changePassword({String email,String currentPassword , String newPassword  , Function callback}) async {
+  Future changePassword({String? email,String? currentPassword , String? newPassword  , Function? callback}) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.changePassword(email:email , newPassword: newPassword,currentPassword: currentPassword);
+    ApiResponse apiResponse = await authRepo!.
+    changePassword(email:email! ,
+        newPassword: newPassword!,currentPassword: currentPassword!);
     _isLoading = false;
-    if (apiResponse.response != null &&
-        apiResponse.response.statusCode == 200 ) {
+    if (apiResponse.response!.statusCode == 200 ) {
       // Map map = apiResponse.response.data;
       String message = 'تم تغير كلمة المرور بنجاح';
       try {
         // message = map['message'];
       } catch (e) {}
 
-      callback(true, message);
+      callback!(true, message);
       notifyListeners();
     } else {
       String errorMessage;
@@ -113,26 +112,25 @@ class AuthProvider with ChangeNotifier {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message!;
       }
-      callback(false, errorMessage);
+      callback!(false, errorMessage);
       notifyListeners();
     }
   }
   Future login(LoginModel loginBody, Function callback, context) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.login(loginBody);
-    if (apiResponse.response != null &&
-        apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await authRepo!.login(loginBody);
+    if (apiResponse.response!.statusCode == 200) {
       String message = '';
       try {
-        Map map = apiResponse.response.data;
+        Map map = apiResponse.response!.data;
         message = 'تم تسجيل الدخول بنجاح';
      //   authRepo.saveUserData(map);
         if (map['token'] != null) {
-          authRepo.saveUserToken(map['token']);
+          authRepo!.saveUserToken(map['token']);
           notifyListeners();
         }
           _isLoading = false;
@@ -152,8 +150,8 @@ class AuthProvider with ChangeNotifier {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message!;
       }
       callback(false, errorMessage);
       notifyListeners();
@@ -164,10 +162,9 @@ class AuthProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isRemember = prefs.getBool("saveData") ?? false;
     notifyListeners();
-
   }
 
   Future<bool> clearSharedData() async {
-    return await authRepo.clearSharedData();
+    return await authRepo!.clearSharedData();
   }
 }

@@ -3,7 +3,6 @@ import 'package:comatecs/data/model/response/product_model.dart';
 import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/utill/app_constants.dart';
 import 'package:comatecs/utill/navigation.dart';
-import 'package:comatecs/view/base/custom_snackbar.dart';
 import 'package:comatecs/view/screen/home/widget/card_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,7 +17,7 @@ import 'all_section/all_section_screen.dart';
 import 'widget/fillter_model_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({key});
+  const HomeScreen({Key? key, }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,7 +25,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _current = 0;
-  int _currentReview = 1;
+  final int _currentReview = 1;
 
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
@@ -158,9 +157,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 50,
                               height: 48,
                               decoration: ShapeDecoration(
-                                color: Color(0xFF197D47),
+                                color: const Color(0xFF197D47),
                                 shape: RoundedRectangleBorder(
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                       width: 0.50, color: Color(0x7FE1E1E1)),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
@@ -172,13 +171,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Provider.of<AdvertisementProvider>(context, listen: false)
                               .advertisementList
                               .isEmpty
-                          ? SizedBox()
+                          ? const SizedBox()
                           : CarouselSlider(
                               options: CarouselOptions(
                                   height:
@@ -190,9 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   initialPage: 0,
                                   enableInfiniteScroll: true,
                                   reverse: false,
-                                  autoPlayInterval: Duration(seconds: 3),
+                                  autoPlayInterval: const Duration(seconds: 3),
                                   autoPlayAnimationDuration:
-                                      Duration(milliseconds: 800),
+                                      const Duration(milliseconds: 800),
                                   autoPlayCurve: Curves.bounceIn,
                                   scrollDirection: Axis.horizontal,
                                   onPageChanged: (index, reason) {
@@ -206,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .map((index) {
                                 return Builder(
                                   builder: (BuildContext context) {
-                                    return Container(
+                                    return SizedBox(
                                       width: MediaQuery.of(context).size.width,
                                       child: Column(
                                         children: [
@@ -219,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .height *
                                                 .23,
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
+                                                borderRadius: const BorderRadius.all(
                                                     Radius.circular(5)),
                                                 image: DecorationImage(
                                                   image: NetworkImage(
@@ -260,14 +259,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           decoration:
                                                               BoxDecoration(
                                                             borderRadius:
-                                                                BorderRadius
+                                                                const BorderRadius
                                                                     .all(Radius
                                                                         .circular(
                                                                             10)),
                                                             color: _current ==
                                                                     index
                                                                 ? Colors.white
-                                                                : Color(
+                                                                : const Color(
                                                                     0x661C1C1C),
                                                           ),
                                                         );
@@ -288,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                       Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.only(top: 24, bottom: 10),
+                          margin: const EdgeInsets.only(top: 24, bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -361,9 +360,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 child: Center(
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 10),
+                                    margin: const EdgeInsets.only(left: 10),
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
+                                        const EdgeInsets.symmetric(horizontal: 20),
                                     alignment: Alignment.center,
                                     decoration: ShapeDecoration(
                                       color:
@@ -372,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           //     :
                                           Colors.white,
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                             width: 1, color: Color(0x7FE1E1E1)),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -383,7 +382,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .categoriesList[index]
                                               .name ??
                                           "",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color:
                                             // selected == index
                                             //     ? Colors.white
@@ -401,10 +400,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           )),
                       Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.only(top: 24, bottom: 10),
-                          child: Row(
+                          margin: const EdgeInsets.only(top: 24, bottom: 10),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const[
+                            children: [
                                Text(
                                 'الأكثر طلبا',
                                 textAlign: TextAlign.center,

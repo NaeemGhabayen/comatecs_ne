@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import '../../utill/color_resources.dart';
 
 class CustomDropDownField extends StatelessWidget {
-  String title;
-  Function onChange;
-  String icons;
-  bool width;
-  List<String> list;
-  String value;
-  bool isReadOnly;
+  String? title;
+  void Function(String?)? onChange;
+  String? icons;
+  bool? width;
+  List<String>? list;
+  String? value;
+  bool? isReadOnly;
 
   CustomDropDownField({
-    Key key,
     this.title,
     this.icons,
     this.onChange,
@@ -21,7 +20,7 @@ class CustomDropDownField extends StatelessWidget {
     this.value,
     this.width,
     this.isReadOnly = false,
-  }) : super(key: key);
+  }) ;
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +29,26 @@ class CustomDropDownField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          title,
+          title!,
           textAlign: TextAlign.right,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF212121),
             fontSize: 14,
             fontWeight: FontWeight.w600,
             height: 0.11,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         Container(
           height: 52,
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width * .9,
-          padding: EdgeInsets.only(left: 12),
+          padding: const EdgeInsets.only(left: 12),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Color(0xFFE1E1E1),
+              color: const Color(0xFFE1E1E1),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8),
@@ -66,7 +65,7 @@ class CustomDropDownField extends StatelessWidget {
               iconDisabledColor: Colors.grey,
             ),
             hint: Text(
-              title,
+              title!,
               style: const TextStyle(
                   color: Color.fromRGBO(33, 47, 62, .61),
                   fontSize: 14,
@@ -83,8 +82,8 @@ class CustomDropDownField extends StatelessWidget {
               offset: const Offset(-20, 0),
               scrollbarTheme: ScrollbarThemeData(
                 radius: const Radius.circular(40),
-                thickness: MaterialStateProperty.all<double>(6),
-                thumbVisibility: MaterialStateProperty.all<bool>(true),
+                thickness: WidgetStateProperty.all<double>(6),
+                thumbVisibility: WidgetStateProperty.all<bool>(true),
               ),
             ),
             menuItemStyleData: const MenuItemStyleData(
@@ -93,10 +92,10 @@ class CustomDropDownField extends StatelessWidget {
             ),
             underline: const SizedBox(),
             style: const TextStyle(color: ColorResources.BLACK),
-            onChanged: onChange,
-            items: list.map<DropdownMenuItem<String>>((String value) {
+            onChanged: onChange!,
+            items: list!.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
-                enabled: !isReadOnly,
+                enabled: !isReadOnly!,
                 value: value,
                 child: Text(value),
               );

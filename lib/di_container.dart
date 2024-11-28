@@ -3,7 +3,7 @@ import 'package:comatecs/data/repository/categories_repo.dart';
 import 'package:comatecs/data/repository/product_repo.dart';
 import 'package:comatecs/provider/categories_provider.dart';
 import 'package:comatecs/provider/product_provider.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';

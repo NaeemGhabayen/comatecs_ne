@@ -1,6 +1,5 @@
 import 'package:comatecs/view/screen/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../provider/auth_provider.dart';
@@ -9,10 +8,9 @@ import '../../../../utill/images.dart';
 import '../../../../utill/navigation.dart';
 import '../../../base/custom_button.dart';
 import '../../../base/text_field.dart';
-import '../change_password/change_password_screen.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key key}) : super(key: key);
+  const ForgetPasswordScreen({Key? key}) : super(key: key);
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
@@ -47,10 +45,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       alignment: Alignment.topRight,
-                      child: Icon(Icons.arrow_back_ios))),
-              SizedBox(
+                      child: const Icon(Icons.arrow_back_ios))),
+              const SizedBox(
                 height: 30,
               ),
               Image.asset(Images.logo),
@@ -67,7 +65,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Form(
@@ -79,7 +77,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   focusNode: _emailFocus,
                   controller: _emailController,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال البريد الالكتروني';
                     }else if(!value.toString().contains('@')){
                       return 'يجب ادخال بريد الكتروني صالح';
@@ -90,14 +88,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
               Container(
                   height: MediaQuery.of(context).size.height * .45,
-                  margin: EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 20),
                   alignment: Alignment.bottomCenter,
                   width: MediaQuery.of(context).size.width * .9,
                   child: CustomButton(
                       btnTxt: 'إرسال',
                       onTap: ()async {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           await Provider.of<AuthProvider>(context,
                               listen: false)
                               .restPassword(_emailController.text, route);
@@ -120,7 +118,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.green));
-      AppNavigation.navigateAndFinish(context, LoginScreen());
+      AppNavigation.navigateAndFinish(context, const LoginScreen());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));

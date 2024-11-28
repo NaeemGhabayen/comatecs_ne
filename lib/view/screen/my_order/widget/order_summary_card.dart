@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OrderSummaryCard extends StatefulWidget {
-  const OrderSummaryCard({key});
+  const OrderSummaryCard({Key? key}) : super(key: key);
 
   @override
   State<OrderSummaryCard> createState() => _OrderSummaryCardState();
@@ -12,18 +12,18 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
   Widget build(BuildContext context) {
     return    Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           side:
-          BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+          const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
           borderRadius: BorderRadius.circular(5),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'ملخص الطلب',
             textAlign: TextAlign.right,
             style: TextStyle(
@@ -34,11 +34,11 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
             ),
           ),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 8),
-              child: Divider(
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              child: const Divider(
                 color: Color(0xFFE1E1E1),
               )),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -63,10 +63,10 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -91,10 +91,10 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -119,10 +119,10 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -147,10 +147,10 @@ class _OrderSummaryCardState extends State<OrderSummaryCard> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(

@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../utill/color_resources.dart';
-import '../../utill/images.dart';
 
 class CustomAppBarWithMenu extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final Function onTap;
-  const CustomAppBarWithMenu({Key key, @required this.title, this.onTap })
+  final String? title;
+  final Function? onTap;
+  const CustomAppBarWithMenu({Key? key, @required this.title, this.onTap })
       : super(key: key);
 
   @override
@@ -18,7 +15,7 @@ class CustomAppBarWithMenu extends StatelessWidget implements PreferredSizeWidge
       centerTitle: true,
       leadingWidth: 0,
       title:  Text(
-        title,
+        title!,
         style: const TextStyle(
           color: ColorResources.WHITE,
           fontSize: 16,
@@ -30,9 +27,9 @@ class CustomAppBarWithMenu extends StatelessWidget implements PreferredSizeWidge
         padding: const EdgeInsets.symmetric(horizontal: 20),
         alignment: Alignment.center,
         color: Theme.of(context).primaryColor,
-        child: Row(
+        child: const Row(
           children: [
-            const   SizedBox(height: 20,),
+            SizedBox(height: 20,),
             // Text(
             //   title,
             //   style: const TextStyle(
@@ -40,7 +37,7 @@ class CustomAppBarWithMenu extends StatelessWidget implements PreferredSizeWidge
             //     fontSize: 16,
             //   ),
             // ),
-            const Spacer(),
+            Spacer(),
 
 
           ],

@@ -7,7 +7,7 @@ import '../../../base/custom_button.dart';
 import '../../../base/custom_drop_down_field.dart';
 
 class FilterModelSheet extends StatefulWidget {
-  const FilterModelSheet({key});
+  const FilterModelSheet({Key? key, }) : super(key: key);
 
   @override
   State<FilterModelSheet> createState() => _FilterModelSheetState();
@@ -20,7 +20,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
     "married",
     "absolute",
   ];
-  String maritalStatusValue;
+  String? maritalStatusValue;
   double startval1 = 20, endval1 = 70;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * .2),
         color: Colors.transparent,
         child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
                 color: ColorResources.BACKGROUND,
                 borderRadius: BorderRadius.only(
@@ -44,13 +44,13 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                   width: 67,
                   height: 5,
                   decoration: ShapeDecoration(
-                    color: Color(0xFF212121),
+                    color: const Color(0xFF212121),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
                   ),
                 )),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Row(
@@ -60,7 +60,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                       Images.filter,
                       color: Theme.of(context).primaryColor,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                     const Text(
@@ -76,7 +76,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                   ],
                 ),
 
-                SizedBox(height: 24,),
+                const SizedBox(height: 24,),
 
                 CustomDropDownField(
                     title: 'فئة المنتج',
@@ -84,7 +84,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                       setState(() {});
                     },
                     list: maritalStatusList,
-                    value: maritalStatusValue,
+                    value: maritalStatusValue!,
                     width: true),
 
                 CustomDropDownField(
@@ -93,10 +93,10 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                       setState(() {});
                     },
                     list: maritalStatusList,
-                    value: maritalStatusValue,
+                    value: maritalStatusValue!,
                     width: true),
-                SizedBox(height: 8,),
-                Text(
+                const SizedBox(height: 8,),
+                const Text(
                   'ميزانية السعر',
                   textAlign: TextAlign.right,
                   style: TextStyle(
@@ -107,7 +107,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
                     height: 0.09,
                   ),
                 ),
-SizedBox(height: 4,),
+const SizedBox(height: 4,),
                 RangeSlider(
                   min: 0,
                   max: 100,

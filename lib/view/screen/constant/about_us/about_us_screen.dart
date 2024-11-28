@@ -1,17 +1,12 @@
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/constant/constant_screen/about_cmatecs_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../provider/constants_provider.dart';
 import '../../../../utill/color_resources.dart';
-import '../../../../utill/images.dart';
-import '../../my_profile/edit_password_screen.dart';
-import '../../my_profile/edit_user_profile_screen.dart';
 import '../../my_profile/widget/item_profile.dart';
 
 class AboutUsScreen extends StatefulWidget {
-  const AboutUsScreen({key});
+  const AboutUsScreen({Key? key, }) : super(key: key);
 
   @override
   State<AboutUsScreen> createState() => _AboutUsScreenState();
@@ -49,7 +44,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         },
                         child: Container(
 
-                            child: Icon(Icons.arrow_back_ios,size: 20,))),
+                            child: const Icon(Icons.arrow_back_ios,size: 20,))),
                     const Text(
                       'تعديل الملف الشخصي',
                       textAlign: TextAlign.right,

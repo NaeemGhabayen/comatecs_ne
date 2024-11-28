@@ -1,19 +1,18 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../../utill/color_resources.dart';
 
 class DropDownField extends StatelessWidget {
-  String title;
-  Function onChange;
-  String icons;
-  bool width;
-  List<String> list;
-  String value;
-  bool isReadOnly;
+  String? title;
+  void Function(String?)? onChange;
+  String? icons;
+  bool? width;
+  List<String>? list;
+  String? value;
+  bool? isReadOnly;
 
   DropDownField({
-    Key key,
+    Key? key,
     this.title,
     this.icons,
     this.onChange,
@@ -27,7 +26,7 @@ class DropDownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 54,
-      width: width
+      width: width!
           ? MediaQuery.of(context).size.width * .8
           : MediaQuery.of(context).size.width * .38,
       margin: const EdgeInsets.only(top: 16),
@@ -37,9 +36,9 @@ class DropDownField extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border:
-            Border.all(color: Color.fromRGBO(212, 226, 235, .5), width: 1.5),
+            Border.all(color: const Color.fromRGBO(212, 226, 235, .5), width: 1.5),
         borderRadius: BorderRadius.circular(8),
-        color: Color.fromRGBO(212, 226, 235, .22),
+        color: const Color.fromRGBO(212, 226, 235, .22),
         shape: BoxShape.rectangle,
       ),
       child: DropdownButton2<String>(
@@ -52,7 +51,7 @@ class DropDownField extends StatelessWidget {
           iconDisabledColor: Colors.grey,
         ),
         hint: Text(
-          title,
+          title!,
           style: const TextStyle(
               color: Color.fromRGBO(33, 47, 62, .61),
               fontSize: 14,
@@ -69,8 +68,8 @@ class DropDownField extends StatelessWidget {
           offset: const Offset(-20, 0),
           scrollbarTheme: ScrollbarThemeData(
             radius: const Radius.circular(40),
-            thickness: MaterialStateProperty.all<double>(6),
-            thumbVisibility: MaterialStateProperty.all<bool>(true),
+            thickness: WidgetStateProperty.all<double>(6),
+            thumbVisibility: WidgetStateProperty.all<bool>(true),
           ),
         ),
         menuItemStyleData: const MenuItemStyleData(
@@ -80,9 +79,9 @@ class DropDownField extends StatelessWidget {
         underline: const SizedBox(),
         style: const TextStyle(color: ColorResources.BLACK),
         onChanged: onChange,
-        items: list.map<DropdownMenuItem<String>>((String value) {
+        items: list!.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
-            enabled: !isReadOnly,
+            enabled: !isReadOnly!,
             value: value,
             child: Text(value),
           );

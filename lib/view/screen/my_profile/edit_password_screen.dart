@@ -9,7 +9,7 @@ import '../../base/text_field.dart';
 import '../auth/sucsess/sucsess_screen.dart';
 
 class EditPasswordScreen extends StatefulWidget {
-  const EditPasswordScreen({key});
+  const EditPasswordScreen({Key? key}) : super(key: key);
 
   @override
   State<EditPasswordScreen> createState() => _EditPasswordScreenState();
@@ -50,7 +50,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            child: Icon(
+                            child: const Icon(
                           Icons.arrow_back_ios,
                           size: 20,
                         ))),
@@ -67,7 +67,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               Form(
@@ -77,8 +77,8 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                     TextFromFieldWidget(
                       title: 'كلمة المرور الحالية',
                       type: TextInputType.text,
-                      validator: (String value) {
-                        if (value.isEmpty) {
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
                           return 'يجب ادخال كلمة المرور الحالية';
                         }
                         return null;
@@ -92,8 +92,8 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                     TextFromFieldWidget(
                       title: 'كلمة المرور الجديدة',
                       type: TextInputType.text,
-                      validator: (String value) {
-                        if (value.isEmpty) {
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
                           return 'يجب ادخال كلمة المرور الجديدة';
                         }
                         return null;
@@ -108,8 +108,8 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                       title: 'تأكيد كلمة المرور',
                       type: TextInputType.text,
                       onChange: (String value) {},
-                      validator: (String value) {
-                        if (value.isEmpty) {
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
                           return 'يجب ادخال تاكيد كلمة المرور';
                         } else if (value.toString() !=
                             _passwordController.text.toString()) {
@@ -133,8 +133,8 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                       btnTxt: 'حفظ',
                       isLoading: Provider.of<AuthProvider>(context, listen: true).isLoading,
                       onTap: () async {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           await Provider.of<AuthProvider>(context,
                                   listen: false)
                               .changePassword(
@@ -162,7 +162,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.green));
-      AppNavigation.navigateAndFinish(context, SuccessScreen());
+      AppNavigation.navigateAndFinish(context, const SuccessScreen());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));

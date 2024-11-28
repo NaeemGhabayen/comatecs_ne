@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
-import '../../../provider/adverstiment_provider.dart';
 import '../../../utill/images.dart';
 import '../cart/cart_screen.dart';
 import '../favorite/favorite_screen.dart';
@@ -12,14 +10,14 @@ import '../my_order/my_order_screen.dart';
 import '../my_profile/my_profile_screen.dart';
 
 class MainHomeScreen extends StatefulWidget {
-  const MainHomeScreen({key});
+  const MainHomeScreen({Key? key, }) : super(key: key);
 
   @override
   State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
-  PageController pageController;
+  PageController? pageController;
   int _index = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,7 +25,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-     // Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
+    // Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
     pageController = PageController(
       initialPage: 0,
     );
@@ -80,14 +78,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       // appBar: AppBarss(context ,title),
       body: SafeArea(
         child: PageView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: (item) {},
-          children:const [
+          children: const [
             HomeScreen(),
             FavoriteScreen(),
             CartScreen(),
-          MyOrderScreen(),
+            MyOrderScreen(),
             MyProfileScreen(
             ),
           ],
@@ -100,21 +98,23 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          if(indx==4){
-            SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
-              statusBarColor: Theme.of(context).primaryColor,
+          if (indx == 4) {
+            SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+              statusBarColor: Theme
+                  .of(context)
+                  .primaryColor,
               statusBarIconBrightness: Brightness.light,
 
             ));
-          }else{
+          } else {
             SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
             ));
           }
           _index = indx;
-          pageController.animateToPage(_index,
-              duration: Duration(milliseconds: 50), curve: Curves.ease);
+          pageController!.animateToPage(_index,
+              duration: const Duration(milliseconds: 50), curve: Curves.ease);
         });
       },
       child: Column(
@@ -126,10 +126,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ),
           Center(
               child: SvgPicture.asset(
-            _index == indx ? iconDataUse : iconData,
-            width: 22,
-            height: 22,
-          )),
+                _index == indx ? iconDataUse : iconData,
+                width: 22,
+                height: 22,
+              )),
           const SizedBox(
             height: 4,
           ),
@@ -137,8 +137,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             title,
             style: TextStyle(
               color: _index == indx
-                  ? Theme.of(context).primaryColor
-                  : Color(0x66212121),
+                  ? Theme
+                  .of(context)
+                  .primaryColor
+                  : const Color(0x66212121),
               fontSize: 13,
               fontWeight: FontWeight.w400,
             ),

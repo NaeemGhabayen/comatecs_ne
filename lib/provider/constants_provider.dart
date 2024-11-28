@@ -10,7 +10,7 @@ import '../data/repository/constants_repo.dart';
 import '../helper/api_checker.dart';
 
 class ConstantsProvider with ChangeNotifier {
-  final ConstantsRepo constantsRepo;
+  final ConstantsRepo? constantsRepo;
 
   ConstantsProvider({this.constantsRepo});
 
@@ -30,18 +30,14 @@ class ConstantsProvider with ChangeNotifier {
   Future<bool> getWorkNatureList(context) async {
     _workNatureList = [];
     _isLoading = true;
-    ApiResponse apiResponse = await constantsRepo.getWorkNatureList();
+    ApiResponse apiResponse = await constantsRepo!.getWorkNatureList();
     _isLoading = false;
     print('apiResponse.response.data');
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      for (var item in apiResponse.response.data) {
-        var isExiset = _workNatureList
-            .firstWhere((element) => element.id == CategoriesModel.fromJson(item).id, orElse: () => null);
-        if (isExiset == null) {
-          _workNatureList.add(CategoriesModel.fromJson(item));
-          notifyListeners();
+    if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
+      for (var item in apiResponse.response!.data) {
+        _workNatureList.add(CategoriesModel.fromJson(item));
+        notifyListeners();
         }
-      }
       notifyListeners();
       return true;
     } else {
@@ -51,28 +47,24 @@ class ConstantsProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> getAboutUsList({context, bool isAbout}) async {
+  Future<bool> getAboutUsList({context, bool? isAbout}) async {
     _aboutUsList = [];
     _isLoading = true;
     ApiResponse apiResponse ;
-    if(isAbout){
-       apiResponse = await constantsRepo.getAboutUsModel();
+    if(isAbout!){
+       apiResponse = await constantsRepo!.getAboutUsModel();
 
     }else{
-       apiResponse = await constantsRepo.getTermPolicy();
+       apiResponse = await constantsRepo!.getTermPolicy();
 
     }
     _isLoading = false;
     print('apiResponse.response.data');
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      for (var item in apiResponse.response.data) {
-        var isExiset = _aboutUsList
-            .firstWhere((element) => element.id == AboutUsModel.fromJson(item).id, orElse: () => null);
-        if (isExiset == null) {
-          _aboutUsList.add(AboutUsModel.fromJson(item));
-          notifyListeners();
+    if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
+      for (var item in apiResponse.response!.data) {
+        _aboutUsList.add(AboutUsModel.fromJson(item));
+        notifyListeners();
         }
-      }
       notifyListeners();
       return true;
     } else {
@@ -83,20 +75,21 @@ class ConstantsProvider with ChangeNotifier {
   }
 
 
-  Future technicalSupport({String fullName , String email , String phoneNumber,String message, Function callback}) async {
+  Future technicalSupport({String? fullName , String? email , String? phoneNumber,
+    String? message, Function? callback}) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse apiResponse = await constantsRepo.technicalSupport(fullName: fullName,email: email,phoneNumber: phoneNumber,message: message);
+    ApiResponse apiResponse = await constantsRepo!.technicalSupport(fullName: fullName!,email: email!,phoneNumber: phoneNumber!
+        ,message: message!);
     _isLoading = false;
-    if (apiResponse.response != null &&
-        apiResponse.response.statusCode == 200 ) {
+    if (apiResponse.response != null &&apiResponse.response!.statusCode == 200 ) {
       // Map map = apiResponse.response.data;
       String message = 'شكراً لتوصلك بفريق الدعم الفني. سنعمل على الرد على استفسارك في أقرب وقت ممكن. نشكرك على صبرك وتفهمك.';
       try {
         // message = map['message'];
       } catch (e) {}
 
-      callback(true, message);
+      callback!(true, message);
       notifyListeners();
     } else {
       String errorMessage;
@@ -105,10 +98,10 @@ class ConstantsProvider with ChangeNotifier {
         errorMessage = apiResponse.error.toString();
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
+        print(errorResponse.errors![0].message);
+        errorMessage = errorResponse.errors![0].message!;
       }
-      callback(false, errorMessage);
+      callback!(false, errorMessage);
       notifyListeners();
     }
   }

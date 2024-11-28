@@ -6,9 +6,9 @@ import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
 
 class ConstantScreen extends StatefulWidget {
-  final String title;
+  final String? title;
 
-  const ConstantScreen({key, this.title});
+  const ConstantScreen({Key? key,  this.title}) : super(key: key);
 
   @override
   State<ConstantScreen> createState() => _ConstantScreenState();
@@ -55,12 +55,12 @@ class _ConstantScreenState extends State<ConstantScreen> {
                             Navigator.pop(context);
                           },
                           child: Container(
-                              child: Icon(
+                              child: const Icon(
                             Icons.arrow_back_ios,
                             size: 20,
                           ))),
                       Text(
-                        widget.title,
+                        widget.title!,
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                           color: Color(0xFF212121),
@@ -75,13 +75,13 @@ class _ConstantScreenState extends State<ConstantScreen> {
                     height: 24,
                   ),
                   Image.asset(Images.logo_with_name),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   provider.isLoading? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),):   ListView.builder(
                     itemCount: provider.aboutUsList.length,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext ctx, index) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class _ConstantScreenState extends State<ConstantScreen> {
                             fontFamily: 'Tajawal',
                             fontWeight: FontWeight.w700,
                           ),),
-                          SizedBox(height: 12,),
+                          const SizedBox(height: 12,),
                           Text(provider.aboutUsList[index].body??'',style:const TextStyle(
                             color: Color(0xCC212121),
                             fontSize: 14,
@@ -101,7 +101,7 @@ class _ConstantScreenState extends State<ConstantScreen> {
                             fontWeight: FontWeight.w500,
                           ),),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 24,
                           ),
                         ],

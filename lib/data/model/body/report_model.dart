@@ -39,22 +39,22 @@ class ReportModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['beneficiaryid'] = this.beneficiaryid;
-    data['full_name'] = this.full_name;
-    data['full_name_ar'] = this.full_name_ar;
-    data['gender'] = this.gender;
-    data['dob'] = this.dob;
-    data['country'] = this.country;
-    data['city'] = this.city;
-    data['basicfieldid'] = this.basicfieldid;
-    data['beneficiarystatus'] = this.beneficiarystatus;
-    data['beneficiarynotes'] = this.beneficiarynotes;
-    data['sessionid'] = this.sessionid;
-    data['type'] = this.type;
-    data['sessiontopic'] = this.sessiontopic;
-    data['adviserid'] = this.adviserid;
-    data['socualstatus'] = this.socualstatus;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['beneficiaryid'] = beneficiaryid;
+    data['full_name'] = full_name;
+    data['full_name_ar'] = full_name_ar;
+    data['gender'] = gender;
+    data['dob'] = dob;
+    data['country'] = country;
+    data['city'] = city;
+    data['basicfieldid'] = basicfieldid;
+    data['beneficiarystatus'] = beneficiarystatus;
+    data['beneficiarynotes'] = beneficiarynotes;
+    data['sessionid'] = sessionid;
+    data['type'] = type;
+    data['sessiontopic'] = sessiontopic;
+    data['adviserid'] = adviserid;
+    data['socualstatus'] = socualstatus;
 
 
     return data;

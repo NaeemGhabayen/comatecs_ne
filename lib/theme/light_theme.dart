@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 
 ThemeData light = ThemeData(
   fontFamily: 'Tajawal',
-  primaryColor: Color.fromRGBO(23, 128, 71, 1),
+  primaryColor: const Color.fromRGBO(23, 128, 71, 1),
   brightness: Brightness.light,
   canvasColor: Colors.transparent,
   highlightColor: Colors.white,
   hintColor:const Color(0xFF9E9E9E),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: Colors.black),
       color: Color.fromRGBO(23, 128, 71, 1),
       foregroundColor: Colors.black,

@@ -3,7 +3,6 @@ import 'package:comatecs/provider/constants_provider.dart';
 import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,32 +11,34 @@ import '../../../provider/auth_provider.dart';
 import '../../../provider/categories_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-import 'dart:io' show Platform;
 
 import '../auth/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  StreamSubscription<ConnectivityResult>? _onConnectivityChanged;
 
   @override
   void initState() {
     super.initState();
-    bool _firstTime = true;
+    bool firstTime = true;
     _onConnectivityChanged = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
       Provider.of<AuthProvider>(context, listen: false).isRememberMe();
-      if (!_firstTime) {
+      if (!firstTime) {
         bool isNotConnected = result != ConnectivityResult.wifi &&
             result != ConnectivityResult.mobile;
         isNotConnected
-            ? SizedBox()
+            ? const SizedBox()
             : ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
@@ -53,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
           _route();
         }
       }
-      _firstTime = false;
+      firstTime = false;
     });
 
     _route();
@@ -63,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void dispose() {
     super.dispose();
 
-    _onConnectivityChanged.cancel();
+    _onConnectivityChanged!.cancel();
   }
 
   void _route() async {
@@ -73,11 +74,11 @@ class _SplashScreenState extends State<SplashScreen> {
         .getMostPopularProductList(context);
     Provider.of<CategoriesProvider>(context, listen: false)
         .getCategoriesList(context);
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       if (Provider.of<AuthProvider>(context, listen: false).isRemember) {
-        AppNavigation.navigateAndFinish(context, MainHomeScreen());
+        AppNavigation.navigateAndFinish(context, const MainHomeScreen());
       } else {
-        AppNavigation.navigateAndFinish(context, LoginScreen());
+        AppNavigation.navigateAndFinish(context,  LoginScreen());
 
         // Provider.of<CategoriesProvider>(context, listen: false)
         //     .getCategoriesList(context);

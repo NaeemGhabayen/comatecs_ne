@@ -4,7 +4,7 @@ class FallbackLocalizationDelegate extends LocalizationsDelegate<MaterialLocaliz
   @override
   bool isSupported(Locale locale) => true;
   @override
-  Future<MaterialLocalizations> load(Locale locale) async => DefaultMaterialLocalizations();
+  Future<MaterialLocalizations> load(Locale locale) async => const DefaultMaterialLocalizations();
   @override
   bool shouldReload(_) => false;
 }

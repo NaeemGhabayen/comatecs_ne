@@ -1,7 +1,6 @@
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/auth_provider.dart';
@@ -14,7 +13,7 @@ import 'edit_profile_screen.dart';
 import 'widget/item_profile.dart';
 
 class MyProfileScreen extends StatefulWidget {
-  const MyProfileScreen({key});
+  const MyProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<MyProfileScreen> createState() => _MyProfileScreenState();
@@ -29,7 +28,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * .25,
                 child: Stack(
                   children: [
@@ -38,7 +37,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * .25,
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage("assets/images/background.png"),
                               fit: BoxFit.cover),
@@ -48,12 +47,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.all(12),
-                        padding: EdgeInsets.all(12),
+                        margin: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         decoration: ShapeDecoration(
                           color: Colors.white.withOpacity(0.7900000214576721),
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(
+                            side: const BorderSide(
                                 width: 0.50, color: Color(0x7FE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
@@ -85,10 +84,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
-              Text(
+              const Text(
                 'عمر محمد',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -98,7 +97,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               const Text(
@@ -112,12 +111,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(12),
-                padding: EdgeInsets.all(12),
+                margin: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 decoration: ShapeDecoration(
-                  color: Color(0x1E197D47),
+                  color: const Color(0x1E197D47),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                    side: const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -135,7 +134,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               ItemProfile(
                 title: 'تعديل الملف الشخصي',
                 onPress: () {
-                  AppNavigation.navigateTo(context, EditProfileScreen());
+                  AppNavigation.navigateTo(context, const EditProfileScreen());
                 },
                 icon: Images.edit,
               ),
@@ -149,18 +148,18 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               ItemProfile(
                 title: 'من نحن',
                 onPress: () {
-                  AppNavigation.navigateTo(context, AboutUsScreen());
+                  AppNavigation.navigateTo(context, const AboutUsScreen());
                 },
                 icon: Images.users,
               ),
               ItemProfile(
                 title: 'الدعم الفني',
                 onPress: () {
-                  AppNavigation.navigateTo(context, TechnicalSupportScreen());
+                  AppNavigation.navigateTo(context, const TechnicalSupportScreen());
                 },
                 icon: Images.call,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               InkWell(
@@ -179,7 +178,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           },
                           ok: () async{
                             await Provider.of<AuthProvider>(context, listen: false).clearSharedData();
-                            AppNavigation.navigateAndFinish(context, LoginScreen());
+                            AppNavigation.navigateAndFinish(context, const LoginScreen());
                           },
                         );
                       });
@@ -188,10 +187,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   height: 50,
                   margin:
                       const EdgeInsets.only(bottom: 16, left: 20, right: 20),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Color(0xFFE1E1E1)),
+                      side: const BorderSide(width: 1, color: Color(0xFFE1E1E1)),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
@@ -202,10 +201,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 16,
                         height: 16,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 12,
                       ),
-                      Text(
+                      const Text(
                         'تسجيل الخروج',
                         textAlign: TextAlign.right,
                         style: TextStyle(

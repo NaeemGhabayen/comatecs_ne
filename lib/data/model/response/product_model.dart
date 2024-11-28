@@ -14,18 +14,18 @@ class ProductModel {
      this.subCategory,
   });
 
-  final int id;
-  final String name;
-  final String details;
-  final String features;
-  final List<ProductImage> productImages;
-  final List<ProductAttachment> productAttachments;
-  final int deliveryPrice;
-  final String deliveryDuration;
-  final int price;
-  final int discountValue;
-  final Brand brand;
-  final SubCategory subCategory;
+  final int? id;
+  final String? name;
+  final String? details;
+  final String? features;
+  final List<ProductImage>? productImages;
+  final List<ProductAttachment>? productAttachments;
+  final int? deliveryPrice;
+  final String? deliveryDuration;
+  final int? price;
+  final int? discountValue;
+  final Brand? brand;
+  final SubCategory? subCategory;
 
   factory ProductModel.fromJson(Map<String, dynamic> json){
     return ProductModel(
@@ -49,14 +49,14 @@ class ProductModel {
     "name": name,
     "details": details,
     "features": features,
-    "productImages": productImages.map((x) => x?.toJson()).toList(),
-    "productAttachments": productAttachments.map((x) => x?.toJson()).toList(),
+    "productImages": productImages!.map((x) => x.toJson()).toList(),
+    "productAttachments": productAttachments!.map((x) => x.toJson()).toList(),
     "deliveryPrice": deliveryPrice,
     "deliveryDuration": deliveryDuration,
     "price": price,
     "discountValue": discountValue,
-    "brand": brand?.toJson(),
-    "subCategory": subCategory?.toJson(),
+    "brand": brand!.toJson(),
+    "subCategory": subCategory!.toJson(),
   };
 
 }
@@ -67,8 +67,8 @@ class Brand {
      this.name,
   });
 
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
   factory Brand.fromJson(Map<String, dynamic> json){
     return Brand(
@@ -92,10 +92,10 @@ class ProductAttachment {
      this.productId,
   });
 
-  final int id;
-  final String title;
-  final String attachmentUrl;
-  final int productId;
+  final int? id;
+  final String? title;
+  final String? attachmentUrl;
+  final int? productId;
 
   factory ProductAttachment.fromJson(Map<String, dynamic> json){
     return ProductAttachment(
@@ -122,9 +122,9 @@ class ProductImage {
      this.productId,
   });
 
-  final int id;
-  final String imageUrl;
-  final int productId;
+  final int? id;
+  final String? imageUrl;
+  final int? productId;
 
   factory ProductImage.fromJson(Map<String, dynamic> json){
     return ProductImage(
@@ -149,9 +149,9 @@ class SubCategory {
      this.category,
   });
 
-  final int id;
-  final String name;
-  final Brand category;
+  final int? id;
+  final String? name;
+  final Brand? category;
 
   factory SubCategory.fromJson(Map<String, dynamic> json){
     return SubCategory(
@@ -164,7 +164,7 @@ class SubCategory {
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
-    "category": category?.toJson(),
+    "category": category!.toJson(),
   };
 
 }

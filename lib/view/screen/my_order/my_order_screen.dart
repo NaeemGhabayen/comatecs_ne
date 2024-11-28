@@ -7,14 +7,14 @@ import 'complete_orders/complete_orders_screen.dart';
 import 'current_orders/current_orders_screen.dart';
 
 class MyOrderScreen extends StatefulWidget {
-  const MyOrderScreen({key});
+  const MyOrderScreen({Key? key}) : super(key: key);
 
   @override
   State<MyOrderScreen> createState() => _MyOrderScreenState();
 }
 
 class _MyOrderScreenState extends State<MyOrderScreen> {
-  PageController pageController;
+  PageController? pageController;
   int initialPage = 0;
   int _index = 0;
 @override
@@ -68,10 +68,10 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
               ),
               Container(
                 height: 48,
-                padding: EdgeInsets.only(top: 5,bottom: 5),
+                padding: const EdgeInsets.only(top: 5,bottom: 5),
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFFE1E1E1)),
+                    side: const BorderSide(width: 1, color: Color(0xFFE1E1E1)),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -89,7 +89,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
               ),
               Expanded(
                 child: PageView(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: pageController,
                   scrollDirection: Axis.vertical,
                   onPageChanged: (item) {
@@ -103,7 +103,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                       });
                     });
                   },
-                  children:  [
+                  children:  const [
                     CurrentOrdersScreen(),
                     CancelOrdersScreen(),
                     CompleteOrdersScreen(),
@@ -124,7 +124,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
       onTap: () {
         setState(() {
           _index = inde;
-          pageController.animateToPage(_index, duration: Duration(milliseconds: 100), curve: Curves.ease);
+          pageController!.animateToPage(_index, duration: const Duration(milliseconds: 100), curve: Curves.ease);
         });
       },
       child: inde == _index
@@ -132,13 +132,13 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 36,vertical: 8),
           decoration: ShapeDecoration(
-            color: Color(0xFF197D47),
+            color: const Color(0xFF197D47),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontFamily: 'Tajawal',
@@ -149,7 +149,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
           : Text(
         title,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Color(0xB26F6F6F),
           fontSize: 15,
           fontFamily: 'Tajawal',

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
 
 import '../data/model/response/base/api_response.dart';
-import '../provider/auth_provider.dart';
 
 
 class ApiChecker {
@@ -19,19 +17,19 @@ class ApiChecker {
       //     MaterialPageRoute(
       //         builder: (_) =>  LoginScreen()),
       //         (route) => false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(' تم تعطيل هذا المستخدم', style: TextStyle(color: Colors.white)), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(' تم تعطيل هذا المستخدم', style: TextStyle(color: Colors.white)), backgroundColor: Colors.red));
 
     }
 
     else{
-      String _errorMessage;
+      String errorMessage;
       if (apiResponse.error is String) {
-        _errorMessage = apiResponse.error.toString();
+        errorMessage = apiResponse.error.toString();
       } else {
-        _errorMessage = apiResponse.error.errors[0].message;
+        errorMessage = apiResponse.error.errors[0].message;
       }
-      print(_errorMessage);
-     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_errorMessage, style: TextStyle(color: Colors.white)), backgroundColor: Colors.red));
+      print(errorMessage);
+     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage, style: const TextStyle(color: Colors.white)), backgroundColor: Colors.red));
     }
   }
 }

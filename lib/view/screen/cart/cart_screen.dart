@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
-import '../../base/card_counter.dart';
 import '../purchase_details/purchase_details_screen.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({key});
+  const CartScreen({Key? key, }) : super(key: key);
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -57,20 +56,20 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext ctx, index) {
-                    return ItemCart();
+                    return const ItemCart();
                   },
                 ),
               ),
             ),
             Container(
               height: 60,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               alignment: Alignment.bottomCenter,
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                 ),
@@ -106,7 +105,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ],
                   ),
-                  Container(margin: EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'الشحن',onTap: (){AppNavigation.navigateTo(context, PurchaseDetailsScreen());},),)
+                  Container(margin: const EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'الشحن',onTap: (){AppNavigation.navigateTo(context, const PurchaseDetailsScreen());},),)
                 ],
               ),
             )

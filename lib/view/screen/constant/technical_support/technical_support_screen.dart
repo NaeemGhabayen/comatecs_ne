@@ -9,7 +9,7 @@ import '../../../base/text_field.dart';
 
 
 class TechnicalSupportScreen extends StatefulWidget {
-  const TechnicalSupportScreen({key});
+  const TechnicalSupportScreen({Key? key, }) : super(key: key);
 
   @override
   State<TechnicalSupportScreen> createState() => _TechnicalSupportScreenState();
@@ -53,7 +53,7 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                         },
                         child: Container(
 
-                            child: Icon(Icons.arrow_back_ios,size: 20,))),
+                            child: const Icon(Icons.arrow_back_ios,size: 20,))),
                     const Text(
                       'الدعم الفني',
                       textAlign: TextAlign.right,
@@ -94,8 +94,8 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                         type: TextInputType.emailAddress,
                         onChange: (String value) {},
                         focusNode: _nameFocus,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return 'يجب ادخال اسم المستخدم';
                           }
                           return null;
@@ -110,8 +110,8 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                         focusNode: _emailFocus,
                         controller: _emailController,
                         nextNode: _phoneFocus,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return 'يجب ادخال البريد الالكتروني ';
                           }
                           return null;
@@ -124,8 +124,8 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                         focusNode: _phoneFocus,
                         controller: _phoneController,
                         nextNode: _msgFocus,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return 'يجب ادخال رقم الهاتف';
                           }
                           return null;
@@ -139,8 +139,8 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                         onChange: (String value) {},
                         focusNode: _msgFocus,
                         controller: _msgController,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return 'يحب ادخال نص الرسالة';
                           }
                           return null;
@@ -154,12 +154,12 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
 
 
 
-                SizedBox(height: 40,),
+                const SizedBox(height: 40,),
                 CustomButton(btnTxt: 'إرسال',
                   isLoading: Provider.of<ConstantsProvider>(context, listen: true).isLoading,
                   onTap: ()async{
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
                       await Provider.of<ConstantsProvider>(context,
                           listen: false)
                           .technicalSupport(
@@ -195,7 +195,7 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                 backgroundColor: Colors.transparent,
                 child: Container(
                   width: MediaQuery.of(context).size.width * .8,
-                  margin: EdgeInsets.only(top: 12),
+                  margin: const EdgeInsets.only(top: 12),
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: Colors.white,
@@ -204,15 +204,15 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Image.asset(Images.smile , width: 24,height: 24,),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       const  Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: EdgeInsets.all(12.0),
                         child: Text(
                           'شكراً لتوصلك بفريق الدعم الفني. سنعمل على الرد على استفسارك في أقرب وقت ممكن. نشكرك على صبرك وتفهمك.',                  textAlign: TextAlign.center,
                           style: TextStyle(
@@ -223,7 +223,7 @@ class _TechnicalSupportScreenState extends State<TechnicalSupportScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
 

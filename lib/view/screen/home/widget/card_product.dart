@@ -9,8 +9,8 @@ import '../../../../utill/images.dart';
 import '../../product_details/product_details_screen.dart';
 
 class CardProduct extends StatefulWidget {
-  final ProductModel productModel;
-  CardProduct({key, this.productModel});
+  final ProductModel? productModel;
+  const CardProduct({Key? key,  this.productModel}) : super(key: key);
 
   @override
   State<CardProduct> createState() => _CardProductState();
@@ -21,11 +21,11 @@ class _CardProductState extends State<CardProduct> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color(0x7FE1E1E1)),
+          side: const BorderSide(width: 1, color: Color(0x7FE1E1E1)),
           borderRadius: BorderRadius.circular(5),
         ),
       ),
@@ -37,11 +37,11 @@ class _CardProductState extends State<CardProduct> {
             },
             child: Column(
               children: [
-                Expanded(
+                const Expanded(
                     child: SizedBox(
                   height: 20,
                 )),
-                widget.productModel.productImages.isEmpty
+                widget.productModel!.productImages!.isEmpty
                     ? Image.asset(
                         'assets/images/img_1.png',
                         height: 100,
@@ -70,17 +70,17 @@ class _CardProductState extends State<CardProduct> {
                         onTap: () {
                           AppNavigation.navigateTo(context,  ProductDetailsScreen(productModel: widget.productModel,));
 
-                        },
+                        }, width: 60,
                       ),
 
                 //
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    widget.productModel.name ?? '',
+                    widget.productModel!.name ?? '',
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                       color: Color(0xFF212121),
@@ -90,14 +90,14 @@ class _CardProductState extends State<CardProduct> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      widget.productModel.price.toString() ?? '',
+                      widget.productModel!.price.toString() ?? '',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFF197D47),
@@ -110,12 +110,12 @@ class _CardProductState extends State<CardProduct> {
                     Container(
                       width: 24,
                       height: 24,
-                      padding: EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(3),
                       decoration: ShapeDecoration(
-                        color: Color(0xFF197D47),
+                        color: const Color(0xFF197D47),
                         shape: RoundedRectangleBorder(
                           side:
-                              BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
+                              const BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
@@ -141,9 +141,9 @@ class _CardProductState extends State<CardProduct> {
                   height: 36,
                   alignment: Alignment.center,
                   decoration: ShapeDecoration(
-                    color: Color(0x66F1F1F1),
+                    color: const Color(0x66F1F1F1),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.25, color: Color(0x66F1F1F1)),
+                      side: const BorderSide(width: 0.25, color: Color(0x66F1F1F1)),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),

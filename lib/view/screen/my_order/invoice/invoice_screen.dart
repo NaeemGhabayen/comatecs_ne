@@ -5,7 +5,7 @@ import '../../../base/custom_button.dart';
 import '../widget/order_summary_card.dart';
 
 class InvoiceScreen extends StatefulWidget {
-  const InvoiceScreen({key});
+  const InvoiceScreen({Key? key, }) : super(key: key);
 
   @override
   State<InvoiceScreen> createState() => _InvoiceScreenState();
@@ -35,7 +35,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                          child: Icon(
+                          child: const Icon(
                         Icons.arrow_back_ios,
                         size: 20,
                       ))),
@@ -58,7 +58,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                       const SizedBox(
                         height: 24,
                       ),
-                      OrderSummaryCard(),
+                      const OrderSummaryCard(),
                       const SizedBox(
                         height: 24,
                       ),
@@ -70,7 +70,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                 child: Container(
 
                                   height: 41, alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  padding: const EdgeInsets.only(left: 12,right: 12),
                                   decoration:const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -145,13 +145,13 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                           ListView.builder(
                             itemCount: 3,
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (BuildContext ctx, index) {
                               return  Row(
                                 children: [
                                   Expanded(
                                     child: Container(
-                                                              padding: EdgeInsets.only(left: 12,right: 12),
+                                                              padding: const EdgeInsets.only(left: 12,right: 12),
 
                                       height: 41,alignment: Alignment.centerRight,
                                       decoration:const BoxDecoration(
@@ -230,7 +230,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                           ),
                         ],
                       ),
-SizedBox(height: 24,),
+const SizedBox(height: 24,),
                       Column(
                         children: [
                           Row(
@@ -239,7 +239,7 @@ SizedBox(height: 24,),
                                 child: Container(
 
                                   height: 41, alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  padding: const EdgeInsets.only(left: 12,right: 12),
                                   decoration:const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -292,7 +292,7 @@ SizedBox(height: 24,),
                                 child: Container(
 
                                   height: 41, alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  padding: const EdgeInsets.only(left: 12,right: 12),
                                   decoration:const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -344,7 +344,7 @@ SizedBox(height: 24,),
                               Expanded(
                                 child: Container(
                                   height: 41, alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  padding: const EdgeInsets.only(left: 12,right: 12),
                                   decoration:const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -394,7 +394,7 @@ SizedBox(height: 24,),
                         ],
                       ),
 
-                      SizedBox(height: 40,),
+                      const SizedBox(height: 40,),
                       CustomButton(
                         btnTxt: 'تصدير كملف pdf',
                         onTap: () {},

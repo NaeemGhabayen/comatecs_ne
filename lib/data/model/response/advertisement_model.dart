@@ -1,10 +1,10 @@
 class AdvertisementModel {
-  int id;
-  String title;
-  String body;
-  String imageUrl;
-  String startDate;
-  String endDate;
+  int? id;
+  String? title;
+  String? body;
+  String? imageUrl;
+  String? startDate;
+  String? endDate;
 
   AdvertisementModel(
       {this.id,
@@ -24,13 +24,13 @@ class AdvertisementModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['body'] = this.body;
-    data['imageUrl'] = this.imageUrl;
-    data['startDate'] = this.startDate;
-    data['endDate'] = this.endDate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['body'] = body;
+    data['imageUrl'] = imageUrl;
+    data['startDate'] = startDate;
+    data['endDate'] = endDate;
     return data;
   }
 }

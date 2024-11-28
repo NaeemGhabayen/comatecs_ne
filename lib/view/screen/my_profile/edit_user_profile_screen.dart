@@ -6,7 +6,7 @@ import '../../base/custom_drop_down_field.dart';
 import '../../base/text_field.dart';
 
 class EditUserProfileScreen extends StatefulWidget {
-  const EditUserProfileScreen({key});
+  const EditUserProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<EditUserProfileScreen> createState() => _EditUserProfileScreenState();
@@ -38,7 +38,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
     "married",
     "absolute",
   ];
-  String maritalStatusValue;
+  String? maritalStatusValue;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            child: Icon(
+                            child: const Icon(
                           Icons.arrow_back_ios,
                           size: 20,
                         ))),
@@ -81,7 +81,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               TextFromFieldWidget(
@@ -122,7 +122,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                     setState(() {});
                   },
                   list: maritalStatusList,
-                  value: maritalStatusValue,
+                  value: maritalStatusValue!,
                   width: true),
               CustomDropDownField(
                   title: 'نوع الشركة',
@@ -130,7 +130,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                     setState(() {});
                   },
                   list: maritalStatusList,
-                  value: maritalStatusValue,
+                  value: maritalStatusValue!,
                   width: true),
               CustomDropDownField(
                   title: 'عدد الموظفين',
@@ -138,7 +138,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                     setState(() {});
                   },
                   list: maritalStatusList,
-                  value: maritalStatusValue,
+                  value: maritalStatusValue!,
                   width: true),
               CustomDropDownField(
                   title: 'وظيفتتك داخل الشركة',
@@ -146,7 +146,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                     setState(() {});
                   },
                   list: maritalStatusList,
-                  value: maritalStatusValue,
+                  value: maritalStatusValue!,
                   width: true),
               Container(
                   alignment: Alignment.bottomCenter,

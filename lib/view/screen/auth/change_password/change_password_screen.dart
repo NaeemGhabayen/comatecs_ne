@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../provider/auth_provider.dart';
@@ -11,7 +10,7 @@ import '../../../base/text_field.dart';
 import '../sucsess/sucsess_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key key}) : super(key: key);
+  const ChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -46,10 +45,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       alignment: Alignment.topRight,
-                      child: Icon(Icons.arrow_back_ios))),
-              SizedBox(
+                      child: const Icon(Icons.arrow_back_ios))),
+              const SizedBox(
                 height: 30,
               ),
               Image.asset(Images.logo),
@@ -62,7 +61,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         fontWeight: FontWeight.w500,
                         fontSize: 23),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Form(
@@ -85,8 +84,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     TextFromFieldWidget(
                       title: 'كلمة المرور الجديدة',
                       type: TextInputType.text,
-                      onChange: (String value) {
-                        if (value.isEmpty) {
+                      onChange: (String? value) {
+                        if (value!.isEmpty) {
                           return 'يجب ادخال كلمة المرور الجديدة';
                         }
                         return null;
@@ -99,8 +98,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     TextFromFieldWidget(
                       title: 'تأكيد كلمة المرور',
                       type: TextInputType.text,
-                      onChange: (String value) {
-                        if (value.isEmpty) {
+                      onChange: (String? value) {
+                        if (value!.isEmpty) {
                           return 'يجب ادخال تاكيد كلمة المرور';
                         }else if(value.toString()==_passwordController.text.toString()){
                           return 'يجب تطابق كلمتا المرور';
@@ -121,8 +120,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   child: CustomButton(
                       btnTxt: 'إعادة تعيين',
                       onTap: () async {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           await Provider.of<AuthProvider>(context,
                                   listen: false)
                               .changePassword(
@@ -149,7 +148,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.green));
-      AppNavigation.navigateAndFinish(context, SuccessScreen());
+      AppNavigation.navigateAndFinish(context, const SuccessScreen());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));

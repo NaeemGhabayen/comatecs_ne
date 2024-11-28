@@ -7,9 +7,9 @@ class SubCategoriesModel {
      this.category,
   });
 
-  final int id;
-  final String name;
-  final CategoriesModel category;
+  final int? id;
+  final String? name;
+  final CategoriesModel? category;
 
   factory SubCategoriesModel.fromJson(Map<String, dynamic> json){
     return SubCategoriesModel(
@@ -22,7 +22,7 @@ class SubCategoriesModel {
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
-    "category": category?.toJson(),
+    "category": category!.toJson(),
   };
 
 }

@@ -6,7 +6,7 @@ import '../../base/custom_button.dart';
 import 'widget/add_address_model_sheet.dart';
 
 class MyAddressScreen extends StatefulWidget {
-  const MyAddressScreen({key});
+  const MyAddressScreen({Key? key, }) : super(key: key);
 
   @override
   State<MyAddressScreen> createState() => _MyAddressScreenState();
@@ -37,7 +37,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            child: Icon(
+                            child: const Icon(
                           Icons.arrow_back_ios,
                           size: 20,
                         ))),
@@ -59,10 +59,10 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                 ListView.builder(
                   itemCount: 2,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext ctx, index) {
                     return Container(
-                      margin: EdgeInsets.only(bottom: 16),
+                      margin: const EdgeInsets.only(bottom: 16),
                       padding: const EdgeInsets.all(16),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
@@ -76,8 +76,8 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                children: const [
+                              const Row(
+                                children: [
                                   Text(
                                     'العنوان',
                                     textAlign: TextAlign.right,
@@ -106,10 +106,6 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                                 ],
                               ),
                       PopupMenuButton<_MenuOptions>(
-                        child:const Icon(
-                          Icons.more_vert,
-                          size: 20.0,
-                        ),
                         onSelected: onOptionSelected,
                         itemBuilder: (BuildContext context) => <PopupMenuEntry<_MenuOptions>>[
                           PopupMenuItem<_MenuOptions>(
@@ -125,16 +121,20 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                           ),
 
                         ],
+                        child:const Icon(
+                          Icons.more_vert,
+                          size: 20.0,
+                        ),
                       )
                             ],
                           ),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 8),
-                              child: Divider(
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: const Divider(
                                 color: Color(0xFFE1E1E1),
                               )),
-                          Row(
-                            children: const [
+                          const Row(
+                            children: [
                               Text(
                                 'المدينة',
                                 textAlign: TextAlign.right,
@@ -161,12 +161,12 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                             ],
                           ),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 8),
-                              child: Divider(
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: const Divider(
                                 color: Color(0xFFE1E1E1),
                               )),
-                          Row(
-                            children: const [
+                          const Row(
+                            children: [
                               Text(
                                 'الدولة',
                                 textAlign: TextAlign.right,
@@ -199,7 +199,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                 ),
                 Container(
                     height: MediaQuery.of(context).size.height * .3,
-                    margin: EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 20),
                     alignment: Alignment.bottomCenter,
                     width: MediaQuery.of(context).size.width * .9,
                     child:
@@ -234,7 +234,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
     return Row(
       children: [
         Image.asset(icon, width:18,height: 18 ,),
-        SizedBox(width: 4.0),
+        const SizedBox(width: 4.0),
         Text(
         text,
           textAlign: TextAlign.right,

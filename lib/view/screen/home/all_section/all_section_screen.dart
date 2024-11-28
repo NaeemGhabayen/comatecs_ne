@@ -6,7 +6,7 @@ import '../../../../provider/categories_provider.dart';
 import '../../../../utill/color_resources.dart';
 
 class AllSectionScreen extends StatefulWidget {
-  const AllSectionScreen({key});
+  const AllSectionScreen({Key? key, }) : super(key: key);
 
   @override
   State<AllSectionScreen> createState() => _AllSectionScreenState();
@@ -37,7 +37,7 @@ class _AllSectionScreenState extends State<AllSectionScreen> {
                             Navigator.pop(context);
                           },
                           child: Container(
-                              child: Icon(
+                              child: const Icon(
                             Icons.arrow_back_ios,
                             size: 20,
                           ))),
@@ -53,13 +53,13 @@ class _AllSectionScreenState extends State<AllSectionScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   Provider.of<CategoriesProvider>(context, listen: true).isLoading? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),): ListView.builder(
                     itemCount: Provider.of<CategoriesProvider>(context, listen: false).categoriesList.length,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext ctx, index) {
                       return ItemSection(categoriesModel: Provider.of<CategoriesProvider>(context, listen: false).categoriesList[index],);
                     },

@@ -1,4 +1,3 @@
-import 'package:comatecs/utill/app_constants.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/my_profile/widget/item_profile.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,7 @@ import 'edit_password_screen.dart';
 import 'edit_user_profile_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({key});
+  const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -41,7 +40,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         },
                         child: Container(
 
-                            child: Icon(Icons.arrow_back_ios,size: 20,))),
+                            child: const Icon(Icons.arrow_back_ios,size: 20,))),
                     const Text(
                       'تعديل الملف الشخصي',
                       textAlign: TextAlign.right,
@@ -56,8 +55,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
 
-              ItemProfile(title: 'تعديل البيانات الشخصية',onPress: (){AppNavigation.navigateTo(context, EditUserProfileScreen());},icon: Images.edit,),
-              ItemProfile(title: 'تعديل كلمة المرور',onPress: (){AppNavigation.navigateTo(context, EditPasswordScreen());},icon: Images.edit,),
+              ItemProfile(title: 'تعديل البيانات الشخصية',onPress: (){AppNavigation.navigateTo(context, const EditUserProfileScreen());},icon: Images.edit,),
+              ItemProfile(title: 'تعديل كلمة المرور',onPress: (){AppNavigation.navigateTo(context, const EditPasswordScreen());},icon: Images.edit,),
 
             ],
           ),

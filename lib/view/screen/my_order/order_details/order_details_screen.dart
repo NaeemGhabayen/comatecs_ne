@@ -7,7 +7,7 @@ import '../invoice/invoice_screen.dart';
 import '../widget/order_summary_card.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
-  const OrderDetailsScreen({key});
+  const OrderDetailsScreen({Key? key}) : super(key: key);
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsSCreenState();
@@ -37,7 +37,7 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                          child: Icon(
+                          child: const Icon(
                         Icons.arrow_back_ios,
                         size: 20,
                       ))),
@@ -59,17 +59,17 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                       const SizedBox(
                         height: 24,
                       ),
-                      OrderSummaryCard(),
+                      const OrderSummaryCard(),
                       const SizedBox(
                         height: 24,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side:
-                                BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                                const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
@@ -87,19 +87,19 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                               ),
                             ),
                             Container(
-                                margin: EdgeInsets.symmetric(vertical: 8),
-                                child: Divider(
+                                margin: const EdgeInsets.symmetric(vertical: 8),
+                                child: const Divider(
                                   color: Color(0xFFE1E1E1),
                                 )),
                             ListView.builder(
                               itemCount: 2,
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (BuildContext ctx, index) {
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'الاسم التجاري للمنتج',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
@@ -109,10 +109,10 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 12,
                                     ),
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -139,11 +139,11 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                                       ],
                                     ),
                                     index == 1
-                                        ? SizedBox()
+                                        ? const SizedBox()
                                         : Container(
                                             margin:
-                                                EdgeInsets.symmetric(vertical: 8),
-                                            child: Divider(
+                                                const EdgeInsets.symmetric(vertical: 8),
+                                            child: const Divider(
                                               color: Color(0xFFE1E1E1),
                                             )),
                                   ],
@@ -158,11 +158,11 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side:
-                                BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                                const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
@@ -184,7 +184,7 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                                 child: const Divider(
                                   color: Color(0xFFE1E1E1),
                                 )),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -212,9 +212,9 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                             const SizedBox(
                               height: 12,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   'الشحن',
                                   textAlign: TextAlign.right,
@@ -242,7 +242,7 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                                 child: const Divider(
                                   color: Color(0xFFE1E1E1),
                                 )),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -270,7 +270,7 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                             const SizedBox(
                               height: 24,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -307,7 +307,7 @@ class _OrderDetailsSCreenState extends State<OrderDetailsScreen> {
                       CustomButton(
                         btnTxt: 'احصل على فاتورة',
                         onTap: () {
-                          AppNavigation.navigateTo(context, InvoiceScreen());
+                          AppNavigation.navigateTo(context, const InvoiceScreen());
                         },
                       ),
                       const SizedBox(

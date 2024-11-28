@@ -1,18 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utill/dimensions.dart';
-import '../../utill/images.dart';
-import 'custom_button.dart';
 
 class Custom404 extends StatefulWidget {
-  final String title;
-  final String text;
-  final String btnTxt;
-  final Function ontap;
+  final String? title;
+  final String? text;
+  final String? btnTxt;
+  final Function? ontap;
 
-  Custom404({this.title, @required this.text, @required this.btnTxt , @required this.ontap });
+  const Custom404({Key? key, this.title, @required this.text, @required this.btnTxt , @required this.ontap }) : super(key: key);
 
   @override
   State<Custom404> createState() => _Custom404State();
@@ -36,17 +33,17 @@ class _Custom404State extends State<Custom404> {
           // ),
           Center(
               child: widget.title == null ?const SizedBox(): Text(
-                widget.title,
+                widget.title!,
                 style:const TextStyle(
                     fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                     fontWeight: FontWeight.bold),
               )),
           const   SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
           Center(
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width*0.6,
                 child: Text(
-                  widget.text,
+                  widget.text!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: Dimensions.FONT_SIZE_LARGE,),

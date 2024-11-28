@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../utill/color_resources.dart';
 
 class CompleteOrdersScreen extends StatefulWidget {
-  const CompleteOrdersScreen({key});
+  const CompleteOrdersScreen({Key? key, }) : super(key: key);
 
   @override
   State<CompleteOrdersScreen> createState() => _CompleteOrdersScreenState();
@@ -23,11 +23,11 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
                   itemCount: 20,
                   itemBuilder: (BuildContext ctx, index) {
                     return    Container(
-                      margin: EdgeInsets.only(bottom: 16),
-                      padding: EdgeInsets.all(16),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.all(16),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                          side: const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
@@ -60,12 +60,12 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 12,),
-                          Row(
+                          const SizedBox(height: 12,),
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: const[
+                                children: [
                                   Text(
                                     'حالة السداد - ',
                                     textAlign: TextAlign.right,
@@ -90,7 +90,7 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
                                   ),
                                 ],
                               ),
-                              const Text(
+                              Text(
                                 '16.000',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -103,9 +103,9 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 12,),
-                          Row(
-                            children:const [
+                          const SizedBox(height: 12,),
+                          const Row(
+                            children:[
                               Text(
                                 'حالة الطلب - ',
                                 textAlign: TextAlign.right,
@@ -140,15 +140,15 @@ class _CompleteOrdersScreenState extends State<CompleteOrdersScreen> {
 
             Container(
               height: 60,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              decoration: ShapeDecoration(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: const ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(width: 0.3, color: Color(0xFFE1E1E1)),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const[
+                children: [
                    Text(
                     'إجمالي المشتريات',
                     textAlign: TextAlign.right,

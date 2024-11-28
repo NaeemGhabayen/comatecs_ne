@@ -1,8 +1,7 @@
 class AboutUsModel {
-  int id;
-  String title;
-  String body;
-
+  int? id;
+  String? title;
+  String? body;
   AboutUsModel({this.id, this.title, this.body});
 
   AboutUsModel.fromJson(Map<String, dynamic> json) {
@@ -12,10 +11,10 @@ class AboutUsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['body'] = this.body;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['body'] = body;
     return data;
   }
 }

@@ -6,13 +6,11 @@ import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../../base/custom_button.dart';
 import '../../base/custom_button_outline.dart';
-import '../home/widget/fillter_model_sheet.dart';
 import '../my_address/widget/add_address_model_sheet.dart';
-import '../my_order/widget/order_summary_card.dart';
 import 'payment_process_screen.dart';
 
 class PurchaseDetailsScreen extends StatefulWidget {
-  const PurchaseDetailsScreen({key});
+  const PurchaseDetailsScreen({Key? key}) : super(key: key);
 
   @override
   State<PurchaseDetailsScreen> createState() => _PurchaseDetailsScreenState();
@@ -45,7 +43,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                          child: Icon(
+                          child: const Icon(
                         Icons.arrow_back_ios,
                         size: 20,
                       ))),
@@ -78,7 +76,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
 
                                   height: 41,
                                   alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12, right: 12),
+                                  padding: const EdgeInsets.only(left: 12, right: 12),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -153,7 +151,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ListView.builder(
                             itemCount: 3,
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (BuildContext ctx, index) {
                               return Row(
                                 children: [
@@ -161,7 +159,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                     child: Container(
 
                                       padding:
-                                          EdgeInsets.only(left: 12, right: 12),
+                                          const EdgeInsets.only(left: 12, right: 12),
                                       height: 41,
                                       alignment: Alignment.centerRight,
                                       decoration: const BoxDecoration(
@@ -251,7 +249,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Column(
@@ -262,7 +260,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 child: Container(
                                   height: 41,
                                   alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12, right: 12),
+                                  padding: const EdgeInsets.only(left: 12, right: 12),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -329,7 +327,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 child: Container(
                                   height: 41,
                                   alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12, right: 12),
+                                  padding: const EdgeInsets.only(left: 12, right: 12),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -382,7 +380,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 child: Container(
                                   height: 41,
                                   alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12, right: 12),
+                                  padding: const EdgeInsets.only(left: 12, right: 12),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -435,7 +433,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 child: Container(
                                   height: 41,
                                   alignment: Alignment.centerRight,
-                                  padding: EdgeInsets.only(left: 12, right: 12),
+                                  padding: const EdgeInsets.only(left: 12, right: 12),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(color: Color(0xB2E1E1E1)),
@@ -484,7 +482,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       const Text(
@@ -498,15 +496,15 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           height: 0,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side:
-                                BorderSide(width: 1, color: Color(0xFFE1E1E1)),
+                                const BorderSide(width: 1, color: Color(0xFFE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
@@ -529,7 +527,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                     decoration: ShapeDecoration(
                                       color: Colors.white,
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                             width: 1, color: Color(0xFFD0D5DD)),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
@@ -545,10 +543,10 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
-                                Text(
+                                const Text(
                                   'استلام شخصي',
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
@@ -560,10 +558,10 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 16,
                             ),
-                            Text(
+                            const Text(
                               'استلام الطلب من مقر الرئيسي للشركة',
                               textAlign: TextAlign.right,
                               style: TextStyle(
@@ -576,15 +574,15 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side:
-                                BorderSide(width: 1, color: Color(0xFFE1E1E1)),
+                                const BorderSide(width: 1, color: Color(0xFFE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
@@ -607,7 +605,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                     decoration: ShapeDecoration(
                                       color: Colors.white,
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                             width: 1, color: Color(0xFFD0D5DD)),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
@@ -638,7 +636,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 16,
                             ),
                             const Text(
@@ -651,16 +649,16 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 16,
                             ),
                             ListView.builder(
                               itemCount: 2,
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (BuildContext ctx, index) {
                                 return Container(
-                                  margin: EdgeInsets.only(bottom: 12),
+                                  margin: const EdgeInsets.only(bottom: 12),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -682,7 +680,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                               decoration: ShapeDecoration(
                                                 color: Colors.white,
                                                 shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
+                                                  side: const BorderSide(
                                                       width: 1,
                                                       color: Color(0xFFD0D5DD)),
                                                   borderRadius:
@@ -709,8 +707,8 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
                                               color: indexSelcted != index
-                                                  ? Color(0xFF6F6F6F)
-                                                  : Color(0xFF1C1C1C),
+                                                  ? const Color(0xFF6F6F6F)
+                                                  : const Color(0xFF1C1C1C),
                                               fontSize: 13,
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w500,
@@ -747,12 +745,12 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Row(crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'ملاحظات',
                             textAlign: TextAlign.right,
                             style: TextStyle(
@@ -762,7 +760,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          SizedBox(width: 8,),
+                          const SizedBox(width: 8,),
                           Image.asset(Images.edit , width: 14 ,height: 14,),
                         ],
                       ),
@@ -771,7 +769,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                         margin: const EdgeInsets.only(top: 16),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
+                            side: const BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
@@ -788,9 +786,9 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           maxLines: null,
 
                           decoration: const InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12),
                             hintText: 'اكتب ملاحظاتك على الطلب ...',
-                            hintStyle: const TextStyle(
+                            hintStyle: TextStyle(
                                 color: Color.fromRGBO(33, 47, 62, .61),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400),
@@ -798,12 +796,12 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Container(
                         height: 60,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         alignment: Alignment.bottomCenter,
                         decoration:const ShapeDecoration(
                           shape: RoundedRectangleBorder(
@@ -841,7 +839,7 @@ class _PurchaseDetailsScreenState extends State<PurchaseDetailsScreen> {
                                 ),
                               ],
                             ),
-                            Container(margin: EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'التالي',onTap: (){
+                            Container(margin: const EdgeInsets.symmetric(vertical: 8),width: MediaQuery.of(context).size.width*.4,child: CustomButton(btnTxt: 'التالي',onTap: (){
                               AppNavigation.navigateTo(context,const PaymentProcessScreen());
                             },),)
                           ],

@@ -1,10 +1,9 @@
 
-import '../helper/route_helper.dart';
 
 class AppConstants {
   static const String APP_NAME = 'Comatecs';
   static const String APP_VERSION = '1.0';
-  static const String BASE_URL = 'http://futurecanvas-001-site2.ftempurl.com';
+  static const String BASE_URL = 'http://comatecs20242.somee.com';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 

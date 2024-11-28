@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ShowCustomDialog extends StatefulWidget {
-  final String title;
-  final String description;
-  final String textAgree;
-  final String desAgree;
-  final Function ok;
-  final Function failed;
-  ShowCustomDialog({Key key, this.title, this.textAgree, this.desAgree, this.ok,  this.failed, this.description}) : super(key: key);
+  final String? title;
+  final String? description;
+  final String? textAgree;
+  final String? desAgree;
+  final VoidCallback? ok;
+  final VoidCallback? failed;
+  const ShowCustomDialog({Key? key, this.title, this.textAgree, this.desAgree, this.ok,  this.failed, this.description}) : super(key: key);
 
 
 
@@ -26,7 +26,7 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
         backgroundColor: Colors.transparent,
         child: Container(
           width: MediaQuery.of(context).size.width * .8,
-          margin: EdgeInsets.only(top: 12),
+          margin: const EdgeInsets.only(top: 12),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
@@ -35,7 +35,7 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
                Text(
@@ -52,7 +52,7 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
                   widget.description??'',                  textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF6F6F6F),
                     fontSize: 12,
                     fontFamily: 'Tajawal',
@@ -60,13 +60,13 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Container(
                 width: MediaQuery.of(context).size.width * .8,
                 height: 1,
-                color: Color(0x1E212121),
+                color: const Color(0x1E212121),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +74,7 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
                 MainAxisAlignment.spaceAround,
                 children: [
                   InkWell(
-                    onTap: widget.ok,
+                    onTap: widget.ok!,
                     child: Container(
                       alignment: Alignment.center,
                       height: 42,
@@ -83,7 +83,7 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
                       child:  Text(
                           widget.textAgree??'',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFE25440),
                           fontSize: 15,
                           fontFamily: 'Tajawal',
@@ -94,20 +94,20 @@ class _ShowCustomDialogState extends State<ShowCustomDialog> {
                   ),
                   Container(
                     padding:
-                    EdgeInsets.symmetric(vertical: 8),
+                    const EdgeInsets.symmetric(vertical: 8),
                     width: 1,
                     height: 42,
-                    color: Color(0x1E212121),
+                    color: const Color(0x1E212121),
                   ),
                   InkWell(
-                    onTap: widget.failed,
+                    onTap: widget.failed!,
                     child: Container(
                       height: 42,
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width *
                           .25,
                       child:  Text(
-                       widget.desAgree,
+                       widget.desAgree!,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Color(0xFF1C1C1C),

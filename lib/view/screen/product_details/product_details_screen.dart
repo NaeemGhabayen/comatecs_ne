@@ -1,5 +1,4 @@
 import 'package:comatecs/data/model/response/product_model.dart';
-import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/view/base/card_counter.dart';
 import 'package:comatecs/view/base/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +10,9 @@ import '../../../utill/images.dart';
 import '../home/widget/card_product.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  final ProductModel productModel;
+  final ProductModel? productModel;
 
-  const ProductDetailsScreen({Key key, this.productModel}) : super(key: key);
+  const ProductDetailsScreen({Key? key, this.productModel}) : super(key: key);
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -22,7 +21,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int selectedImage = 0;
   bool isFavorite = false;
-  List<String> _lists = ['1', '2', '2', '2'];
+  final List<String> _lists = ['1', '2', '2', '2'];
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           bottomLeft: Radius.circular(12),
                           bottomRight: Radius.circular(12)),
                     ),
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child: Stack(
                       children: [
                         SizedBox(
@@ -58,6 +57,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     "https://paulamuldoon.com/wp-content/uploads/2021/06/test.jpeg?w=1024",
                                 duration: 200,
                                 curve: Curves.easeIn,
+                                height: 100,
                                 fitAndroidIos: BoxFit.fill,
                                 fitWeb: BoxFitWeb.fill,
                                 borderRadius: BorderRadius.circular(8),
@@ -68,7 +68,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   'assets/images/logo_with_name.png',
                                   height: 100,
                                   fit: BoxFit.contain,
-                                ),
+                                ), width: 50,
                               ),
                             ),
                           ),
@@ -82,7 +82,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
 
                               ...List.generate(
-                                  widget.productModel.productImages.length + 2,
+                                  widget.productModel!.productImages!.length + 2,
                                   (index) {
                                 return buildSmallProductPreview(index);
                               }),
@@ -93,7 +93,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     child: Row(
                       children: [
                         InkWell(
@@ -104,7 +104,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             width: 36,
                             height: 36,
                             decoration: ShapeDecoration(
-                              color: Color(0x66F1F1F1),
+                              color: const Color(0x66F1F1F1),
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(
                                     width: 0.25, color: Color(0x66F1F1F1)),
@@ -129,9 +129,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               height: 36,
                               alignment: Alignment.center,
                               decoration: ShapeDecoration(
-                                color: Color(0x66F1F1F1),
+                                color: const Color(0x66F1F1F1),
                                 shape: RoundedRectangleBorder(
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                       width: 0.25, color: Color(0x66F1F1F1)),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
@@ -155,7 +155,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.productModel.name ?? '',
+                      widget.productModel!.name ?? '',
                       textAlign: TextAlign.right,
                       style: const TextStyle(
                         color: Color(0xFF212121),
@@ -174,7 +174,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Row(
                           children: [
                             Text(
-                              '${widget.productModel.price} JOD',
+                              '${widget.productModel!.price} JOD',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xFF197D47),
@@ -182,11 +182,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             Text(
-                              '${widget.productModel.price} JOD',
+                              '${widget.productModel!.price} JOD',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0x7F212121),
@@ -200,7 +200,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               width: 12,
                             ),
                             Text(
-                              '${widget.productModel.discountValue}%',
+                              '${widget.productModel!.discountValue}%',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xFFE25440),
@@ -210,14 +210,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ],
                         ),
-                        CardCounter(),
+                        const CardCounter(),
                       ],
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     Text(
-                      widget.productModel.details ?? '',
+                      widget.productModel!.details ?? '',
                       style: const TextStyle(
                         color: Color(0x99212121),
                         fontSize: 12,
@@ -226,8 +226,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       maxLines: 3,
                     ),
                     Container(
-                        margin: EdgeInsets.symmetric(vertical: 12),
-                        child: Divider(
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        child: const Divider(
                           color: Color(0xFFE1E1E1),
                         )),
                     const Text(
@@ -247,11 +247,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ListView.builder(
                       itemCount: 5,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext ctx, index) {
                         return Container(
-                          padding: EdgeInsets.symmetric(vertical: 4),
-                          child: Text(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: const Text(
                             'لا يولد المحرك بدون فرش الشرر عندما يعمل ، ولا يرتدي المحرك.',
                             style: TextStyle(
                               color: Color(0x99212121),
@@ -263,8 +263,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       },
                     ),
                     Container(
-                        margin: EdgeInsets.symmetric(vertical: 12),
-                        child: Divider(
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        child: const Divider(
                           color: Color(0xFFE1E1E1),
                         )),
                     const Text(
@@ -283,7 +283,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ListView.builder(
                       itemCount: 2,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext ctx, index) {
                         return Container(
                           margin: const EdgeInsets.only(bottom: 8),
@@ -312,7 +312,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       height: 16,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 6,
                                   ),
                                   const Text(
@@ -331,8 +331,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       },
                     ),
                     Container(
-                        margin: EdgeInsets.symmetric(vertical: 12),
-                        child: Divider(
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        child: const Divider(
                           color: Color(0xFFE1E1E1),
                         )),
                     const Text(
@@ -365,9 +365,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                           Text(
-                            '${widget.productModel.deliveryPrice} JOD',
+                            '${widget.productModel!.deliveryPrice} JOD',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xFF212121),
                               fontSize: 16,
                               fontFamily: 'Tajawal',
@@ -395,7 +395,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                           Text(
-                            widget.productModel.deliveryDuration,
+                            widget.productModel!.deliveryDuration!,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Color(0xFF212121),
@@ -410,7 +410,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     Container(
                         margin: const EdgeInsets.symmetric(vertical: 12),
-                        child: Divider(
+                        child: const Divider(
                           color: Color(0xFFE1E1E1),
                         )),
                     const Text(
@@ -435,11 +435,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           // list item builder
                           itemBuilder: (BuildContext ctx, index) {
                             return Container(
-                                margin: EdgeInsets.only(left: 16),
+                                margin: const EdgeInsets.only(left: 16),
                                 width: MediaQuery.of(context).size.width * .43,
                                 child: CardProduct(
-                                  productModel: widget.productModel,
-                                ));
+                                  productModel: widget.productModel!,));
                           },
                         )),
                     const SizedBox(
@@ -456,16 +455,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                         ),
                         Container(
                           width: 53,
                           height: 48,
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                   width: 1, color: Color(0xFFE1E1E1)),
                               borderRadius: BorderRadius.circular(5),
                             ),
@@ -492,8 +491,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   GestureDetector buildSmallProductPreview(int index) {
     return GestureDetector(
       child: AnimatedContainer(
-        margin: EdgeInsets.only(right: 15),
-        padding: EdgeInsets.all(8),
+        margin: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.all(8),
         height: 48,
         width: 48,
         decoration: BoxDecoration(
@@ -513,6 +512,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           curve: Curves.easeIn,
           fitAndroidIos: BoxFit.cover,
           fitWeb: BoxFitWeb.cover,
+          height: 100,
+          width: 50,
           onTap: () {
             setState(() {
               selectedImage = index;

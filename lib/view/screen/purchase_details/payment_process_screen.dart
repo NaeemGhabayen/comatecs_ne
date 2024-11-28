@@ -1,5 +1,4 @@
 import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
-import 'package:comatecs/view/screen/purchase_details/purchase_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utill/color_resources.dart';
@@ -9,7 +8,7 @@ import '../../base/custom_button.dart';
 import '../../base/text_field.dart';
 
 class PaymentProcessScreen extends StatefulWidget {
-  const PaymentProcessScreen({key});
+  const PaymentProcessScreen({Key? key}) : super(key: key);
 
   @override
   State<PaymentProcessScreen> createState() => _PaymentProcessScreenState();
@@ -41,7 +40,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                          child: Icon(
+                          child: const Icon(
                         Icons.arrow_back_ios,
                         size: 20,
                       ))),
@@ -60,7 +59,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -75,7 +74,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                           height: 74,
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: selected==-1?Color(0xFF197D47):Color(0xFFE1E1E1)),
+                              side: BorderSide(width: 1, color: selected==-1?const Color(0xFF197D47):const Color(0xFFE1E1E1)),
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
@@ -87,10 +86,10 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                                     horizontal: 24.0, vertical: 12),
                                 child: Image.asset(Images.cash),
                               ),
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children:const [
+                                children:[
                               Text(
                                 'الدفع عند استلام المنتج',
                                 textAlign: TextAlign.right,
@@ -118,7 +117,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                           ),
                         ),
                       ),
-SizedBox(height: 16,),
+const SizedBox(height: 16,),
                       SizedBox(
                           height: 80,
                           child: ListView.builder(
@@ -136,10 +135,10 @@ SizedBox(height: 16,),
                                 child: Container(
                                   width: 80,
                                   height: 74,
-                                  margin: EdgeInsets.only(left: 16),
+                                  margin: const EdgeInsets.only(left: 16),
                                   decoration: ShapeDecoration(
                                     shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 1, color: selected==index ?Theme.of(context).primaryColor:Color(0xFFE1E1E1)),
+                                      side: BorderSide(width: 1, color: selected==index ?Theme.of(context).primaryColor:const Color(0xFFE1E1E1)),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
@@ -151,12 +150,12 @@ SizedBox(height: 16,),
                               );
                             },
                           )),
-SizedBox(height: 16,),
+const SizedBox(height: 16,),
                       isView?Column(
                         children: [
                           Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
                             Image.asset(Images.information , width: 20,height: 20,),
-                            SizedBox(width: 12,),
+                            const SizedBox(width: 12,),
                             const Expanded(
                               child: Text(
                                 'لإتمام عملية الدفع عبر المحفظة، يُرجى استخدام رقم هاتف: [09987412536]',
@@ -170,10 +169,10 @@ SizedBox(height: 16,),
                               ),
                             ),
                           ],),
-                          SizedBox(height: 16,),
+                          const SizedBox(height: 16,),
                           Row(crossAxisAlignment:CrossAxisAlignment.center,children: [
                             Image.asset(Images.information , width: 20,height: 20,),
-                            SizedBox(width: 12,),
+                            const SizedBox(width: 12,),
                             const Expanded(
                               child: Text.rich(
                                 TextSpan(
@@ -210,7 +209,7 @@ SizedBox(height: 16,),
                                 ),
                             ),
                           ],),
-                          SizedBox(height: 42,),
+                          const SizedBox(height: 42,),
                           TextFromFieldWidget(
                             title: 'رمز عمليه (المرجع)',
                             type: TextInputType.number,
@@ -218,7 +217,7 @@ SizedBox(height: 16,),
                           ),
 
                         ],
-                      ):SizedBox(),
+                      ):const SizedBox(),
                     ],
                   ),
                 ),
@@ -226,9 +225,9 @@ SizedBox(height: 16,),
             ),
             Container(
               height: 60,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               alignment: Alignment.bottomCenter,
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(width: 0.50, color: Color(0xFFE1E1E1)),
                 ),
@@ -265,13 +264,13 @@ SizedBox(height: 16,),
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     width: MediaQuery.of(context).size.width * .4,
                     child: CustomButton(
                       btnTxt: 'تأكيد',
                       onTap: () {
                         AppNavigation.navigateAndFinish(
-                            context, MainHomeScreen());
+                            context, const MainHomeScreen());
                       },
                     ),
                   ),
@@ -279,7 +278,7 @@ SizedBox(height: 16,),
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
           ],
         ),
       ),

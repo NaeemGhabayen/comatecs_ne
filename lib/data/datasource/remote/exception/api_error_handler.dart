@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-import '../../../model/response/base/error_response.dart';
 
 class ApiErrorHandler {
   static dynamic getMessage(error) {
@@ -26,11 +25,11 @@ class ApiErrorHandler {
               errorDescription = "Receive timeout in connection with API server";
               break;
             case DioErrorType.response:
-              switch (error.response.statusCode) {
+              switch (error.response!.statusCode) {
                 case 404:
                 case 500:
                 case 503:
-                  errorDescription = error.response.statusMessage;
+                  errorDescription = error.response!.statusMessage;
                   break;
                   case 401:
                   errorDescription = 'unauthorized';
@@ -40,7 +39,7 @@ class ApiErrorHandler {
 
                   break;
                 default:
-                  errorDescription =  error.response.data['title'];
+                  errorDescription =  error.response!.data['title'];
 
               }
               break;

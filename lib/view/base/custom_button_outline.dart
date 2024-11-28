@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../utill/color_resources.dart';
-import '../../utill/dimensions.dart';
 
 class CustomButtonOutline extends StatelessWidget {
-  final Function onTap;
-  final String btnTxt;
-  final Color backgroundColor;
-  final Color textColor;
-  final double radius;
+  final VoidCallback? onTap;
+  final String? btnTxt;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final double? radius;
 
-  CustomButtonOutline(
-      {this.onTap,
+  const CustomButtonOutline(
+      {Key? key, this.onTap,
       @required this.btnTxt,
       this.backgroundColor,
       this.radius = 8,
-      this.textColor});
+      this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class CustomButtonOutline extends StatelessWidget {
             border: Border.all(color: Theme.of(context).primaryColor),
           ),
           child: Text(btnTxt ?? "",
-              style:  TextStyle(
+              style:  const TextStyle(
                 color: Color(0xFF197D47),
                 fontSize: 16,
                 fontFamily: 'Tajawal',

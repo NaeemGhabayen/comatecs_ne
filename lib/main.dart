@@ -33,12 +33,14 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<CategoriesProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
   static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -49,11 +51,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: RouteHelper.routeHelper.navigationKey,
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         final MediaQueryData data = MediaQuery.of(context);
         return MediaQuery(
-          data: data.copyWith(textScaleFactor: 1.0),
-          child: child,
+          data: data.copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: child!,
         );
       },
       title: AppConstants.APP_NAME,
@@ -61,16 +63,16 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: light,
 
-      locale: Locale('ar'),
-      supportedLocales: [
+      locale: const Locale('ar'),
+      supportedLocales: const [
         Locale('ar'),
       ],
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

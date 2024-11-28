@@ -12,7 +12,7 @@ import '../../../base/custom_drop_down_field.dart';
 import '../../../base/text_field.dart';
 
 class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({key});
+  const SingUpScreen({Key? key, }) : super(key: key);
 
   @override
   State<SingUpScreen> createState() => _SingUpScreenState();
@@ -49,26 +49,26 @@ class _SingUpScreenState extends State<SingUpScreen> {
   }
 
   List<String> maritalStatusList = <String>[
-    ' ',
+    '',
     "تست",
     "تست2",
     "اخرى",
   ];
 
   List<String> workNatureListValue = <String>[
-    ' ',
+    '',
     "تست",
     "تست2",
     "اخرى",
   ];
   List<String> workNatureList = <String>[
-    ' ',
+    '',
     "صاحب مهنة",
     "صاحب شركة",
   ];
-  String maritalStatusValue;
-  String wrokNatureStutsValue;
-  String workNatureValue;
+  String? maritalStatusValue='';
+  String? wrokNatureStutsValue='';
+  String? workNatureValue='';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -90,9 +90,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
                         alignment: Alignment.topRight,
-                        child: Icon(Icons.arrow_back_ios))),
+                        child: const Icon(Icons.arrow_back_ios))),
                 Image.asset(Images.logo),
                 Container(
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
@@ -127,7 +127,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   focusNode: _userNameFocus,
                   controller: _userNameController,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال الاسم كامل';
                     }
                     return null;
@@ -141,7 +141,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   focusNode: _emailFocus,
                   controller: _emailController,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال البريد الالكتروني';
                     } else if (!value.toString().contains('@')) {
                       return 'يجب ادخال بريد الكتروني صالح';
@@ -157,7 +157,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   focusNode: _phoneFocus,
                   controller: _phoneController,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال رقم الهاتف';
                     }
                     return null;
@@ -172,7 +172,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   controller: _addressController,
                   nextNode: _passwordFocus,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال العنوان';
                     }
                     return null;
@@ -187,7 +187,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       });
                     },
                     list: workNatureList,
-                    value: workNatureValue,
+                    value: workNatureValue!,
                     width: true),
                 CustomDropDownField(
                     title: 'طبيعية العمل',
@@ -197,7 +197,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       });
                     },
                     list: workNatureListValue,
-                    value: wrokNatureStutsValue,
+                    value: wrokNatureStutsValue!,
                     width: true),
                 wrokNatureStutsValue == 'اخرى'
                     ? TextFromFieldWidget(
@@ -207,7 +207,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                         controller: _workNatureController,
                   validator: (value) {
                           if(   wrokNatureStutsValue == 'اخرى'){
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'يجيب ادخال طبيعة العمل';
                             }
                             return null;
@@ -218,9 +218,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   },
                         obscureText: false,
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 workNatureValue == 'صاحب مهنة'
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Column(
                         children: [
                           TextFromFieldWidget(
@@ -230,7 +230,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                             controller: _numberOFEmployeeController,
                             validator: (value) {
                               if (workNatureValue == 'صاحب مهنة') {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'يجب ادخال رقم الهاتف';
                                 }
                                 return null;
@@ -245,12 +245,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                                 setState(() {});
                               },
                               list: maritalStatusList,
-                              value: maritalStatusValue,
+                              value: maritalStatusValue!,
                               width: true),
                         ],
                       ),
                 Container(
-                    margin: EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 20),
                     alignment: Alignment.bottomCenter,
                     width: MediaQuery.of(context).size.width * .9,
                     child: CustomButton(
@@ -259,7 +259,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                             Provider.of<AuthProvider>(context, listen: true)
                                 .isLoading,
                         onTap: () async {
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             register = RegisterModel();
                             register.email = _emailController.text;
                             register.fullName = _userNameController.text;
@@ -273,8 +273,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
                               register.numberOfEmployees = int.parse(_numberOFEmployeeController.text ?? '0');
                               register.workInCompany = 'test2';
                             }
-                            register.workType = wrokNatureStutsValue=='اخرى'?_workNatureController.text:wrokNatureStutsValue;
-                            _formKey.currentState.save();
+                            register.workType = (wrokNatureStutsValue=='اخرى'?_workNatureController.text:wrokNatureStutsValue)!;
+                            _formKey.currentState!.save();
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
                                 .registration(register, route);
@@ -286,7 +286,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -335,8 +335,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("تم تسجيل اشتراكك بنجاح سيتم ارسال كلمة المرور الى البريد الالكتروني يرجى التحقق من ذلك"), backgroundColor: Colors.green, duration:Duration(seconds: 3),));
-      AppNavigation.navigateTo(context, LoginScreen());
+          const SnackBar(content: Text("تم تسجيل اشتراكك بنجاح سيتم ارسال كلمة المرور الى البريد الالكتروني يرجى التحقق من ذلك"), backgroundColor: Colors.green, duration:Duration(seconds: 3),));
+      AppNavigation.navigateTo(context, const LoginScreen());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));

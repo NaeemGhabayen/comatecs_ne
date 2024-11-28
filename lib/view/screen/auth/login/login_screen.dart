@@ -1,9 +1,7 @@
 import 'package:comatecs/data/model/body/login_model.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/main_home/main_home_screen.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../provider/adverstiment_provider.dart';
@@ -16,7 +14,7 @@ import '../forget_passwrod/forget_passwrod_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -91,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _emailController,
                   nextNode: _passwordFocus,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال البريد الالكتروني';
                     } else if (!value.toString().contains('@')) {
                       return 'يجب ادخال بريد الكتروني صالح';
@@ -106,14 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   focusNode: _passwordFocus,
                   controller: _passwordController,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'يجب ادخال كلمة االمرور';
                     }
                     return null;
                   },
                   obscureText: true,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * .9,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,8 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4.0)),
                               ),
-                              onChanged: (bool value) {
-                                showvalue = value;
+                              onChanged: (bool? value) {
+                                showvalue = value!;
                                 setState(() {});
                               },
                             ),
@@ -157,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       InkWell(
                         onTap: () {
                           AppNavigation.navigateTo(
-                              context, ForgetPasswordScreen());
+                              context, const ForgetPasswordScreen());
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -184,8 +182,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         btnTxt: 'تسجيل الدخول',
                         isLoading: Provider.of<AuthProvider>(context, listen: true).isLoading,
                         onTap: () async {
-                          if (_formKey.currentState.validate()) {
-                            _formKey.currentState.save();
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
                             login = LoginModel();
                             login.email = _emailController.text;
                             login.password = _passwordController.text;
@@ -197,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -248,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Provider.of<AuthProvider>(context, listen: false)
           .updateRemember(showvalue);
       Provider.of<AdvertisementProvider>(context, listen: false).getAdvertisementList(context);
-      AppNavigation.navigateAndFinish(context, MainHomeScreen());
+      AppNavigation.navigateAndFinish(context, const MainHomeScreen());
       // Provider.of<AuthProvider>(context).loginController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

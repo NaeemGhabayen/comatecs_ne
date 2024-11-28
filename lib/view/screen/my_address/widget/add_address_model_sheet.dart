@@ -5,7 +5,7 @@ import '../../../base/custom_button.dart';
 import '../../../base/text_field.dart';
 
 class AddAddressModelSheet extends StatefulWidget {
-  const AddAddressModelSheet({key});
+  const AddAddressModelSheet({Key? key, }) : super(key: key);
 
   @override
   State<AddAddressModelSheet> createState() => _AddScreenModelSheetState();
@@ -27,7 +27,7 @@ class _AddScreenModelSheetState extends State<AddAddressModelSheet> {
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * .2),
         color: Colors.transparent,
         child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
                 color: ColorResources.BACKGROUND,
                 borderRadius: BorderRadius.only(
@@ -42,7 +42,7 @@ class _AddScreenModelSheetState extends State<AddAddressModelSheet> {
                       width: 67,
                       height: 5,
                       decoration: ShapeDecoration(
-                        color: Color(0xFF212121),
+                        color: const Color(0xFF212121),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100),
                         ),

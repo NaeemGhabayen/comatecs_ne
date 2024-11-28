@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardCounter extends StatefulWidget {
-  const CardCounter({key});
+  const CardCounter({Key? key, }) : super(key: key);
 
   @override
   State<CardCounter> createState() => _CardCounterState();
@@ -19,20 +19,20 @@ class _CardCounterState extends State<CardCounter> {
             width: 24,
             height: 24,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(225, 225, 225, 1),
+              color: const Color.fromRGBO(225, 225, 225, 1),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Icon(Icons.remove,size: 16,),
+            child: const Icon(Icons.remove,size: 16,),
           ),
         ),
-        SizedBox(width: 8,),
+        const SizedBox(width: 8,),
         Text("$_currentCount" ,style:const TextStyle(
           color: Color(0xFF212121),
           fontSize: 15,
           fontFamily: 'Tajawal',
           fontWeight: FontWeight.w700,
         ), textAlign: TextAlign.center,),
-        SizedBox(width: 8,),
+        const SizedBox(width: 8,),
         InkWell(
           onTap:  _increment,
           child: Container(
@@ -43,7 +43,7 @@ class _CardCounterState extends State<CardCounter> {
               color: Theme.of(context).primaryColor.withOpacity(.4),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Icon(Icons.add,size: 16,),
+            child: const Icon(Icons.add,size: 16,),
           ),
         ),
 
@@ -51,7 +51,6 @@ class _CardCounterState extends State<CardCounter> {
     );
   }
   int _currentCount =0;
-  int _minNumber;
 
   void _increment() {
     setState(() {

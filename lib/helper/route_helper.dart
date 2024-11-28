@@ -14,12 +14,12 @@ class RouteHelper {
   // }
 
   goBack() {
-    navigationKey.currentState.pop();
+    navigationKey.currentState!.pop();
   }
 
   showDialoug() {
     return showDialog(
-        context: navigationKey.currentContext,
+        context: navigationKey.currentContext!,
         builder: (ctx) {
           return Center(
             child: Image.asset(

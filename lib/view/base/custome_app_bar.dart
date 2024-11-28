@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import '../../utill/color_resources.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final Function onTap;
-  final bool withArrow;
+  final String? title;
+  final VoidCallback? onTap;
+  final bool? withArrow;
 
   const CustomAppBar(
-      {Key key, @required this.title, this.onTap, this.withArrow = false})
+      {Key? key, @required this.title, this.onTap, this.withArrow = false})
       : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       leadingWidth: 0,
       title: Text(
-        title,
+        title!,
         style: const TextStyle(
           color: ColorResources.WHITE,
           fontSize: 16,
@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: Theme.of(context).primaryColor,
         child: Row(
           children: [
-            withArrow
+            withArrow!
                 ? Container(
                     height: MediaQuery.of(context).size.height,
                     alignment: Alignment.center,
@@ -48,7 +48,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                   )
-                : SizedBox(),
+                : const SizedBox(),
 
             // Text(
             //   title,

@@ -1,12 +1,12 @@
 class RegisterModel {
-  String email;
-  String phoneNumber;
-  String address;
-  String fullName;
-  String workType;
-  int companyType;
-  int numberOfEmployees;
-  String workInCompany;
+  String? email;
+  String? phoneNumber;
+  String? address;
+  String? fullName;
+  String? workType;
+  int? companyType;
+  int? numberOfEmployees;
+  String? workInCompany;
 
   RegisterModel(
       {this.email,
@@ -30,15 +30,15 @@ class RegisterModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this.email;
-    data['phoneNumber'] = this.phoneNumber;
-    data['address'] = this.address;
-    data['fullName'] = this.fullName;
-    data['workType'] = this.workType;
-    data['companyType'] = this.companyType;
-    numberOfEmployees==null?print(''): data['numberOfEmployees'] = this.numberOfEmployees;
-    workInCompany==null?print(''): data['workInCompany'] = this.workInCompany;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = email;
+    data['phoneNumber'] = phoneNumber;
+    data['address'] = address;
+    data['fullName'] = fullName;
+    data['workType'] = workType;
+    data['companyType'] = companyType;
+    numberOfEmployees==null?print(''): data['numberOfEmployees'] = numberOfEmployees;
+    workInCompany==null?print(''): data['workInCompany'] = workInCompany;
     return data;
   }
 }
