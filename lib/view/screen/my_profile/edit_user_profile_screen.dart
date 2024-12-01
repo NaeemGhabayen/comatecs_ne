@@ -38,7 +38,7 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
     "married",
     "absolute",
   ];
-  String? maritalStatusValue;
+  String? maritalStatusValue=' ';
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,9 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                 title: 'إيميل المستخدم/ اسم المستخدم',
                 type: TextInputType.emailAddress,
                 onChange: (String value) {},
-                focusNode: _emailFocus,
+                focusNode: _emailFocus,  validator: (value){
+                return null;
+              },
                 controller: _emailController,
                 nextNode: _phoneFocus,
               ),
@@ -96,7 +98,9 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                 title: 'رقم الهاتف',
                 type: TextInputType.phone,
                 onChange: (String value) {},
-                focusNode: _phoneFocus,
+                focusNode: _phoneFocus,  validator: (value){
+                return null;
+              },
                 controller: _phoneController,
                 nextNode: _addressFocus,
               ),
@@ -105,6 +109,9 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                 type: TextInputType.streetAddress,
                 onChange: (String value) {},
                 focusNode: _addressFocus,
+                validator: (value){
+                  return null;
+                },
                 controller: _addressController,
                 nextNode: _passwordFocus,
               ),
@@ -112,7 +119,9 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
                 title: 'كلمة المرور',
                 type: TextInputType.text,
                 onChange: (String value) {},
-                focusNode: _passwordFocus,
+                focusNode: _passwordFocus,  validator: (value){
+                return null;
+              },
                 controller: _passwordController,
                 obscureText: true,
               ),

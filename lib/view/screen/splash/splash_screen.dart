@@ -49,8 +49,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ));
         if (!isNotConnected) {
-          Provider.of<ConstantsProvider>(context, listen: false)
-              .getWorkNatureList(context);
           _route();
         }
       }
@@ -68,6 +66,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() async {
+    Provider.of<ConstantsProvider>(context, listen: false)
+        .getWorkNatureList(context);
+    Provider.of<ConstantsProvider>(context, listen: false)
+        .getWorkTypeList(context);
     Provider.of<AdvertisementProvider>(context, listen: false)
         .getAdvertisementList(context);
     Provider.of<ProductProvider>(context, listen: false)

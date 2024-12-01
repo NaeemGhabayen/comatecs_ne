@@ -3,7 +3,7 @@
 class AppConstants {
   static const String APP_NAME = 'Comatecs';
   static const String APP_VERSION = '1.0';
-  static const String BASE_URL = 'http://comatecs20242.somee.com';
+  static const String BASE_URL = 'http://comatecs25.somee.com';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -31,6 +31,7 @@ class AppConstants {
   static const String CategoriesListURL = '/api/Category';
   static const String SubCategoriesListURL = '/api/SubCategory/';
   static const String WorkNatureListURL = '/api/Name/WorkNature';
+  static const String WorkTypeListURL = '/api/Name/WorkType';
   static const String GetMostPopularProductURL = '/api/Product/GetMostPopularProduct';
   static const String TechnicalSupportURL = '/api/TechnicalSupport';
 

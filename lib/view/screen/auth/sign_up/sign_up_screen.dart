@@ -1,5 +1,8 @@
+import 'package:comatecs/data/model/response/categories_model.dart';
+import 'package:comatecs/provider/constants_provider.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:comatecs/view/screen/auth/login/login_screen.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +15,9 @@ import '../../../base/custom_drop_down_field.dart';
 import '../../../base/text_field.dart';
 
 class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({Key? key, }) : super(key: key);
+  const SingUpScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SingUpScreen> createState() => _SingUpScreenState();
@@ -26,12 +31,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
   final TextEditingController _workNatureController = TextEditingController();
   final TextEditingController _numberOFEmployeeController =
       TextEditingController();
+  final TextEditingController _workInEmployeeController =
+      TextEditingController();
 
   final FocusNode _userNameFocus = FocusNode();
   final FocusNode _emailFocus = FocusNode();
   final FocusNode _passwordFocus = FocusNode();
   final FocusNode _phoneFocus = FocusNode();
   final FocusNode _addressFocus = FocusNode();
+  final FocusNode _workInCommpanysFocus = FocusNode();
   bool showvalue = false;
 
   RegisterModel register = RegisterModel();
@@ -48,27 +56,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
     _workNatureController.dispose();
   }
 
-  List<String> maritalStatusList = <String>[
-    '',
-    "تست",
-    "تست2",
-    "اخرى",
-  ];
-
-  List<String> workNatureListValue = <String>[
-    '',
-    "تست",
-    "تست2",
-    "اخرى",
-  ];
-  List<String> workNatureList = <String>[
-    '',
-    "صاحب مهنة",
-    "صاحب شركة",
-  ];
-  String? maritalStatusValue='';
-  String? wrokNatureStutsValue='';
-  String? workNatureValue='';
+  CategoriesModel? workNatureValue;
+  String? workTypeValue;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -178,77 +167,174 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     return null;
                   },
                 ),
-                CustomDropDownField(
-                    title: 'نوع الشركة',
-                    onChange: (value) {
-                      setState(() {
-                        workNatureValue = value;
-                        print(value);
-                      });
-                    },
-                    list: workNatureList,
-                    value: workNatureValue!,
-                    width: true),
-                CustomDropDownField(
-                    title: 'طبيعية العمل',
-                    onChange: (value) {
-                      setState(() {
-                        wrokNatureStutsValue = value;
-                      });
-                    },
-                    list: workNatureListValue,
-                    value: wrokNatureStutsValue!,
-                    width: true),
-                wrokNatureStutsValue == 'اخرى'
-                    ? TextFromFieldWidget(
-                        title: 'اخرى',
-                        type: TextInputType.text,
-                        onChange: (String value) {},
-                        controller: _workNatureController,
-                  validator: (value) {
-                          if(   wrokNatureStutsValue == 'اخرى'){
-                            if (value!.isEmpty) {
-                              return 'يجيب ادخال طبيعة العمل';
-                            }
-                            return null;
-                          }else{
-                            return null;
-                          }
-
-                  },
-                        obscureText: false,
-                      )
-                    : const SizedBox(),
-                workNatureValue == 'صاحب مهنة'
-                    ? const SizedBox()
-                    : Column(
-                        children: [
-                          TextFromFieldWidget(
-                            title: 'عدد الموظفين',
-                            type: TextInputType.number,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'طبيعية العمل',
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        color: Color(0xFF212121),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        height: 0.11,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Container(
+                      height: 52,
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * .9,
+                      padding: const EdgeInsets.only(left: 12),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color(0xFFE1E1E1),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: DropdownButton2<CategoriesModel>(
+                        value: workNatureValue,
+                        isExpanded: true,
+                        iconStyleData: const IconStyleData(
+                          iconSize: 24,
+                          icon: Icon(Icons.keyboard_arrow_down_outlined),
+                          iconEnabledColor: Color(0xFFE1E1E1),
+                          iconDisabledColor: Colors.grey,
+                        ),
+                        hint: Text(
+                          'طبيعة العمل',
+                          style: const TextStyle(
+                              color: Color.fromRGBO(33, 47, 62, .61),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: 200,
+                          padding: null,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.white,
+                          ),
+                          elevation: 8,
+                          offset: const Offset(-20, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: WidgetStateProperty.all<double>(6),
+                            thumbVisibility:
+                                WidgetStateProperty.all<bool>(true),
+                          ),
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 40,
+                          padding: EdgeInsets.only(left: 14, right: 14),
+                        ),
+                        underline: const SizedBox(),
+                        style: const TextStyle(color: ColorResources.BLACK),
+                        onChanged: (value) {
+                          setState(() {
+                            workNatureValue = value;
+                          });
+                          print(value!.name);
+                        },
+                        items: Provider.of<ConstantsProvider>(context,
+                                listen: false)
+                            .workNatureList
+                            .map<DropdownMenuItem<CategoriesModel>>(
+                                (CategoriesModel value) {
+                          return DropdownMenuItem<CategoriesModel>(
+                            value: value,
+                            child: Text(value.name!),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                  ],
+                ),
+                workNatureValue == null
+                    ? SizedBox()
+                    : workNatureValue!.name == 'اخرى'
+                        ? TextFromFieldWidget(
+                            title: 'اخرى',
+                            type: TextInputType.text,
                             onChange: (String value) {},
-                            controller: _numberOFEmployeeController,
+                            controller: _workNatureController,
                             validator: (value) {
-                              if (workNatureValue == 'صاحب مهنة') {
+                              if (workNatureValue!.name == 'اخرى') {
                                 if (value!.isEmpty) {
-                                  return 'يجب ادخال رقم الهاتف';
+                                  return 'يجيب ادخال طبيعة العمل';
                                 }
                                 return null;
                               } else {
                                 return null;
                               }
                             },
-                          ),
-                          CustomDropDownField(
-                              title: 'وظيفتتك داخل الشركة',
-                              onChange: (value) {
-                                setState(() {});
-                              },
-                              list: maritalStatusList,
-                              value: maritalStatusValue!,
-                              width: true),
-                        ],
-                      ),
+                            obscureText: false,
+                          )
+                        : const SizedBox(),
+                workNatureValue == null
+                    ? SizedBox()
+                    : workNatureValue!.name == 'صاحب مهنة'
+                        ? Column(
+                            children: [
+                              CustomDropDownField(
+                                  title: 'نوع الشركة',
+                                  onChange: (value) {
+                                    setState(() {
+                                      workTypeValue = value;
+                                      print(value);
+                                    });
+                                  },
+                                  list: Provider.of<ConstantsProvider>(context,
+                                          listen: false)
+                                      .workTypeList,
+                                  value: workTypeValue,
+                                  width: true),
+                              TextFromFieldWidget(
+                                title: 'عدد الموظفين',
+                                type: TextInputType.number,
+                                onChange: (String value) {},
+                                controller: _numberOFEmployeeController,
+                                nextNode: _workInCommpanysFocus,
+                                validator: (value) {
+                                  if (workNatureValue!.name == 'صاحب مهنة') {
+                                    if (value!.isEmpty) {
+                                      return 'يجب ادخال عدد الموظفين';
+                                    }
+                                    return null;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              TextFromFieldWidget(
+                                title: 'وظيفتك داخل الشركة',
+                                type: TextInputType.text,
+                                onChange: (String value) {},
+                                focusNode: _workInCommpanysFocus,
+                                controller: _workInEmployeeController,
+                                validator: (value) {
+                                  if (workNatureValue!.name == 'صاحب مهنة') {
+                                    if (value!.isEmpty) {
+                                      return 'يجب ادخال وظيفتك داخل الشركة';
+                                    }
+                                    return null;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ],
+                          )
+                        : const SizedBox(),
                 Container(
                     margin: const EdgeInsets.only(top: 20),
                     alignment: Alignment.bottomCenter,
@@ -266,14 +352,17 @@ class _SingUpScreenState extends State<SingUpScreen> {
                             register.address = _addressController.text;
                             register.phoneNumber = _phoneController.text;
                             register.companyType =
-                            workNatureValue == 'صاحب مهنة' ? 2 : 1;
-                            if( workNatureValue == 'صاحب مهنة'){
-
-                            }else{
-                              register.numberOfEmployees = int.parse(_numberOFEmployeeController.text ?? '0');
-                              register.workInCompany = 'test2';
+                                workNatureValue!.name == 'صاحب مهنة' ? 2 : 1;
+                            if (workNatureValue!.name == 'صاحب مهنة') {
+                            } else {
+                              register.numberOfEmployees = int.parse(
+                                  _numberOFEmployeeController.text ?? '0');
+                              register.workInCompany =
+                                  _workInEmployeeController.text;
                             }
-                            register.workType = (wrokNatureStutsValue=='اخرى'?_workNatureController.text:wrokNatureStutsValue)!;
+                            register.workType = (workNatureValue!.name == 'اخرى'
+                                ? _workNatureController.text
+                                : workNatureValue!.name)!;
                             _formKey.currentState!.save();
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
@@ -334,8 +423,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("تم تسجيل اشتراكك بنجاح سيتم ارسال كلمة المرور الى البريد الالكتروني يرجى التحقق من ذلك"), backgroundColor: Colors.green, duration:Duration(seconds: 3),));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+            "تم تسجيل اشتراكك بنجاح سيتم ارسال كلمة المرور الى البريد الالكتروني يرجى التحقق من ذلك"),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ));
       AppNavigation.navigateTo(context, const LoginScreen());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

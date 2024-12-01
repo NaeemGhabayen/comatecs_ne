@@ -8,7 +8,7 @@ class CustomDropDownField extends StatelessWidget {
   void Function(String?)? onChange;
   String? icons;
   bool? width;
-  List<String>? list;
+  List<dynamic>? list;
   String? value;
   bool? isReadOnly;
 
@@ -56,7 +56,7 @@ class CustomDropDownField extends StatelessWidget {
             shape: BoxShape.rectangle,
           ),
           child: DropdownButton2<String>(
-            value: value,
+            value: value??null,
             isExpanded: true,
             iconStyleData: const IconStyleData(
               iconSize: 24,
@@ -93,11 +93,11 @@ class CustomDropDownField extends StatelessWidget {
             underline: const SizedBox(),
             style: const TextStyle(color: ColorResources.BLACK),
             onChanged: onChange!,
-            items: list!.map<DropdownMenuItem<String>>((String value) {
+            items: list!.map<DropdownMenuItem<String>>((dynamic value) {
               return DropdownMenuItem<String>(
                 enabled: !isReadOnly!,
-                value: value,
-                child: Text(value),
+                value: value.toString(),
+                child: Text(value.toString()),
               );
             }).toList(),
           ),

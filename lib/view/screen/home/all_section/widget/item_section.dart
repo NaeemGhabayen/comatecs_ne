@@ -20,6 +20,8 @@ class _ItemSectionState extends State<ItemSection> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
+        print(widget.categoriesModel!.id.toString());
+        print("widget.categoriesModel!.id.toString()");
         Provider.of<CategoriesProvider>(context, listen: false)
             .getSunCategoriesList(context: context , id: widget.categoriesModel!.id.toString());
         AppNavigation.navigateTo(context, SectionDetailsScreen(title:widget.categoriesModel!.name.toString() ,));

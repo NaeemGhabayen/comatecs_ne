@@ -24,8 +24,10 @@ class ConstantsProvider with ChangeNotifier {
   List<AboutUsModel> get aboutUsList => _aboutUsList;
 
    List<CategoriesModel> _workNatureList = [];
+   List<String> _workTypeList = [];
 
   List<CategoriesModel> get workNatureList => _workNatureList;
+  List<String> get workTypeList => _workTypeList;
 
   Future<bool> getWorkNatureList(context) async {
     _workNatureList = [];
@@ -36,6 +38,26 @@ class ConstantsProvider with ChangeNotifier {
     if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
       for (var item in apiResponse.response!.data) {
         _workNatureList.add(CategoriesModel.fromJson(item));
+        notifyListeners();
+        }
+      notifyListeners();
+      return true;
+    } else {
+      ApiChecker.checkApi(context, apiResponse);
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> getWorkTypeList(context) async {
+    _workTypeList = [];
+    _isLoading = true;
+    ApiResponse apiResponse = await constantsRepo!.getWorkTypeList();
+    _isLoading = false;
+    print('apiResponse.response.data');
+    if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
+      for (var item in apiResponse.response!.data) {
+        _workTypeList.add(CategoriesModel.fromJson(item).name!);
         notifyListeners();
         }
       notifyListeners();

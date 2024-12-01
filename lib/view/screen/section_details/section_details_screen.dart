@@ -253,7 +253,7 @@ class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children: _lists.map((String value) {
-                            return  CardProduct();
+                            return  const CardProduct();
                           }).toList(),
                         )
                       ],

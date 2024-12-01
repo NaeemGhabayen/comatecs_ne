@@ -20,7 +20,7 @@ class _FilterModelSheetState extends State<FilterModelSheet> {
     "married",
     "absolute",
   ];
-  String? maritalStatusValue;
+  String? maritalStatusValue=' ';
   double startval1 = 20, endval1 = 70;
   @override
   Widget build(BuildContext context) {

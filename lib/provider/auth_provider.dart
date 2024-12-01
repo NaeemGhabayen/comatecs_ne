@@ -37,7 +37,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     ApiResponse apiResponse = await authRepo!.registration(register);
     _isLoading = false;
-    if (apiResponse.response!.statusCode == 200 ) {
+    if (apiResponse.response!=null &&apiResponse.response!.statusCode == 200 ) {
       Map map = apiResponse.response!.data;
       String message = '';
       try {
@@ -66,7 +66,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     ApiResponse apiResponse = await authRepo!.restPassword(email:email);
     _isLoading = false;
-    if (apiResponse.response!.statusCode == 200 ) {
+    if (apiResponse.response!=null &&apiResponse.response!.statusCode == 200 ) {
       Map map = apiResponse.response!.data;
       String message = '';
       try {
@@ -96,7 +96,7 @@ class AuthProvider with ChangeNotifier {
     changePassword(email:email! ,
         newPassword: newPassword!,currentPassword: currentPassword!);
     _isLoading = false;
-    if (apiResponse.response!.statusCode == 200 ) {
+    if (apiResponse.response!=null &&apiResponse.response!.statusCode == 200 ) {
       // Map map = apiResponse.response.data;
       String message = 'تم تغير كلمة المرور بنجاح';
       try {
@@ -123,7 +123,7 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     ApiResponse apiResponse = await authRepo!.login(loginBody);
-    if (apiResponse.response!.statusCode == 200) {
+    if (apiResponse.response!=null &&apiResponse.response!.statusCode == 200) {
       String message = '';
       try {
         Map map = apiResponse.response!.data;

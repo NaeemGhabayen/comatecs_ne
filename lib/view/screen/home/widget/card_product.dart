@@ -41,7 +41,7 @@ class _CardProductState extends State<CardProduct> {
                     child: SizedBox(
                   height: 20,
                 )),
-                widget.productModel!.productImages!.isEmpty
+                widget.productModel==null||        widget.productModel!.productImages!.isEmpty
                     ? Image.asset(
                         'assets/images/img_1.png',
                         height: 100,

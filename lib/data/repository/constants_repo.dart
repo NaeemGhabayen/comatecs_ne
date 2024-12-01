@@ -37,6 +37,15 @@ class ConstantsRepo {
     }
   }
 
+  Future<ApiResponse> getWorkTypeList() async {
+    try {
+      final response = await dioClient!.get(AppConstants.WorkTypeListURL);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
 
   Future<ApiResponse> technicalSupport({String? fullName ,
     String? email , String? phoneNumber,String? message,} ) async {
