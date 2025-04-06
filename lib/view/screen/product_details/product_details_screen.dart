@@ -4,7 +4,6 @@ import 'package:comatecs/view/base/card_counter.dart';
 import 'package:comatecs/view/base/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_network/image_network.dart';
 
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';

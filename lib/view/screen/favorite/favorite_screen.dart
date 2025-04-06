@@ -18,7 +18,6 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  final List<String> _lists = ['1', '2', '2', '2', '2'];
 
   @override
   void initState() {

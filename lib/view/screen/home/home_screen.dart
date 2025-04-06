@@ -27,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _current = 0;
-  final int _currentReview = 1;
 
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];

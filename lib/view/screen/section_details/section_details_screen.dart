@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:comatecs/utill/app_constants.dart';
 import 'package:comatecs/view/base/costom_404.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +17,6 @@ class SectionDetailsScreen extends StatefulWidget {
 }
 
 class _SectionDetailsScreenState extends State<SectionDetailsScreen> {
-  int _current = 1;
-  final int _currentReview = 1;
 
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
