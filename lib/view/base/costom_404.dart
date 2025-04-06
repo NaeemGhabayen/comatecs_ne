@@ -1,15 +1,16 @@
+import 'package:comatecs/utill/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utill/dimensions.dart';
 
 class Custom404 extends StatefulWidget {
   final String? title;
   final String? text;
-  final String? btnTxt;
-  final Function? ontap;
 
-  const Custom404({Key? key, this.title, @required this.text, @required this.btnTxt , @required this.ontap }) : super(key: key);
+
+  const Custom404({Key? key, this.title, @required this.text,  }) : super(key: key);
 
   @override
   State<Custom404> createState() => _Custom404State();
@@ -25,7 +26,7 @@ class _Custom404State extends State<Custom404> {
         children: [
           // Center(
           //   child: SvgPicture.asset(
-          //     Images.image_404,
+          //     Images.information,
           //     height: MediaQuery.of(context).size.height / 3,
           //     fit: BoxFit.scaleDown,
           //     matchTextDirection: true,

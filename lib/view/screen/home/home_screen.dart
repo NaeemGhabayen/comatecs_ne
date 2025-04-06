@@ -17,7 +17,9 @@ import 'all_section/all_section_screen.dart';
 import 'widget/fillter_model_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, }) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -44,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // ];
   int selected = 0;
   bool isFavorite = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -218,8 +221,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .height *
                                                 .23,
                                             decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.all(
-                                                    Radius.circular(5)),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(5)),
                                                 image: DecorationImage(
                                                   image: NetworkImage(
                                                       '${AppConstants.BASE_URL}/images/${index.imageUrl}'),
@@ -231,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Alignment.bottomCenter,
                                                 child: Container(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       horizontal: 12,
                                                       vertical: 8),
                                                   child: Row(
@@ -252,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           height: 8.0,
                                                           margin:
                                                               const EdgeInsets
-                                                                      .symmetric(
+                                                                  .symmetric(
                                                                   horizontal: 2,
                                                                   vertical:
                                                                       10.0),
@@ -361,8 +365,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Center(
                                   child: Container(
                                     margin: const EdgeInsets.only(left: 10),
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
                                     alignment: Alignment.center,
                                     decoration: ShapeDecoration(
                                       color:
@@ -404,7 +408,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                               Text(
+                              Text(
                                 'الأكثر طلبا',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -424,8 +428,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller: ScrollController(keepScrollOffset: false),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        children: Provider.of<ProductProvider>(context, listen: false).mostPopularProductList.map((ProductModel value) {
-                          return CardProduct(productModel: value,);
+                        children:
+                            Provider.of<ProductProvider>(context, listen: false)
+                                .mostPopularProductList
+                                .map((ProductModel value) {
+                          return CardProduct(
+                            productModel: value,
+                          );
                         }).toList(),
                       )
                     ],

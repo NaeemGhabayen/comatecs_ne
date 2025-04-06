@@ -34,7 +34,6 @@ class ConstantsProvider with ChangeNotifier {
     _isLoading = true;
     ApiResponse apiResponse = await constantsRepo!.getWorkNatureList();
     _isLoading = false;
-    print('apiResponse.response.data');
     if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
       for (var item in apiResponse.response!.data) {
         _workNatureList.add(CategoriesModel.fromJson(item));
@@ -52,6 +51,7 @@ class ConstantsProvider with ChangeNotifier {
   Future<bool> getWorkTypeList(context) async {
     _workTypeList = [];
     _isLoading = true;
+    notifyListeners();
     ApiResponse apiResponse = await constantsRepo!.getWorkTypeList();
     _isLoading = false;
     print('apiResponse.response.data');
@@ -81,7 +81,6 @@ class ConstantsProvider with ChangeNotifier {
 
     }
     _isLoading = false;
-    print('apiResponse.response.data');
     if (apiResponse.response != null &&apiResponse.response!.statusCode == 200) {
       for (var item in apiResponse.response!.data) {
         _aboutUsList.add(AboutUsModel.fromJson(item));

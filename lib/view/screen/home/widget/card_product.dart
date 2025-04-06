@@ -1,16 +1,21 @@
 import 'package:comatecs/data/model/response/product_model.dart';
+import 'package:comatecs/provider/auth_provider.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:comatecs/utill/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_network/image_network.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../utill/app_constants.dart';
 import '../../../../utill/color_resources.dart';
 import '../../../../utill/images.dart';
 import '../../product_details/product_details_screen.dart';
 
 class CardProduct extends StatefulWidget {
   final ProductModel? productModel;
-  const CardProduct({Key? key,  this.productModel}) : super(key: key);
+
+  const CardProduct({Key? key, this.productModel}) : super(key: key);
 
   @override
   State<CardProduct> createState() => _CardProductState();
@@ -18,6 +23,7 @@ class CardProduct extends StatefulWidget {
 
 class _CardProductState extends State<CardProduct> {
   bool isFavorite = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +39,11 @@ class _CardProductState extends State<CardProduct> {
         children: [
           InkWell(
             onTap: () {
-              AppNavigation.navigateTo(context,  ProductDetailsScreen(productModel: widget.productModel,));
+              AppNavigation.navigateTo(
+                  context,
+                  ProductDetailsScreen(
+                    productModel: widget.productModel,
+                  ));
             },
             child: Column(
               children: [
@@ -41,7 +51,8 @@ class _CardProductState extends State<CardProduct> {
                     child: SizedBox(
                   height: 20,
                 )),
-                widget.productModel==null||        widget.productModel!.productImages!.isEmpty
+                widget.productModel == null ||
+                        widget.productModel!.productImages!.isEmpty
                     ? Image.asset(
                         'assets/images/img_1.png',
                         height: 100,
@@ -49,13 +60,13 @@ class _CardProductState extends State<CardProduct> {
                       )
                     : ImageNetwork(
                         image:
-                            "https://paulamuldoon.com/wp-content/uploads/2021/06/test.jpeg?w=1024",
+                            '${AppConstants.BASE_URL}/images/${widget.productModel!.productImages!.first.imageUrl}',
                         height: 120,
                         duration: 1000,
                         curve: Curves.easeIn,
                         onPointer: true,
                         debugPrint: false,
-                        fullScreen: false,
+                        fullScreen: true,
                         fitAndroidIos: BoxFit.cover,
                         fitWeb: BoxFitWeb.cover,
                         borderRadius: BorderRadius.circular(12),
@@ -68,12 +79,14 @@ class _CardProductState extends State<CardProduct> {
                           fit: BoxFit.contain,
                         ),
                         onTap: () {
-                          AppNavigation.navigateTo(context,  ProductDetailsScreen(productModel: widget.productModel,));
-
-                        }, width: 60,
+                          AppNavigation.navigateTo(
+                              context,
+                              ProductDetailsScreen(
+                                productModel: widget.productModel,
+                              ));
+                        },
+                        width: 200,
                       ),
-
-                //
                 const SizedBox(
                   height: 16,
                 ),
@@ -114,15 +127,12 @@ class _CardProductState extends State<CardProduct> {
                       decoration: ShapeDecoration(
                         color: const Color(0xFF197D47),
                         shape: RoundedRectangleBorder(
-                          side:
-                              const BorderSide(width: 0.50, color: Color(0x7FE1E1E1)),
+                          side: const BorderSide(
+                              width: 0.50, color: Color(0x7FE1E1E1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                       child: SvgPicture.asset(Images.add_cart),
-
-
-
                     )
                   ],
                 )
@@ -133,8 +143,21 @@ class _CardProductState extends State<CardProduct> {
             alignment: Alignment.topLeft,
             child: InkWell(
               onTap: () {
-                isFavorite = !isFavorite;
-                setState(() {});
+                if(isFavorite){
+                  Provider.of<ProductProvider>(context, listen: false)
+                      .removeProductFromFavoriteAPI(context, widget.productModel!.id).then((value){
+                    isFavorite = !isFavorite;
+                    setState(() {
+                    });
+                  });
+                }else{
+                  Provider.of<ProductProvider>(context, listen: false)
+                      .addProductToFavoriteAPI(context, Provider.of<AuthProvider>(context, listen: false).getUserId()!, widget.productModel!.id).then((value){
+                    isFavorite = !isFavorite;
+                    setState(() {
+                    });
+                  });
+                }
               },
               child: Container(
                   width: 36,
@@ -143,7 +166,8 @@ class _CardProductState extends State<CardProduct> {
                   decoration: ShapeDecoration(
                     color: const Color(0x66F1F1F1),
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 0.25, color: Color(0x66F1F1F1)),
+                      side: const BorderSide(
+                          width: 0.25, color: Color(0x66F1F1F1)),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),

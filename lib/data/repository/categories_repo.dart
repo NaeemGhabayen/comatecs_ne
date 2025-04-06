@@ -25,5 +25,13 @@ class CategoriesRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> getProductBySubCategory({String? id}) async {
+    try {
+      final response = await dioClient!.get(AppConstants.SubCategoryItemURL+id!);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 
 }

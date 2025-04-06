@@ -1,4 +1,5 @@
 
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -119,6 +120,18 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void decodeToken(String token) {
+    try {
+      final jwt = JWT.decode(token);
+      print('Payload: ${jwt.payload}');
+      print(jwt.payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
+      authRepo!.saveUserId(jwt.payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
+    } catch (e) {
+      print('Invalid token: $e');
+    }
+  }
+
   Future login(LoginModel loginBody, Function callback, context) async {
     _isLoading = true;
     notifyListeners();
@@ -131,6 +144,7 @@ class AuthProvider with ChangeNotifier {
      //   authRepo.saveUserData(map);
         if (map['token'] != null) {
           authRepo!.saveUserToken(map['token']);
+          decodeToken(map['token']);
           notifyListeners();
         }
           _isLoading = false;
@@ -162,6 +176,9 @@ class AuthProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isRemember = prefs.getBool("saveData") ?? false;
     notifyListeners();
+  }
+  String? getUserId() {
+    return authRepo!.getUserId();
   }
 
   Future<bool> clearSharedData() async {

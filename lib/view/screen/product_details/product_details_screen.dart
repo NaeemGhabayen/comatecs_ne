@@ -1,4 +1,5 @@
 import 'package:comatecs/data/model/response/product_model.dart';
+import 'package:comatecs/utill/app_constants.dart';
 import 'package:comatecs/view/base/card_counter.dart';
 import 'package:comatecs/view/base/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int selectedImage = 0;
   bool isFavorite = false;
   final List<String> _lists = ['1', '2', '2', '2'];
+
+  String? imageSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -48,28 +51,24 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .3,
                           width: MediaQuery.of(context).size.width,
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: Hero(
-                              tag: 1,
-                              child: ImageNetwork(
-                                image:
-                                    "https://paulamuldoon.com/wp-content/uploads/2021/06/test.jpeg?w=1024",
-                                duration: 200,
-                                curve: Curves.easeIn,
-                                height: 100,
-                                fitAndroidIos: BoxFit.fill,
-                                fitWeb: BoxFitWeb.fill,
-                                borderRadius: BorderRadius.circular(8),
-                                onLoading: const CircularProgressIndicator(
-                                  color: Colors.indigoAccent,
-                                ),
-                                onError: Image.asset(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Image.network(
+                              imageSelected != null
+                                  ? imageSelected!
+                                  : '${AppConstants.BASE_URL}/images/${widget.productModel!.productImages!.isEmpty?'':widget.productModel!.productImages!.first.imageUrl}',
+                              height: 100,
+                              fit: BoxFit.contain,
+                              errorBuilder: (BuildContext context, Object error,
+                                  StackTrace? stackTrace) {
+                                return Image.asset(
                                   'assets/images/logo_with_name.png',
                                   height: 100,
                                   fit: BoxFit.contain,
-                                ), width: 50,
-                              ),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -80,9 +79,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
                               ...List.generate(
-                                  widget.productModel!.productImages!.length + 2,
+                                  widget.productModel!.productImages!.length,
                                   (index) {
                                 return buildSmallProductPreview(index);
                               }),
@@ -93,7 +91,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
                     child: Row(
                       children: [
                         InkWell(
@@ -438,7 +437,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 margin: const EdgeInsets.only(left: 16),
                                 width: MediaQuery.of(context).size.width * .43,
                                 child: CardProduct(
-                                  productModel: widget.productModel!,));
+                                  productModel: widget.productModel!,
+                                ));
                           },
                         )),
                     const SizedBox(
@@ -490,6 +490,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   GestureDetector buildSmallProductPreview(int index) {
     return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedImage = index;
+          imageSelected='${AppConstants.BASE_URL}/images/${widget.productModel!.productImages![index].imageUrl}';
+        });
+      },
       child: AnimatedContainer(
         margin: const EdgeInsets.only(right: 15),
         padding: const EdgeInsets.all(8),
@@ -497,34 +503,38 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         width: 48,
         decoration: BoxDecoration(
           color: selectedImage == index
-              ? Colors.black.withOpacity(0.10000000149011612)
+              ? Colors.black.withOpacity(0.1)
               : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color: Theme.of(context)
-                  .primaryColor
-                  .withOpacity(selectedImage == index ? 1 : 0)),
+            color: Theme.of(context)
+                .primaryColor
+                .withOpacity(selectedImage == index ? 1 : 0),
+          ),
         ),
         duration: const Duration(milliseconds: 500),
-        child: ImageNetwork(
-          image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjj5dy27c9QgPgYlQA8rvce4xdYMxD86AaFA&s",
-          curve: Curves.easeIn,
-          fitAndroidIos: BoxFit.cover,
-          fitWeb: BoxFitWeb.cover,
-          height: 100,
-          width: 50,
-          onTap: () {
-            setState(() {
-              selectedImage = index;
-            });
+        child: Image.network(
+          '${AppConstants.BASE_URL}/images/${widget.productModel!.productImages![index].imageUrl}',
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Image.asset(
+              'assets/images/logo_with_name.png',
+              height: 48,
+              width: 48,
+              fit: BoxFit.contain,
+            );
           },
-          borderRadius: BorderRadius.circular(8),
-          onError: Image.asset(
-            'assets/images/logo_with_name.png',
-            height: 100,
-            fit: BoxFit.contain,
-          ),
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Center(
+              child: CircularProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        (loadingProgress.expectedTotalBytes ?? 1)
+                    : null,
+              ),
+            );
+          },
         ),
       ),
     );

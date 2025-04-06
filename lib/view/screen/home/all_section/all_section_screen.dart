@@ -6,7 +6,9 @@ import '../../../../provider/categories_provider.dart';
 import '../../../../utill/color_resources.dart';
 
 class AllSectionScreen extends StatefulWidget {
-  const AllSectionScreen({Key? key, }) : super(key: key);
+  const AllSectionScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AllSectionScreen> createState() => _AllSectionScreenState();
@@ -56,14 +58,29 @@ class _AllSectionScreenState extends State<AllSectionScreen> {
                   const SizedBox(
                     height: 24,
                   ),
-                  Provider.of<CategoriesProvider>(context, listen: true).isLoading? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),): ListView.builder(
-                    itemCount: Provider.of<CategoriesProvider>(context, listen: false).categoriesList.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext ctx, index) {
-                      return ItemSection(categoriesModel: Provider.of<CategoriesProvider>(context, listen: false).categoriesList[index],);
-                    },
-                  )
+                  Provider.of<CategoriesProvider>(context, listen: true)
+                          .isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: Provider.of<CategoriesProvider>(context,
+                                  listen: false)
+                              .categoriesList
+                              .length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext ctx, index) {
+                            return ItemSection(
+                              categoriesModel: Provider.of<CategoriesProvider>(
+                                      context,
+                                      listen: false)
+                                  .categoriesList[index],
+                            );
+                          },
+                        )
                 ],
               ),
             ),

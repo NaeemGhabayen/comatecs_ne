@@ -30,12 +30,12 @@ class AppConstants {
   static const String TermPolicyURL = '/api/TermPolicy';
   static const String CategoriesListURL = '/api/Category';
   static const String SubCategoriesListURL = '/api/SubCategory/';
+  static const String SubCategoryItemURL = '/api/SubCategory/SubCategoryItem/';
   static const String WorkNatureListURL = '/api/Name/WorkNature';
   static const String WorkTypeListURL = '/api/Name/WorkType';
   static const String GetMostPopularProductURL = '/api/Product/GetMostPopularProduct';
   static const String TechnicalSupportURL = '/api/TechnicalSupport';
-
-
+  static const String AddProductToFavoriteURL = '/api/Favorite';
 
 }
 

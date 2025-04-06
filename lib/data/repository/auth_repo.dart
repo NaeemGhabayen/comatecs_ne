@@ -87,7 +87,6 @@ class AuthRepo {
   Future<void> saveUserId(id) async {
     try {
       await sharedPreferences!.setString(AppConstants.USER_ID, id.toString());
-      print('sssssssssssssssssssssssssssssssssss');
     } catch (e) {
       rethrow;
     }
@@ -101,8 +100,6 @@ class AuthRepo {
       await sharedPreferences!.setString(AppConstants.USER_ROLE, map['user']['role']);
       await sharedPreferences!.setString(AppConstants.USER_ROLE, map['user']['role']);
       await sharedPreferences!.setString(AppConstants.USER_ID, map['user']['id'].toString());
-      print(map['user']['id']);
-      print('ssssssssssssssssssssssssssssss');
       print(map);
     } catch (e) {
       rethrow;
@@ -140,23 +137,13 @@ class AuthRepo {
     return sharedPreferences!.containsKey(AppConstants.TOKEN);
   }
 
-  bool isLoggedInConsultant() {
-    if(sharedPreferences!.getString(AppConstants.USER_ROLE)=="ADVISER"){
-      return true;
-    }else{
-      return false;
-    }
-  }
+
 
   Future<bool> clearSharedData() async {
     sharedPreferences!.remove(AppConstants.TOKEN);
     sharedPreferences!.clear();
     return true;
   }
-
-
-
-
 
 
 

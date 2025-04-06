@@ -1,11 +1,17 @@
+import 'package:comatecs/data/model/response/favorite_product_model.dart';
+import 'package:comatecs/provider/product_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/auth_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../home/widget/card_product.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({Key? key, }) : super(key: key);
+  const FavoriteScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FavoriteScreen> createState() => _FavoriteScreenState();
@@ -13,6 +19,15 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final List<String> _lists = ['1', '2', '2', '2', '2'];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ProductProvider>(context, listen: false).getFavoriteProductList(
+        context,
+        Provider.of<AuthProvider>(context, listen: false).getUserId()!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +56,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     const SizedBox(
                       width: 8,
                     ),
-                  const  Text(
+                    const Text(
                       'المفضلة',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -56,19 +71,24 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-
-                GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: (100 / 120),
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  controller: ScrollController(keepScrollOffset: false),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: _lists.map((String value) {
-                    return const CardProduct();
-                  }).toList(),
-                )
+                Provider.of<ProductProvider>(context, listen: true).isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      )
+                    : GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: (100 / 120),
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        controller: ScrollController(keepScrollOffset: false),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        children: Provider.of<ProductProvider>(context, listen: false).favoriteProductList.map((FavoriteProductModel value) {
+                          return  CardProduct(productModel:value.product ,);
+                        }).toList(),
+                      )
               ],
             ),
           ),
